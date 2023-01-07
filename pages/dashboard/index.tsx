@@ -1,7 +1,9 @@
+import Sidebar from "../../components/dashboard/Sidebar";
+
 const Dashboard = () => {
 	return (
-		<main>
-			<h1>Dashboard</h1>
+		<main className="bg-white">
+<Sidebar/>
 		</main>
 	)
 }

@@ -9,7 +9,7 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState('none')
 
   return (
-    <div className="bg-purple-900 h-screen glass-gradient">
+    <div className="bg-[#242f40] h-screen glass-gradient">
       <Login showLogin={showLogin} setShowLogin={setShowLogin} />
       <Singup showLogin={showLogin} setShowLogin={setShowLogin} />
       <div className="lg:flex h-screen justify-center items-center my-auto w-full">

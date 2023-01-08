@@ -40,14 +40,14 @@ const Login = ({showLogin,setShowLogin}) => {
           </div>
           <p className="text-sm mt-2 flex justify-end mx-2">
             Forgot password?
-            <a href="#" className="text-purple-900 ml-1">
+            <a href="#" className="text-[#242f40] ml-1">
               {" "}
               Reset
             </a>
           </p>
 
           <div className="flex justify-center">
-            <button className="bg-purple-900 text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
+            <button className="bg-[#242f40] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
               Login
             </button>
           </div>
@@ -56,7 +56,7 @@ const Login = ({showLogin,setShowLogin}) => {
               Dont have an account?{" "}
               <a
                 href="#"
-                className="text-purple-900"
+                className="text-[#242f40]"
                 onClick={() => setShowLogin("signup")}
               >
                 Sign up

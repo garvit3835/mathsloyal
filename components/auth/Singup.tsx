@@ -47,7 +47,7 @@ const Singup = ({ showLogin, setShowLogin }) => {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-purple-900 text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
+            <button className="bg-[#242f40] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
               Sign Up
             </button>
           </div>
@@ -56,7 +56,7 @@ const Singup = ({ showLogin, setShowLogin }) => {
               Already have an account?{" "}
               <a
                 href="#"
-                className="text-purple-900"
+                className="text-[#242f40]"
                 onClick={() => setShowLogin("login")}
               >
                 Login

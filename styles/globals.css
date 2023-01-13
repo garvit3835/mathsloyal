@@ -3,9 +3,22 @@
 @tailwind utilities;
 
 .glass-gradient {
-    /* background: linear-gradient(rgba(2, 3, 23, 0.1) 0%,
-            rgba(2, 3, 23, 0.8) 50%,
-            rgba(2, 3, 23, 0.2) 100%); */
+    background: linear-gradient(#f0f0ffb6 0%,
+            #e9e9f9f6 50%,
+            #d2d2f5aa 100%);
+            background-color: #94aebf;
 
     background-color: #242f40;
+}
+.btn {
+background: linear-gradient(90deg, #cdcbfcb6 0%, #8d8cdf 98.01%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 51px;
+}
+.hero-font{
+        display: block;
+            color: #000;
+            font-weight: 900;
+            font-family: "ProximaNova", "Helvetica", "Arial", sans-serif;
+            max-width: 100%;
 }

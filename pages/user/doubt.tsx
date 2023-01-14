@@ -6,17 +6,17 @@ import { useState } from "react";
 import { Leftbar } from "../../components/user/Leftbar";
 
 const Dashboard = () => {
-	const [ask, setAsk] = useState('hidden')
+  const [ask, setAsk] = useState("hidden");
 
-	return (
+  return (
     <div className="bg-white flex ">
-      <Leftbar/>
-      {/* <Askdoubt ask={ask} setAsk={setAsk} />
+      <Leftbar />
+      <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
-      <Rightbar /> */}
+      <Rightbar />
     </div>
   );
-}
+};
 
 export default Dashboard;

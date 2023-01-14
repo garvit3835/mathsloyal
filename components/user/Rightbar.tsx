@@ -1,7 +1,7 @@
 
 const Rightbar = () => {
   return (
-    <div className="w-[260px] bg-white shadow-2xl h-screen absolute right-0  top-0 p-2">
+    <div className="w-[260px] bg-white shadow-2xl h-screen  right-0  top-0 p-2">
       <div className="w-full flex justify-center">
         <div className="mt-5 mx-auto ">
           <div className="flex gap-3 items-center">

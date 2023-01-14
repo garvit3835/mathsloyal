@@ -1,7 +1,7 @@
 import { useState ,useEffect} from "react";
 import Image from "next/image";
 
-const Askdoubt = () => {
+const Askdoubt = ({ask,setAsk}) => {
   const [file, setFile] = useState({});
   const [preview, setPreview] = useState('');
   const [first, setFirst] = useState([])
@@ -38,11 +38,11 @@ const Askdoubt = () => {
 
 
   return (
-    <div className="w-full flex justify-center pt-[65px] h-full absolute bg-[rgba(79,179,246,.8)] z-40">
+    <div className={`w-full flex justify-center pt-[65px] h-full absolute bg-[rgba(79,179,246,.8)] z-40 ${ask}`}>
       <div className="absolute bg-white w-[700px] rounded-md p-[20px]">
         <div className="flex w-full justify-between mb-4 font-semibold text-md">
           <div>Ask your Doubt</div>
-          <div>X</div>
+          <div onClick={()=>{setAsk('hidden')}} className='cursor-pointer hover:bg-gray-200 rounded-full px-2'>X</div>
         </div>
         <div>
           <textarea

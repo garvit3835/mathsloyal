@@ -21,12 +21,12 @@ const [ask, setAsk] = useState("hidden");
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-4/5 mx-auto">
+      <div className="w-full xl:w-4/5 mx-auto">
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500">Junaid</span>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid lg:grid-cols-2">
           <div className="">
             <ProfilePreview />
 

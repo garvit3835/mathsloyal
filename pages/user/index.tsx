@@ -1,22 +1,101 @@
-import Askdoubt from "../../components/user/Askdoubt";
-import Chatroom from "../../components/user/Chatroom";
-import Rightbar from "../../components/user/Rightbar";
-import Sidebar from "../../components/user/Sidebar";
+
 import { useState } from "react";
 import { Leftbar } from "../../components/user/Leftbar";
+import Status from "../../components/user/dashboard/Status";
+import ProfilePreview from "../../components/user/dashboard/ProfilePreview";
+import Subscription from "../../components/user/dashboard/Subscription";
+import DoubtStatus from "../../components/user/dashboard/Doubtstatus";
+import RecentDoubts from "../../components/user/dashboard/RecentDoubts";
+import Contact from "../../components/user/dashboard/Contact";
+import Askdoubt from "../../components/user/Askdoubt";
 
 const Dashboard = () => {
-	const [ask, setAsk] = useState('hidden')
+const [contact, setContact] = useState(false);
+const [ask, setAsk] = useState("hidden");
 
-	return (
-    <div className="bg-white flex ">
-      <Leftbar/>
+  return (
+    <div className="bg-gray-50 flex ">
+      <Askdoubt ask={ask} setAsk={setAsk} />
+      <Leftbar />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
+      <div className="w-4/5 mx-auto">
+        <div className="text-3xl font-semibold m-6">
+          Hey,
+          <span className="text-blue-500">Junaid</span>
+        </div>
+        <div className="grid grid-cols-2">
+          <div className="">
+            <ProfilePreview />
+
+            <Subscription />
+            <DoubtStatus />
+
+            <RecentDoubts />
+          </div>
+          <div className="flex flex-col">
+            <Status />
+            {contact ? (
+              <Contact setContact={setContact}/>
+            ) : (
+              <div className="flex">
+                <div
+                  className="
+                w-3/5 border m-5 p-4 rounded-lg bg-white  shadow-sm
+                "
+                >
+                  <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+                    <div className="text-gray-500 text-sm mt-3">
+                      Got a New Doubt?
+                    </div>
+                  </div>
+                  <div
+                    className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm"
+                    onClick={() => {
+                      setAsk("");
+                    }}
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <line x1={12} y1={5} x2={12} y2={19} />
+                      <line x1={5} y1={12} x2={19} y2={12} />
+                    </svg>
+                    Ask Here
+                  </div>
+                </div>
+
+                <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm  m-5 ">
+                  <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+                    facing issue / have suggestion
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => setContact(true)}
+                      className="text-lg my-2 font-base  border p-1  rounded-lg duration-300 bg-gray-100 hover:bg-gray-200 "
+                    >
+                      Contact us
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

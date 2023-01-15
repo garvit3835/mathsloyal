@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Login = ({showLogin,setShowLogin}) => {
   return (
     <div
-      className={`flex justify-center ${
+      className={`flex justify-center  ${
         showLogin === "login" ? "" : "hidden"
       } cursor-pointer`}
     >

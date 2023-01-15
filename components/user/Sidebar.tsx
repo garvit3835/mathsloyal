@@ -60,7 +60,7 @@ Solve x^2+2x+1=0
                 </div>
               </div>
             </div>
-
+{/* 
             <div className="flex py-3 px-3 items-center gap-3 rounded-md border-t hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer text-sm">
               <svg
                 stroke="currentColor"
@@ -120,7 +120,7 @@ Solve x^2+2x+1=0
                 <line x1={21} y1={12} x2={9} y2={12} />
               </svg>
               Log out
-            </div>
+            </div> */}
           </nav>
         </div>
       </div>

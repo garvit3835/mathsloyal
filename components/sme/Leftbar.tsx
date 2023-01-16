@@ -14,31 +14,31 @@ export const Leftbar = () => {
 
 
     useEffect(() => {
-        if(router.pathname === '/user'){
+        if(router.pathname === '/sme'){
             setActive('overview')
             handleNavDrop()
         }
-        else if(router.pathname === '/user/doubt'){
+        else if(router.pathname === '/sme/doubt'){
             setActive('doubt')
             handleNavDrop();
 
         }
-        else if(router.pathname === '/user/orders'){
+        else if(router.pathname === '/sme/orders'){
             setActive('orders')
             handleNavDrop();
 
         }
-        else if(router.pathname === '/user/ask'){
+        else if(router.pathname === '/sme/ask'){
             setActive('ask')
             handleNavDrop();
 
         }
-        else if(router.pathname === '/user/profile'){
+        else if(router.pathname === '/sme/profile'){
             setActive('profile')
             handleNavDrop();
 
         }
-        else if(router.pathname === '/user/setting'){
+        else if(router.pathname === '/sme/setting'){
             setActive('setting')
             handleNavDrop();
 
@@ -69,23 +69,23 @@ export const Leftbar = () => {
         navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"
       } duration-500   `}
         >
-          <Link href="/user">
+          <Link href="/sme">
             <div className="text-lg t ">DashBoard</div>
           </Link>
 
-          <Link href="/user/doubt">
+          <Link href="/sme/doubt">
             <div className="text-lg  ">Doubts</div>
           </Link>
-          <Link href="/user/orders">
+          <Link href="/sme/orders">
           <div className="text-lg t ">Orders</div>
           </Link>
-          <Link href="/user/ask">
+          <Link href="/sme/ask">
           <div className="text-lg te ">Ask Doubt</div>
           </Link>
-          <Link href="/user/profile">
+          <Link href="/sme/profile">
           <div className="text-lg t ">Profile</div>
           </Link>
-          <Link href="/user/setting">
+          <Link href="/sme/setting">
           <div className="text-lg  ">Setting</div>
           </Link>
         </div>
@@ -108,7 +108,7 @@ export const Leftbar = () => {
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => router.push("/user")}
+              onClick={() => router.push("/sme")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ export const Leftbar = () => {
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => router.push("/user/doubt")}
+              onClick={() => router.push("/sme/doubt")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ export const Leftbar = () => {
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => router.push("/user/orders")}
+              onClick={() => router.push("/sme/orders")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ export const Leftbar = () => {
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
               }`}
-              onClick={() => router.push("/user/setting")}
+              onClick={() => router.push("/sme/setting")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +194,7 @@ export const Leftbar = () => {
         <div className="w-full absolute bottom-5 flex justify-center text-center items-end  ay-200 ">
           <div
             className="bg-violet-500 rounded-full px-3 w-max text-3xl mx-auto cursor-pointer"
-            onClick={() => router.push("/user/profile")}
+            onClick={() => router.push("/sme/profile")}
           >
             J
           </div>

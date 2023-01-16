@@ -1,4 +1,4 @@
-import { Leftbar } from "../../components/user/Leftbar";
+import { Leftbar } from "../../components/sme/Leftbar";
 const Setting = () => {
   return (
     <div className="bg-white flex w-full gap-5">

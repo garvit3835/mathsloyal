@@ -1,7 +1,19 @@
+import { useState } from "react";
 
-const Rightbar = () => {
+const Rightbar = ({ rightBar }) => {
   return (
-    <div className="w-[260px] bg-white shadow-2xl h-screen  right-0  top-0 p-2">
+    <div
+      className={`hidden relative lg:flex w-[260px] bg-white shadow-2xl h-screen  right-0  top-0 p-2 ${
+        rightBar
+          ? "translate-x-[260px] md:absolute bg-green-300  "
+          : "translate-x-0 absolute"
+      }`}
+    >
+      {/* <div className=" absolute -left-5 bg-white shadow-2xl cursor-pointer"
+      onClick={exp}
+      >
+        IIIII
+      </div> */}
       <div className="w-full flex justify-center">
         <div className="mt-5 mx-auto ">
           <div className="flex gap-3 items-center">
@@ -136,6 +148,6 @@ const Rightbar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Rightbar

@@ -3,38 +3,54 @@ const Setting = () => {
   return (
     <div className="bg-white flex w-full gap-5">
       <Leftbar />
-      <div className="w-full h-screen overflow-scroll">
-        <div className=" border-2 h-max w-[85%] my-4 mx-auto rounded-2xl bg-white">
+      <div className="w-full h-screen overflow-scroll pt-12 px-3">
+        <div className=" border-2 h-max w-full md:w-[85%] my-4 mx-auto rounded-2xl bg-white">
           <div className="text-4xl font-semibold mb-8 m-4">
-            Hey, <span className="text-blue-500">JUNAID</span>
+            Hey, <span className="text-blue-500 mx-1">Tariq</span>
+            (sme)
           </div>
 
           <div className="w-full flex justify-start">
-            <div className=" w-full px-4 grid lg:grid-cols-2">
+            <div className=" w-full md:px-4 grid lg:grid-cols-2">
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Name
                 </label>
                 <input
                   className="border-2   md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
                   type="text"
-                  placeholder="JUNAID"
+                  placeholder="Tariq"
                 />
               </div>
-              <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+              <div className="w-full flex gap-3 items-center">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Class
                 </label>
-                <select className="border-2  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                  <option>12+</option>
-                </select>
+                <fieldset className="flex gap-4 h-max">
+
+
+    <div>
+      <input type="checkbox" id="ninth" name="ninth" />
+<label htmlFor="ninth">9th</label>
+    </div>
+    <div>
+      <input type="checkbox" id="tenth" name="tenth" />
+<label htmlFor="tenth">10th</label>
+    </div>
+    <div>
+      <input type="checkbox" id="eleventh" name="eleventh" />
+<label htmlFor="eleventh">11th</label>
+    </div>
+    <div>
+      <input type="checkbox" id="tweleth" name="tweleth" />
+<label htmlFor="tweleth">12th</label>
+    </div>
+
+
+</fieldset>
               </div>
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Board
                 </label>
                 <select className="border-2  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
@@ -44,7 +60,7 @@ const Setting = () => {
                 </select>
               </div>
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Target
                 </label>
                 <select className="border-2  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
@@ -54,18 +70,9 @@ const Setting = () => {
                   <option>Board</option>
                 </select>
               </div>
+           
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
-                  School
-                </label>
-                <input
-                  className="border-2   md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
-                  type="text"
-                  placeholder="School Name"
-                />
-              </div>
-              <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   City
                 </label>
                 <input
@@ -76,7 +83,7 @@ const Setting = () => {
               </div>
 
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Phone
                 </label>
                 <input
@@ -86,13 +93,13 @@ const Setting = () => {
                 />
               </div>
               <div className="w-full flex gap-3">
-                <label className="text-2xl w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
                   Email
                 </label>
                 <input
                   className="border-2   md:w-[330px]  bg-gray-300 border-gray-300 p-2 rounded-lg m-4 cursor-not-allowed"
                   type="email"
-                  value="junaidmalik9069@gmail.com"
+                  value="tariq@gmail.com"
                   disabled
                 />
               </div>
@@ -108,26 +115,26 @@ const Setting = () => {
             </button>
           </div>
         </div>
-        <div className=" border-2 h-max w-[85%] my-4 mx-auto rounded-2xl bg-white">
+        <div className=" border-2 h-max w-full md:w-[85%] my-4 mx-auto rounded-2xl bg-white">
           <div className="text-4xl font-semibold mb-8 m-4">Change Password</div>
 
           <div className=" w-full px-4 grid lg:grid-cols-2 gap-5">
             <div className="w-full flex ">
-              <label className="text-2xl lg:w-[180px] font-semibold m-4">
+              <label className="text-xl md:text-2xl lg:w-[180px] font-semibold lg:m-4">
                 Old Password
               </label>
               <input
-                className="border-2   lg:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
+                className="border-2   lg:w-[330px]  border-gray-300 p-2 rounded-lg mx-1 lg:m-4"
                 type="password"
                 placeholder="Old Password"
               />
             </div>
             <div className="w-full flex ">
-              <label className="text-2xl lg:w-[180px] b font-semibold m-4">
+              <label className="text-xl md:text-2xl lg:w-[180px] b font-semibold lg:m-4">
                 New Password
               </label>
               <input
-                className="border-2   lg:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
+                className="border-2   lg:w-[330px]  border-gray-300 p-2 rounded-lg mx-1  lg:m-4"
                 type="password"
                 placeholder="New Password"
               />

@@ -3,7 +3,7 @@ const RecentDoubts = () => {
   return (
     <div className=" m-5 p-4 ">
       <div className="flex justify-between w-full pb-4 border-b mb-2">
-        <div className="text-gray-900 font-semibold">Recent Doubts</div>
+        <div className="text-gray-900 font-semibold">Recent Solved Doubts</div>
         <div className="text-sm text-gray-600">View All </div>
       </div>
       <div className=" w-full">

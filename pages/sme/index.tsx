@@ -23,7 +23,10 @@ const [ask, setAsk] = useState("hidden");
       <div className="w-full xl:w-4/5 mx-auto mt-10">
         <div className="text-3xl font-semibold m-6">
           Hey,
-          <span className="text-blue-500">Junaid</span>
+          <span className="text-blue-500 mx-1">Tariq</span>
+          <span className="tex">
+            (sme)
+          </span>
         </div>
         <div className="grid lg:grid-cols-2">
           <div className="">
@@ -46,33 +49,18 @@ const [ask, setAsk] = useState("hidden");
                 "
                 >
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
-                    <div className="text-gray-500 text-sm mt-3">
-                      Got a New Doubt?
+                    <div className="text-gray-500 text-sm my-3">
+                     Start Solving
                     </div>
                   </div>
                   <div
-                    className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm"
+                    className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-center justify-center text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm"
                     onClick={() => {
                       setAsk("");
                     }}
                   >
-                    <svg
-                      stroke="currentColor"
-                      fill="none"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-4 w-4"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <line x1={12} y1={5} x2={12} y2={19} />
-                      <line x1={5} y1={12} x2={19} y2={12} />
-                    </svg>
-                    Ask Here
-                  </div>
+                   
+Click to Enter the world of solving                  </div>
                 </div>
 
                 <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm  m-5 ">

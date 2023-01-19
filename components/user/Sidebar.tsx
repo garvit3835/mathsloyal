@@ -55,7 +55,7 @@ Hey, <span className='text-blue-500'>Junaid</span>
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                   <div className="flex-1  max-h-5 overflow-hidden relative">
-Solve x^2+2x+1=0
+                Solve x^2+2x+1=0
                   </div>
                 </div>
               </div>

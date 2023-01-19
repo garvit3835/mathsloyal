@@ -1,14 +1,15 @@
 import Link from "next/link";
 const Sidebar = () => {
   return (
-    <div className="h-screen bg-white shadow-2xl  md:w-[260px] ">
+    <div className="hidden sm:flex h-screen bg-white shadow-2xl w-[180px] xl:w-[260px] ">
       <div className="flex h-full min-h-0 flex-col ">
         <div className="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
           <nav className="flex h-full flex-1 flex-col space-y-1 p-2">
             <div className="text-2xl font-semibold mt-3">
-              Hey, <span className="text-blue-500">Tarik</span> <span>(sme)</span>
+              Hey, <span className="text-blue-500">Tariq</span>{" "}
+              <span>(sme)</span>
             </div>
-           
+
             <div className="flex-col flex-1 overflow-y-auto border-b border-white/20 py-4">
               <div className="flex flex-col gap-2 text-gray-700 text-sm mt-4 ">
                 <div className="text-gray-500 text-sm ">
@@ -36,7 +37,7 @@ const Sidebar = () => {
               </div>
             </div>
 
-            <div className="flex py-3 px-3 items-center gap-3 rounded-md border-t hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer text-sm">
+            {/* <div className="flex py-3 px-3 items-center gap-3 rounded-md border-t hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer text-sm">
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -95,7 +96,7 @@ const Sidebar = () => {
                 <line x1={21} y1={12} x2={9} y2={12} />
               </svg>
               Log out
-            </div>
+            </div> */}
           </nav>
         </div>
       </div>

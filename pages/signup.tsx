@@ -1,9 +1,30 @@
 import Image from "next/image";
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 const Signup = () => {
+
+    const { user, signup } = useAuth();
+    console.log(user);
+    const [data, setData] = useState({
+      email: "",
+      password: "",
+    });
+
+    const handleSignup = async (e: any) => {
+      e.preventDefault();
+
+      try {
+        await signup(data.email, data.password);
+      } catch (err) {
+        console.log(err);
+      }
+
+      console.log(data);
+    };
 	return (
     <main>
-<Navbar/>
+      <Navbar />
       <div className={`flex justify-center `}>
         <div className="w-max px-16    top-20 z-40    py-10 items-center flex justify-center">
           <div className="">
@@ -18,34 +39,49 @@ const Signup = () => {
             <div className="flex justify-center">
               <p className="text-gray-600">Create your account</p>
             </div>
+            <form onSubmit={handleSignup}>
+              <div className="flex justify-center">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                />
+              </div>
+              <div className="flex justify-center">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                  onChange={(e: any) =>
+                    setData({
+                      ...data,
+                      email: e.target.value,
+                    })
+                  }
+                  value={data.email}
+                />
+              </div>
+              <div className="flex justify-center">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                  onChange={(e: any) =>
+                    setData({
+                      ...data,
+                      password: e.target.value,
+                    })
+                  }
+                  value={data.password}
+                />
+              </div>
 
-            <div className="flex justify-center">
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-              />
-            </div>
-            <div className="flex justify-center">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-              />
-            </div>
-            <div className="flex justify-center">
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-              />
-            </div>
-
-            <div className="flex justify-center">
-              <button className="bg-[#242f40] hover:bg-[#0e1114] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
-                Sign Up
-              </button>
-            </div>
+              <div className="flex justify-center">
+                <button className="bg-[#242f40] hover:bg-[#0e1114] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
+                  Sign Up
+                </button>
+              </div>
+            </form>
             <div className="flex justify-center">
               <p className="text-md mt-2">
                 Already have an account?{" "}

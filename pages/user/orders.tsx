@@ -5,8 +5,8 @@ const Orders = () => {
   return (
     <div className="bg-white flex ">
       <Leftbar />
-      <div className="w-full"> 
-        <div className="text-3xl font-semibold m-6 text-blue-500">
+      <div className="w-full">
+        <div className="text-3xl font-semibold m-6  px-10 text-blue-500">
           Order History
         </div>
         <div className="w-4/5 p-5 border mx-auto my-5 bg-white shadow rounded-2xl ">

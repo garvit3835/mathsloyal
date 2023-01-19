@@ -3,10 +3,10 @@ const Status = () => {
   return (
     <div className=" p-4 m-5 border rounded-lg ">
       <div className="mt-4 mx-5 text-xs text-gray-600">
-        Status of your last question
+
       </div>
       <div className="w-full py-6">
-        <div className="flex">
+        {/* <div className="flex">
           <div className="w-1/4">
             <div className="relative mb-2">
               <div className="w-10 h-10 mx-auto bg-green-500 rounded-full text-lg text-white flex items-center">
@@ -143,6 +143,11 @@ const Status = () => {
             </div>
             <div className="text-xs text-center md:text-base">Doubt Solved</div>
           </div>
+        </div> */}
+        <div>
+<div>
+ You are not live to any sme yet. Please click on the button below to enter the world
+</div>
         </div>
       </div>
     </div>

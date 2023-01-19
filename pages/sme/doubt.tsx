@@ -5,12 +5,12 @@ import { Leftbar } from "../../components/sme/Leftbar";
 
 const index = () => {
   return (
-    <main className="bg-white flex  overflow-">
-      <Leftbar/>
+    <div className="bg-white max-w-screen max-h-screen flex py-[50px] md:py-0 overflow-x-hidden">
+      <Leftbar />
       <Sidebar />
       <Chatroom />
       <Rightbar />
-    </main>
+    </div>
   );
 };
 

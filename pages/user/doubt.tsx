@@ -7,7 +7,7 @@ import { Leftbar } from "../../components/user/Leftbar";
 
 const Dashboard = () => {
   const [ask, setAsk] = useState("hidden");
-  const [rightBar, setRightBar] = useState(true)
+  const [rightBar, setRightBar] = useState(false)
   const [sideBar, setSideBar] = useState(true)
 
 

@@ -1,30 +1,97 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
-const Signup = () => {
+  import { ToastContainer, toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
+  import Router from "next/router";
 
+const Signup = () => {
+const router = Router;
     const { user, signup } = useAuth();
     console.log(user);
     const [data, setData] = useState({
+      name: "",
       email: "",
-      password: "",
+      password: ""
+
     });
 
     const handleSignup = async (e: any) => {
       e.preventDefault();
 
       try {
-        await signup(data.email, data.password);
+        // await signup(data.email, data.password);
+let datal = await fetch("http://localhost:3000/api/student/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+        const data1 = await datal.json();
+        console.log(data1);
+  if (data1.success) {
+    localStorage.setItem(
+      "myuser",
+      JSON.stringify({ email: data1.email, token: data1.token })
+    );
+    toast.success(data1.message, {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setTimeout(() => {
+      router.push("/login");
+    }, 1500);
+  } else {
+    toast.error(data1.message, {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
+
       } catch (err) {
         console.log(err);
       }
 
       console.log(data);
     };
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        if (token) {
+          Router.push("/user");
+        }
+      }
+    }, []);
 	return (
     <main>
       <Navbar />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className={`flex justify-center `}>
         <div className="w-max px-16    top-20 z-40    py-10 items-center flex justify-center">
           <div className="">
@@ -45,6 +112,13 @@ const Signup = () => {
                   type="text"
                   placeholder="Name"
                   className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                  onChange={(e: any) =>
+                    setData({
+                      ...data,
+                      name: e.target.value,
+                    })
+                  }
+                  value={data.name}
                 />
               </div>
               <div className="flex justify-center">

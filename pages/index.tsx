@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Login from "../components/auth/Login";
-import Singup from "../components/auth/Singup";
+import Signup from "../components/auth/Signup";
 import Hero from "../components/home/Hero";
 import Navbar from "../components/home/Navbar";
 import Searchbar from "../components/home/Searchbar";
@@ -17,7 +17,7 @@ export default function Home() {
 
       
       <Login showLogin={showLogin} setShowLogin={setShowLogin} />
-      <Singup showLogin={showLogin} setShowLogin={setShowLogin} />
+      <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
       <Navbar />
 
       {/* <Askdoubt/> */}

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-const Singup = ({ showLogin, setShowLogin }) => {
+const Signup = ({ showLogin, setShowLogin }) => {
   return (
     <div
       className={`flex justify-center ${
@@ -80,4 +80,4 @@ const Singup = ({ showLogin, setShowLogin }) => {
   );
 };
 
-export default Singup
+export default Signup

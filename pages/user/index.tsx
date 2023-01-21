@@ -4,7 +4,7 @@ import { Leftbar } from "../../components/user/Leftbar";
 import Status from "../../components/user/dashboard/Status";
 import ProfilePreview from "../../components/user/dashboard/ProfilePreview";
 import Subscription from "../../components/user/dashboard/Subscription";
-import DoubtStatus from "../../components/user/dashboard/Doubtstatus";
+import DoubtStatus from "../../components/user/dashboard/DoubtStatus";
 import RecentDoubts from "../../components/user/dashboard/RecentDoubts";
 import Contact from "../../components/user/dashboard/Contact";
 import Askdoubt from "../../components/user/Askdoubt";

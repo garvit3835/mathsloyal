@@ -1,5 +1,5 @@
 import Link from 'next/link';
-const Sidebar = ({ask,setAsk}) => {
+const Sidebar = ({ask,setAsk}:{ask:any,setAsk:any}) => {
   return (
     <div className="hidden sm:flex h-screen bg-white shadow-2xl w-[180px] xl:w-[260px] ">
 

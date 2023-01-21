@@ -1,5 +1,11 @@
 
-const Searchbar = ({ showLogin, setShowLogin }) => {
+const Searchbar = ({
+  showLogin,
+  setShowLogin,
+}: {
+  showLogin: any;
+  setShowLogin: any;
+}) => {
   return (
     <div onClick={() => setShowLogin("login")}>
       <div className="w-[80vw]  sm:w-[460px] md:w-[600px] lg:w-[500px]  xl:w-[580px] 2xl:w-[740px] relative items-center flex justify-center  lg:mx-10">

@@ -1,7 +1,7 @@
 import React from "react";
 
-const Contact = ({setContact}) => {
-    const submit=(e) => {
+const Contact = ({setContact}:{setContact:any}) => {
+    const submit=({e}:{e:any}) => {
         e.preventDefault();
         console.log("submitted");
     }
@@ -12,7 +12,7 @@ const Contact = ({setContact}) => {
       </div>
 
       <div className="text-xl font-base mb-2">Contact us</div>
-      <form onSubmit={submit}>
+      <form onSubmit={()=>submit}>
         {/* <div className="flex flex-col">
                   <label htmlFor="name" className="leading-7 text-sm text-gray-600">
                     Name

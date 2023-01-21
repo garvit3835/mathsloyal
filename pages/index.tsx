@@ -4,7 +4,6 @@ import Signup from "../components/auth/Signup";
 import Hero from "../components/home/Hero";
 import Navbar from "../components/home/Navbar";
 import Searchbar from "../components/home/Searchbar";
-import Askdoubt from "../components/user/Askdoubt";
 import Image from "next/image";
 import Footer from "../components/home/Footer";
 
@@ -16,12 +15,9 @@ export default function Home() {
     <div className="glass-gradient glass-gradient ">
       <div className="h-screen ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
-        <Singup showLogin={showLogin} setShowLogin={setShowLogin} />
+        <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
         <Navbar />
 
-
-
-      {/* <Askdoubt/> */}
       <div className="lg:flex  h-[679px] relative  justify-around items-center my-auto w-full ">
         <div className="lg:hidden w-full flex justify-center py-10">
           <Hero />
@@ -54,6 +50,7 @@ export default function Home() {
         </div>
       </div>
       <Footer/>
+    </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Rightbar = ({ rightBar }) => {
+const Rightbar = ({ rightBar }:{rightBar:any}) => {
   return (
     <div
       className={`hidden relative lg:flex w-[260px] bg-white shadow-2xl h-screen  right-0  top-0 p-2 ${

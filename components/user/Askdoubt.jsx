@@ -15,7 +15,7 @@ const Askdoubt = ({ask,setAsk}) => {
         let  saida = document.getElementById("file");
         // let quantos = saida.files.length;
         // console.log(saida.files);
-        setFile(saida.files)
+        setFile(saida?.files)
         // console.log(saida.files);
         // for (let i = 0; i < quantos; i++) {
         //   let urls = URL.createObjectURL(event.target.files[i]);

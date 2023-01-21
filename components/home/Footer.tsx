@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
 const Footer2 = () => {
     const [email, setEmail] = useState("");
-    const changeHandler = (e) => {
+    const changeHandler = ({e}:{e:any}) => {
         setEmail(e.target.value);
     };
     const emailHandler = async () => {
@@ -43,7 +43,7 @@ const Footer2 = () => {
         }
      
     };
-    const submitHandler = (e) => {
+    const submitHandler = ({e}:{e:any}) => {
         e.preventDefault();
         emailHandler()
         // console.log(email);
@@ -69,9 +69,9 @@ const Footer2 = () => {
                     <h2 className="tracking-widest font-mono text-2xl flex justify-center my-1  sm:justify-start">
                         SUBSCRIBE
                     </h2>
-                    <form onSubmit={submitHandler} className="sm:flex items-center gap-2  mt-3">
+                    <form onSubmit={()=>submitHandler} className="sm:flex items-center gap-2  mt-3">
                         <div className="flex justify-center my-1">
-                            <input type="email" value={email} onChange={changeHandler} name="email" id="email" placeholder="Enter your email" className="w-full max-w-[400px] rounded border-[1.7px] border-black  focus:outline-none focus:border-indigo-500 text-base mb-2 level4:mb-0 px-4 py-2" />
+                            <input type="email" value={email} onChange={()=>changeHandler} name="email" id="email" placeholder="Enter your email" className="w-full max-w-[400px] rounded border-[1.7px] border-black  focus:outline-none focus:border-indigo-500 text-base mb-2 level4:mb-0 px-4 py-2" />
                         </div>
                         <div className="flex justify-center mt-1">
                             <button className="text-white w-full max-w-[400px]  sm:w-fit border-0 py-2 px-8 focus:outline-none bg-black rounded text-lg">

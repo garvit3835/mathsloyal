@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const Login = ({showLogin,setShowLogin}) => {
+const Login = ({showLogin,setShowLogin}:{showLogin:any,setShowLogin:any} ) => {
   return (
     <div
       className={`flex justify-center  ${

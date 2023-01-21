@@ -1,5 +1,11 @@
 import Image from 'next/image'
-const Signup = ({ showLogin, setShowLogin }) => {
+const Signup = ({
+  showLogin,
+  setShowLogin,
+}: {
+  showLogin: any;
+  setShowLogin: any;
+}) => {
   return (
     <div
       className={`flex justify-center ${

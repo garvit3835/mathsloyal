@@ -1,10 +1,10 @@
 import React from "react";
 
-const Contact = ({setContact}) => {
-    const submit=(e) => {
-        e.preventDefault();
-        console.log("submitted");
-    }
+const Contact = ({ setContact }: { setContact: any }) => {
+  const submit = ({ e }: { e: any }) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
   return (
     <div className="   shadow-lg p-4 border-2 m-5 rounded-lg bg-white ">
       <div className="text-gray-600 w-full text-center mb-3">
@@ -12,7 +12,7 @@ const Contact = ({setContact}) => {
       </div>
 
       <div className="text-xl font-base mb-2">Contact us</div>
-      <form onSubmit={submit}>
+      <form onSubmit={() => submit}>
         {/* <div className="flex flex-col">
                   <label htmlFor="name" className="leading-7 text-sm text-gray-600">
                     Name
@@ -85,6 +85,6 @@ const Contact = ({setContact}) => {
       </form>
     </div>
   );
-}
+};
 
-export default Contact
+export default Contact;

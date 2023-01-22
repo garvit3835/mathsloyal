@@ -18,17 +18,10 @@ export default function Home() {
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
         <Navbar />
 
-      <div className="lg:flex  h-[679px] relative  justify-around items-center my-auto w-full ">
-        <div className="lg:hidden w-full flex justify-center py-10">
-          <Hero />
-        </div>
-        <div className="flex w-full items-center px-5   justify-around md:pl-7">
-          <div className="md:w-1/2   items-end ">
-            <div className="hidden lg:flex md:px-10 my-10">
-              <Hero />
-            </div>
-            <Searchbar showLogin={showLogin} setShowLogin={setShowLogin} />
-
+        {/* <Askdoubt/> */}
+        <div className="lg:flex  h-[679px] relative  justify-around items-center my-auto w-full ">
+          <div className="lg:hidden w-full flex justify-center py-10">
+            <Hero />
           </div>
           <div className="flex w-full items-center px-5   justify-around md:pl-7">
             <div className="md:w-1/2   items-end ">
@@ -49,8 +42,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer/>
-    </div>
+      <Footer />
     </div>
   );
 }

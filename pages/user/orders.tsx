@@ -3,7 +3,7 @@ const Orders = () => {
 
 
   return (
-    <div className="bg-white flex ">
+    <div className="bg-white flex pt-10 md:pt-0 ">
       <Leftbar />
       <div className="w-full">
         <div className="text-3xl font-semibold m-6  px-10 text-blue-500">

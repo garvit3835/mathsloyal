@@ -1,13 +1,13 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/home/Footer";
-const contact = () => {
+const faqs = () => {
   return (
     <div className="h-screen pt-20  ">
       <Navbar />
-      contact
+      faqs
       <Footer />
     </div>
   );
 };
 
-export default contact;
+export default faqs;

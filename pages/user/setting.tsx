@@ -1,7 +1,7 @@
 import { Leftbar } from "../../components/user/Leftbar";
 const Setting = () => {
   return (
-    <div className="bg-white flex w-full gap-5">
+    <div className="bg-white pt-10 md:pt-0 flex w-full gap-5">
       <Leftbar />
       <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[85%] my-4 mx-auto rounded-2xl bg-white">

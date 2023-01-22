@@ -48,7 +48,7 @@ export const Leftbar = () => {
     <div>
       <div>
         <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
-          <div className="text-2xl text-blue-700">ML</div>
+          <Link href='/' className="text-2xl text-blue-700">ML</Link>
           <div onClick={handleNavDrop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ export const Leftbar = () => {
           </div>
         </div>
         <div
-          className={` fixed
+          className={` absolute top-0
        h-max py-10 divide-y-[0.5px] px-5 scroll-m-0 bg-white text-center grid grid-cols-1 gap-5  w-screen md:hidden   z-20 shadow-2xl
       ${
         navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"

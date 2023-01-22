@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 import React, { useState ,useEffect} from "react";
   import { ToastContainer, toast } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
+import Footer from "../components/home/Footer";
 const Login = () => {
   const router = Router;
 
@@ -77,7 +79,7 @@ useEffect(() => {
 }, [])
 
 	return (
-    <main>
+    <main className="pt-10 md:pt-0">
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
@@ -140,9 +142,9 @@ useEffect(() => {
             <div className="flex justify-center">
               <p className="text-md mt-2">
                 not have an account?{" "}
-                <a href="#" className="text-[#242f40]">
+                <Link href="/signup" className="text-[#242f40]">
                   Signup{" "}
-                </a>
+                </Link>
               </p>
             </div>
             <div className="flex justify-center items-center gap-3 mt-4">
@@ -151,7 +153,7 @@ useEffect(() => {
               <p className="w-full border-t border-black"></p>
             </div>
             <div className="flex justify-center">
-              <button className="bg-white flex items-center justify-start px-7 gap-7 text-gray-600 border-2 border-gray-400 r\ mt-7 h-[50px] w-full mx-2 text-xl rounded-[5px]">
+              <button className="bg-white flex items-center justify-start px-2 md:px-7 gap-7 text-gray-600 border-2 border-gray-400 r\ mt-7 h-[50px] w-full mx-2 md:text-xl rounded-[5px]">
                 <Image src="/icons/google.png" width={23} height={23} alt=" " />
                 Continue with Google
               </button>
@@ -159,6 +161,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      <Footer/>
     </main>
   );
 }

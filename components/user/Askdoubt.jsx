@@ -38,8 +38,8 @@ const Askdoubt = ({ask,setAsk}) => {
 
 
   return (
-    <div className={`w-full flex justify-center pt-[65px] h-full absolute bg-[rgba(79,179,246,.8)] z-40 ${ask}`}>
-      <div className="absolute bg-white w-[700px] rounded-md p-[20px]">
+    <div className={`w-full  flex justify-center pt-[65px] h-full absolute bg-[rgba(79,179,246,.8)] z-40 ${ask}`}>
+      <div className="absolute bg-white w-4/5 md:w-[700px] rounded-md p-[20px]">
         <div className="flex w-full justify-between mb-4 font-semibold text-md">
           <div>Ask your Doubt</div>
           <div onClick={()=>{setAsk('hidden')}} className='cursor-pointer hover:bg-gray-200 rounded-full px-2'>X</div>

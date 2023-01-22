@@ -38,10 +38,13 @@ const Ask = () => {
 
 
 	return (
-    <div className="w-full justify-center">
+    <div className="w-full justify-center pt-10 md:pt-0">
       <Navbar />
-      <div className="w-full flex justify-center mt-5">
-        <div className=" bg-white w-[700px] rounded-md p-[20px] border-2 border-[#ebf2f7]">
+      <div className="w-full  md:flex justify-center mt-5">
+        <div className="block pt-5 w-4/5 mb-5 mx-auto md:hidden text-[40px]  md:ml-5 font-semibold leading-[49px]">
+          <span className="text-[#39bdff]">Trust</span> make us different from others
+        </div>
+        <div className=" bg-white mx-5 md:w-[700px] rounded-md p-[20px] border-2 border-[#ebf2f7]">
           <div className="flex w-full justify-between mb-4 font-semibold text-md">
             <div>Ask your Doubt</div>
           </div>
@@ -146,7 +149,7 @@ const Ask = () => {
             Proceed to pay
           </button>
         </div>
-        <div className="text-[40px] w-[320px] ml-5 font-semibold leading-[49px]">
+        <div className="hidden md:block text-[40px] w-[320px] ml-5 font-semibold leading-[49px]">
           <span className="text-[#39bdff]">Trust</span> make us different from others
         </div>
       </div>

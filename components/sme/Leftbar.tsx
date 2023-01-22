@@ -63,7 +63,7 @@ export const Leftbar = () => {
           </div>
         </div>
         <div
-          className={` fixed
+          className={` absolute top-0
        h-max py-10 divide-y-[0.5px] px-5 scroll-m-0 bg-white text-center grid grid-cols-1 gap-5  w-screen md:hidden   z-20 shadow-2xl
       ${
         navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"

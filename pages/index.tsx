@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="glass-gradient glass-gradient ">
-      <div className="h-screen ">
+      <div className="max-h-screen ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
         <Navbar />
@@ -30,12 +30,12 @@ export default function Home() {
               </div>
               <Searchbar showLogin={showLogin} setShowLogin={setShowLogin} />
             </div>
-            <div className="w-2/5 hidden   lg:flex items-end justify-center ">
+            <div className="  lg:w-2/5     lg:flex items-end justify-center ">
               <Image
                 src="/icons/hero.svg"
                 width={600}
                 height={600}
-                className="absolute bottom-0 right-0 w-3/6"
+                className="absolute bottom-0 right-0 w-full lg:w-3/6"
                 alt="a w-full"
               />
             </div>

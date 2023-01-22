@@ -7,7 +7,7 @@ const Login = ({showLogin,setShowLogin}:{showLogin:any,setShowLogin:any} ) => {
         showLogin === "login" ? "" : "hidden"
       } cursor-pointer`}
     >
-      <div className="w-max px-14 absolute   top-20 z-40  bg-gray-50 border-[2px] rounded-xl border-black shadow-2xl h-max py-10 items-center flex justify-center">
+      <div className=" w-full  md:w-max md:px-14 absolute   top-20 z-40  bg-gray-50 border-[2px] rounded-xl border-black shadow-2xl h-max py-10 items-center flex justify-center">
         <div
           className="flex justify-end top-4 right-6 text-2xl w-max absolute hover:bg-gray-400 rounded-full px-2 duration-500 transform ease-in-out"
           onClick={() => setShowLogin("none")}

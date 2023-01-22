@@ -94,9 +94,9 @@ const Footer2 = () => {
                         <li>
                             <Link legacyBehavior href="/signup"><a className="text-black hover:text-gray-400">Sign up</a></Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link legacyBehavior href="/trackorder"><a className="text-black hover:text-gray-400">Track Order</a></Link>
-                        </li>
+                        </li> */}
 
 
                     </ul>
@@ -133,7 +133,7 @@ const Footer2 = () => {
                             <Link legacyBehavior href="/terms_and_condition"><a className="text-black hover:text-gray-400">Terms and Conditions</a></Link>
                         </li>
                         <li>
-                            <Link legacyBehavior href="/refund_return_policy"><a className="text-black hover:text-gray-400">Refund/Return Policy</a></Link>
+                            <Link legacyBehavior href="/refund_policy"><a className="text-black hover:text-gray-400">Refund/Return Policy</a></Link>
                         </li>
 
                     </ul>
@@ -275,10 +275,10 @@ const Footer2 = () => {
                             @mathsloyal
                         </a></Link>
                     </p>
-                    <Link href='https://www.linkedin.com/in/theonlyjunaid/'>
+                    {/* <Link href='https://www.linkedin.com/in/theonlyjunaid/'>
                     <p className="text-white text-sm text-center sm:text-left">
                         @theonlyjunaid
-                        </p></Link>
+                        </p></Link> */}
 
                 </div>
             </div>

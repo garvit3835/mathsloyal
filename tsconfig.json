@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/sme/dashboard/Status.jsx", "components/sme/dashboard/RecentDoubts.jsx", "components/sme/dashboard/ProfilePreview.jsx", "components/sme/dashboard/DoubtStatus.jsx", "components/sme/dashboard/Contact.jsx", "components/sme/Sidebar.jsx", "components/sme/Rightbar.jsx", "components/sme/Leftbar.jsx", "components/sme/Chatroom.jsx", "components/sme/ChatBox.jsx", "components/home/Searchbar.jsx", "components/home/Navbar.jsx", "components/home/Hero.jsx", "components/home/Footer.jsx", "components/auth/Signup.jsx", "components/auth/Login.jsx", "pages/user/ask/index.jsx", "pages/sme/ask/index.jsx", "components/user/Askdoubt.jsx", "pages/api/hello.js"],
   "exclude": ["node_modules"]
 }

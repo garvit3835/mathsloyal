@@ -14,7 +14,7 @@ const Login = () => {
     password: "",
   });
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
 
@@ -72,7 +72,7 @@ useEffect(() => {
   if(typeof window !== "undefined"){
     // const token = localStorage.getItem("token");
     const user = localStorage.getItem("myuser");
-    const user1 = JSON.parse(user!);
+    const user1 = JSON.parse(user);
     console
     if(user1?.email && user1?.token && user1?.token!="undefined"){
       Router.push("/user");

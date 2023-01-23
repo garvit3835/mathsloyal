@@ -2,9 +2,6 @@ import Image from 'next/image'
 const Signup = ({
   showLogin,
   setShowLogin,
-}: {
-  showLogin: any;
-  setShowLogin: any;
 }) => {
   return (
     <div

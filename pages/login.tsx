@@ -46,7 +46,7 @@ const Login = () => {
                     theme: "light",
                   });
                   setTimeout(() => {
-                    router.push("/");
+                    router.push("/user");
                   }, 1500);
                 } else {
                   toast.error(data1.error, {
@@ -70,10 +70,22 @@ const Login = () => {
 
 useEffect(() => {
   if(typeof window !== "undefined"){
-    const token = localStorage.getItem("token");
-    if(token){
+    // const token = localStorage.getItem("token");
+    const user = localStorage.getItem("myuser");
+    const user1 = JSON.parse(user!);
+    console
+    if(user1?.email && user1?.token && user1?.token!="undefined"){
       Router.push("/user");
     }
+
+
+    // if(user?.email && user?.token && user?.token!="undefined"){
+    //   Router.push("/user");
+    // }
+
+    // if(token && token!="undefined"){
+    //   Router.push("/user");
+    // }
 
   }
 }, [])
@@ -94,7 +106,7 @@ useEffect(() => {
       />
       <Navbar />
       <div className={`flex justify-center `}>
-        <div className="w-max px-16    top-20 z-40    py-10 items-center flex justify-center">
+        <div className=" w-full px-10  sm:w-max  md:px-16    top-20 z-40    py-10 items-center flex justify-center">
           <div className="">
             <div className="flex justify-center">
               <h1 className="text-4xl mb-1 font-bold">Login</h1>
@@ -104,8 +116,8 @@ useEffect(() => {
                 Welcome back champ lets make you topper{" "}
               </p>
             </div>
-            <div className="flex justify-center">
-              <p className="text-gray-600">Create your account</p>
+            <div className="flex justify-center mt-3">
+              <p className="text-gray-600">Login in your account</p>
             </div>
 
             <div className="flex justify-center">
@@ -153,7 +165,7 @@ useEffect(() => {
               <p className="w-full border-t border-black"></p>
             </div>
             <div className="flex justify-center">
-              <button className="bg-white flex items-center justify-start px-2 md:px-7 gap-7 text-gray-600 border-2 border-gray-400 r\ mt-7 h-[50px] w-full mx-2 md:text-xl rounded-[5px]">
+              <button className="bg-white flex items-center justify-start px-2 md:px-7 gap-3 text-gray-600 border-2 border-gray-400 r\ mt-7 h-[50px] w-full mx-2 md:text-xl rounded-[5px]">
                 <Image src="/icons/google.png" width={23} height={23} alt=" " />
                 Continue with Google
               </button>

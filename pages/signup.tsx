@@ -95,7 +95,7 @@ let datal = await fetch("http://localhost:3000/api/student/signup", {
         theme="light"
       />
       <div className={`flex justify-center h-screen `}>
-        <div className="w-max px-16    top-20 z-40    py-10 items-center flex justify-center">
+        <div className="w-full  sm:w-max px-8 md:px-16    top-20 z-40    py-10 items-center flex justify-center">
           <div className="">
             <div className="flex justify-center">
               <h1 className="text-4xl mb-1 font-bold">Signup</h1>

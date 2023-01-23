@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Leftbar } from "../../components/sme/Leftbar";
-import Status from "../../components/sme/dashboard/Status";
+import Status from "../../components/sme/dashboard/Status.jsx";
 import ProfilePreview from "../../components/sme/dashboard/ProfilePreview";
 import Subscription from "../../components/sme/dashboard/Subscription";
 import RecentDoubts from "../../components/sme/dashboard/RecentDoubts";

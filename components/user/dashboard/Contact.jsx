@@ -1,7 +1,7 @@
 import React from "react";
 
-const Contact = ({ setContact }: { setContact: any }) => {
-  const submit = ({ e }: { e: any }) => {
+const Contact = ({ setContact }) => {
+  const submit = ( e ) => {
     e.preventDefault();
     console.log("submitted");
   };

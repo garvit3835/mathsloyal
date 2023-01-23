@@ -2,9 +2,6 @@
 const Searchbar = ({
   showLogin,
   setShowLogin,
-}: {
-  showLogin: any;
-  setShowLogin: any;
 }) => {
   return (
     <div onClick={() => setShowLogin("login")}>

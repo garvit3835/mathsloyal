@@ -19,7 +19,7 @@ const router = Router;
 
     });
 
-    const handleSignup = async (e: any) => {
+    const handleSignup = async (e) => {
       e.preventDefault();
 
       try {
@@ -114,7 +114,7 @@ let datal = await fetch("http://localhost:3000/api/student/signup", {
                   type="text"
                   placeholder="Name"
                   className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-                  onChange={(e: any) =>
+                  onChange={(e) =>
                     setData({
                       ...data,
                       name: e.target.value,
@@ -128,7 +128,7 @@ let datal = await fetch("http://localhost:3000/api/student/signup", {
                   type="email"
                   placeholder="Email"
                   className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-                  onChange={(e: any) =>
+                  onChange={(e) =>
                     setData({
                       ...data,
                       email: e.target.value,
@@ -142,7 +142,7 @@ let datal = await fetch("http://localhost:3000/api/student/signup", {
                   type="password"
                   placeholder="Password"
                   className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
-                  onChange={(e: any) =>
+                  onChange={(e) =>
                     setData({
                       ...data,
                       password: e.target.value,

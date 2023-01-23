@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
 const Footer2 = () => {
     const [email, setEmail] = useState("");
-    const changeHandler = ({e}:{e:any}) => {
+    const changeHandler = (e) => {
         setEmail(e.target.value);
     };
     const emailHandler = async () => {
@@ -43,7 +43,7 @@ const Footer2 = () => {
         }
      
     };
-    const submitHandler = ({e}:{e:any}) => {
+    const submitHandler = (e) => {
         e.preventDefault();
         emailHandler()
         // console.log(email);

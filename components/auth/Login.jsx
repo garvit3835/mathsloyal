@@ -1,5 +1,5 @@
 import Image from 'next/image'
-const Login = ({showLogin,setShowLogin}:{showLogin:any,setShowLogin:any} ) => {
+const Login = ({showLogin,setShowLogin}) => {
 
   return (
     <div

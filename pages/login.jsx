@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       // await signup(data.email, data.password);
-      let datal = await fetch("http://localhost:3000/api/student/login", {
+      let datal = await fetch("/api/student/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const router = Router;
 
       try {
         // await signup(data.email, data.password);
-let datal = await fetch("http://localhost:3000/api/student/signup", {
+let datal = await fetch("/api/student/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

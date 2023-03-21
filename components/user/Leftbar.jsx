@@ -193,10 +193,13 @@ export const Leftbar = () => {
         </div>
         <div className="w-full absolute bottom-5 flex justify-center text-center items-end  ay-200 ">
           <div
-            className="bg-violet-500 rounded-full px-3 w-max text-3xl mx-auto cursor-pointer"
-            onClick={() => router.push("/user/profile")}
+            className="bg-violet-500 rounded-full px-3 w-max text-sm mx-auto cursor-pointer"
+            onClick={() =>{
+              localStorage.clear();
+              router.push("/login");
+            }}
           >
-            J
+            Log Out
           </div>
         </div>
       </div>

@@ -7,6 +7,8 @@ const Ask = () => {
 	  const [file, setFile] = useState({});
     const [preview, setPreview] = useState("");
     const [first, setFirst] = useState([]);
+    const [text, setText] = useState("")
+
     const PreviewImage = () => {
       // const file = document.getElementById("file") as HTMLInputElement;
       // let frame = document.getElementById("frame") as HTMLIFrameElement;
@@ -35,7 +37,21 @@ const Ask = () => {
     useEffect(() => {
       console.log(first);
     }, [first]);
+const getAnswer = async () => {
 
+  const res = await fetch("http://localhost:3000/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+ text}
+    ),
+  });
+  const data = await res.json();
+setText(data.text)
+  console.log(data);
+}
 
 	return (
     <div className="w-full justify-center pt-10 md:pt-0">
@@ -53,6 +69,8 @@ const Ask = () => {
               placeholder="write your question"
               className="bg-gray-100 text-gray-500 w-full rounded-xl px-4 py-1 h-[168px] focus:bg-white ease-in-out duration-300"
               draggable="true"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
             />
             <div>
               <label htmlFor="file" className="w-max ">
@@ -145,8 +163,9 @@ const Ask = () => {
           <button
             type="submit"
             className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 py-2 text-white"
+            onClick={getAnswer}
           >
-            Proceed to pay
+            {file.length? "Proceed to pay":"Proceed to answer"}
           </button>
         </div>
         <div className="hidden md:block text-[40px] w-[320px] ml-5 font-semibold leading-[49px]">

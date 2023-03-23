@@ -164,12 +164,11 @@ Getting your answer... from our AI
           <div className="flex w-full justify-between mb-1 font-semibold text-md">
             <div>Our AI answer</div>
           </div>
-            <pre>{ans}</pre>
+          <pre className=" whitespace-pre-wrap" >{ans}</pre>
 
-          <button
+         <button
             type="submit"
             className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 mt-5 py-2 text-white"
-            // onClick={}
           >
 Not satisfied? Ask by our sme
           </button>

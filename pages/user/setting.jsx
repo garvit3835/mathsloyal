@@ -102,7 +102,7 @@ const Setting = () => {
               </div>
             </div>
           </div>
-          <div className="flex w-full justify-center gap-2 my-5 md:my-10">
+          <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg">
               Save Changes
             </button>
@@ -115,7 +115,7 @@ const Setting = () => {
         <div className=" border-2 h-max w-[95%] md:w-[85%] my-4 mx-auto rounded-2xl bg-white">
           <div className="text-2xl md:text-4xl font-semibold mb-4 md:mb-8 m-2  md:m-4">Change Password</div>
 
-          <div className=" w-full px-4 grid lg:grid-cols-2 gap-5">
+          <div className=" w-full px-4 grid lg:grid-cols-2 gap-2 md:gap-5">
             <div className="w-full flex ">
               <label className="text-lg  w-[40%]  md:text-2xl lg:w-[180px] font-semibold m-2  md:m-4">
                 Old Password
@@ -137,7 +137,7 @@ const Setting = () => {
               />
             </div>
           </div>
-          <div className="flex w-full justify-center gap-2 my-5 md:my-10">
+          <div className="flex w-full justify-center gap-2 my-5 md:justify-start md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg">
               Save Changes
             </button>

@@ -21,7 +21,7 @@ const [ask, setAsk] = useState("hidden");
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-full xl:w-4/5 mx-auto mt-10">
+      <div className="w-full xl:w-4/5 mx-auto mt-10 h-screen overflow-scroll">
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500">Junaid</span>

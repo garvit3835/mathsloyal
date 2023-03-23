@@ -11,7 +11,7 @@ const Chatroom = ({chat}) => {
         <div className=" w-full     ">
          {
         chat.length != 0 &&  chat.map((item, index) => (
-            <div className={`flex ${item?.role==="user"?"justify-end":""} w-full  `}>
+            <div className={`flex ${item?.role==="user"?"justify-end":""} w-full  `} key={index}>
               <div className={` mt-14 text-gray-800 dark:text-gray-100   flex ${item?.role !== "user" ? "flex-row-reverse":""}  w-max justify-start`}>
               {
                 item?.message.indexOf("digital") > 0 && <img src={item?.message}

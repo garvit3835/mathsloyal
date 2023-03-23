@@ -28,10 +28,10 @@ export default function Home() {
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
         <Navbar />
         <div className="w-full flex justify-center">
-        <div className="md:flex w-full mx-auto max-w-[1400px] items-center px-5 xs:px-10  relative mt-3 sm:mt-5 md:my-10">
+        <div className="md:flex w-full mx-auto  max-w-[1400px] items-center px-5 xs:px-10  relative mt-3 sm:mt-5 md:my-10">
           <div className="md:w-[60%]"> 
           <Hero />
-              <Link href={"/login"}><Searchbar showLogin={showLogin} setShowLogin={setShowLogin} /></Link> 
+              <Link href={"/user/ask"}><Searchbar showLogin={showLogin} setShowLogin={setShowLogin} /></Link> 
           </div>
           <img
             src="/icons/hero.webp"

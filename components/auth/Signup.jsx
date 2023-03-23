@@ -1,8 +1,75 @@
 import Image from 'next/image'
+import React, { useState, useEffect } from "react";
+import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Signup = ({
   showLogin,
   setShowLogin,
 }) => {
+
+  const router = Router;
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: ""
+
+  });
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      // await signup(data.email, data.password);
+      let datal = await fetch("/api/student/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      const data1 = await datal.json();
+      console.log(data1);
+      if (data1.success) {
+        localStorage.setItem(
+          "myuser",
+          JSON.stringify({ email: data1.email, token: data1.token })
+        );
+        toast.success(data1.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
+      } else {
+        toast.error(data1.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+
+
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log(data);
+  };
   return (
     <div
       className={`flex justify-center ${
@@ -32,6 +99,7 @@ const Signup = ({
               type="text"
               placeholder="Name"
               className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+              onChange={(e) => setData({ ...data, name: e.target.value })}
             />
           </div>
           <div className="flex justify-center">
@@ -39,6 +107,7 @@ const Signup = ({
               type="email"
               placeholder="Email"
               className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+              onChange={(e) => setData({ ...data, email: e.target.value })} 
             />
           </div>
           <div className="flex justify-center">
@@ -46,11 +115,14 @@ const Signup = ({
               type="password"
               placeholder="Password"
               className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+              onChange={(e) => setData({ ...data, password: e.target.value })}
             />
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-[#242f40] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]">
+            <button className="bg-[#242f40] text-white mt-4 h-[50px] w-full mx-2 text-xl rounded-[5px]"
+            onClick={handleSignup}
+            >
               Sign Up
             </button>
           </div>

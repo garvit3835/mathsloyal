@@ -10,15 +10,21 @@ const Chatroom = ({chat}) => {
       <div className=" w-full    overflow-y-scroll h-full d">
         <div className=" w-full     ">
          {
-        chat.lenght!= 0 &&  chat.map((item, index) => (
+        chat.length != 0 &&  chat.map((item, index) => (
             <div className={`flex ${item?.role==="user"?"justify-end":""} w-full  `}>
               <div className={` mt-14 text-gray-800 dark:text-gray-100   flex ${item?.role !== "user" ? "flex-row-reverse":""}  w-max justify-start`}>
-                <img
-                  src={item?.message}
-                
+              {
+                item?.message.indexOf("digital") > 0 && <img src={item?.message}
                   className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
                   alt="logo"
-                />
+                />}
+                {
+                  item?.message.indexOf("digital")==-1 && <p
+                  className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md " 
+                  >
+                  {item?.message}
+                  </p>
+                }
                 <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
                   {item?.name[0]}
                 </div>

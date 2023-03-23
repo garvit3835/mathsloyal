@@ -8,25 +8,11 @@ const Ask = () => {
     const [preview, setPreview] = useState("");
     const [first, setFirst] = useState([]);
     const [text, setText] = useState("")
+    const [ans, setAns] = useState("")
 
     const PreviewImage = () => {
-      // const file = document.getElementById("file") as HTMLInputElement;
-      // let frame = document.getElementById("frame") as HTMLIFrameElement;
-      //     frame.src = URL.createObjectURL(event.target.files[0]);
-      // console.log(URL.createObjectURL(event.target.files[0]));
-      // setFile(event.target.files)
-      // setPreview(URL.createObjectURL(event.target.files[0]));
       let saida = document.getElementById("file");
-      // let quantos = saida.files.length;
-      // console.log(saida.files);
       setFile(saida.files);
-      // console.log(saida.files);
-      // for (let i = 0; i < quantos; i++) {
-      //   let urls = URL.createObjectURL(event.target.files[i]);
-      //   setFile([...file, urls])
-      //   document.getElementById("galeria").innerHTML +=
-      //   `<img src="${urls}">`;
-      // }
       for (let index = 0; index < saida?.files.length; index++) {
         const element = saida?.files[index];
         console.log(element);
@@ -38,7 +24,7 @@ const Ask = () => {
       console.log(first);
     }, [first]);
 const getAnswer = async () => {
-
+setAns("answering...")
   const res = await fetch("http://localhost:3000/api/chat", {
     method: "POST",
     headers: {
@@ -49,7 +35,8 @@ const getAnswer = async () => {
     ),
   });
   const data = await res.json();
-setText(data.text)
+// setText(data.text)
+setAns(data.text)
   console.log(data);
 }
 
@@ -60,7 +47,7 @@ setText(data.text)
         <div className="block pt-5 w-4/5 mb-5 mx-auto md:hidden text-[40px]  md:ml-5 font-semibold leading-[49px]">
           <span className="text-[#39bdff]">Trust</span> make us different from others
         </div>
-        <div className=" bg-white mx-5 md:w-[700px] rounded-md p-[20px] border-2 border-[#ebf2f7]">
+       {ans=="" && <div className=" bg-white mx-5 md:w-[700px] rounded-md p-[20px] border-2 border-[#ebf2f7]">
           <div className="flex w-full justify-between mb-4 font-semibold text-md">
             <div>Ask your Doubt</div>
           </div>
@@ -164,10 +151,29 @@ setText(data.text)
             type="submit"
             className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 py-2 text-white"
             onClick={getAnswer}
+
           >
             {file.length? "Proceed to pay":"Proceed to answer"}
           </button>
-        </div>
+        </div>}
+        {ans == "answering..."  && <div className=" bg-white mx-5 md:w-[700px] mb-5 rounded-md p-[20px] border-2 border-[#ebf2f7]">
+Getting your answer... from our AI
+</div>
+        }
+        {ans !=="answering..." && ans !=="" &&<div className=" bg-white mx-5 md:w-[700px] mb-5 rounded-md p-[20px] border-2 border-[#ebf2f7]">
+          <div className="flex w-full justify-between mb-1 font-semibold text-md">
+            <div>Our AI answer</div>
+          </div>
+            <pre>{ans}</pre>
+
+          <button
+            type="submit"
+            className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 mt-5 py-2 text-white"
+            // onClick={}
+          >
+Not satisfied? Ask by our sme
+          </button>
+        </div>}
         <div className="hidden md:block text-[40px] w-[320px] ml-5 font-semibold leading-[49px]">
           <span className="text-[#39bdff]">Trust</span> make us different from others
         </div>

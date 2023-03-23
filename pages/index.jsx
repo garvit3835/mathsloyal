@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useRouter } from "next/router";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
 import Hero from "../components/home/Hero";
@@ -9,39 +10,41 @@ import Footer from "../components/home/Footer";
 
 
 export default function Home() {
+  const router = useRouter();
   const [showLogin, setShowLogin] = useState('none')
+  useEffect(() => {
+   if(typeof window !== "undefined"){
+    if(localStorage.getItem('myuser')){
+      router.push('/user')
+    }
+    }
+  }, []);
 
   return (
-    <div className="glass-gradient glass-gradient ">
-      <div className="max-h-screen ">
+    <div className="glass-gradient glass-gradient  ">
+      <div className="max-h-screen max-w-[1300px] mx-auto ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />
         <Navbar />
-
-        {/* <Askdoubt/> */}
-        <div className="lg:flex  h-[679px] relative  justify-around items-center my-auto w-full ">
-          <div className="lg:hidden w-full flex justify-center py-10">
-            <Hero />
+        <div className="w-full flex justify-center">
+        <div className="md:flex w-full mx-auto max-w-[1400px] items-center px-5 xs:px-10  relative mt-3 sm:mt-5 md:my-10">
+          <div className="md:w-[60%]"> 
+          <Hero />
+          <Searchbar showLogin={showLogin} setShowLogin={setShowLogin} />
           </div>
-          <div className="flex w-full items-center px-5   justify-around md:pl-7">
-            <div className="md:w-1/2   items-end ">
-              <div className="hidden lg:flex md:px-10 my-10">
-                <Hero />
-              </div>
-              <Searchbar showLogin={showLogin} setShowLogin={setShowLogin} />
-            </div>
-            <div className="  lg:w-2/5     lg:flex items-end justify-center ">
-              <Image
-                src="/icons/hero.svg"
-                width={600}
-                height={600}
-                className="absolute bottom-0 right-0 w-full lg:w-3/6"
-                alt="a w-full"
-              />
-            </div>
-          </div>
+          <img
+            src="/icons/hero.webp"
+            className="hidden md:flex md:w-[40%] p-2 "
+            alt="a h-[50%] w-[50%]"
+          />
         </div>
       </div>
+      </div>
+      <img
+        src="/icons/hero.webp"
+        className="  md:hidden px-10 "
+        alt="a h-[50%] w-[50%]"
+      />
       <Footer />
     </div>
   );

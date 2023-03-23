@@ -6,7 +6,7 @@ import { useState } from "react";
 const Chatroom = ({chat}) => {
 
   return (
-    <div className="  h-[90vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1">
+    <div className="  h-[98vh]  w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1">
       <div className=" w-full    overflow-y-scroll h-full d">
         <div className=" w-full     ">
          {

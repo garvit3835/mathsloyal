@@ -11,36 +11,66 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
         setNavDrop(!navDrop)
     }
 
+    useEffect(() => {
+if (!navDrop) {
+  if (typeof window !== "undefined") {
+    
+  
+window.scrollTo(0, 0);
+        document.body.style.overflow = "hidden";
+  }   
+}else{
+        document.body.style.overflow = "auto";
+
+    }
+    }, [navDrop])
+    useEffect(() => {
+    if (ask=="") {  
+setNavDrop(true)
+if (typeof window !== "undefined") {
+  
+  window.scrollTo(0, 0);
+}
+      document.body.style.overflow = "hidden";
+    }
+    else{
+        document.body.style.overflow = "auto";
+        if (typeof window !== "undefined") {
+          
+          window.scrollY = 0;
+        }
+    }
+    }, [ask])
 
 
     useEffect(() => {
         if(router.pathname === '/user'){
             setActive('overview')
-            handleNavDrop()
+            handleNavDrop(true)
         }
         else if(router.pathname === '/user/doubt'){
             setActive('doubt')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/orders'){
             setActive('orders')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/ask'){
             setActive('ask')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/profile'){
             setActive('profile')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/setting'){
             setActive('setting')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
     }, [router.pathname])
@@ -74,7 +104,10 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
         navDrop ? "-translate-x-[150%]" : "translate-x-[0px]"
       } duration-500   `}
         >
-          <div>
+          <div onClick={() => { setNavDrop("false") }} className='absolute border p-2 scale-150 bg-white -right-12'>
+            {"x"}
+          </div>
+          {router.pathname === "/user/doubt" && <div>
             {/* <div className="flex flex-col gap-2 text-gray-700 text-sm ">
               <div className="text-gray-500 text-sm mt-3">
                 Got a New Doubt?
@@ -99,10 +132,8 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
               <div>Ask Doubt</div>
              
             </div>
-            <div onClick={() => { setNavDrop("false") }} className='absolute border p-2 scale-150 bg-white -right-12'>
-              {"x"}
-            </div>
-            <div className="flex-col flex-1 overflow-y-auto border-b border-gray-300 m-2 my-3 shadow-inner bg-gray-50/2 rounded-lg h-[55vh] py-4 border ">
+            
+            <div className="flex-col flex-1 overflow-y-auto border-b border-gray-300 m-2 my-3 shadow-inner bg-gray-50/2 rounded-lg h-[280px] py-4 border ">
               <div className="flex flex-col gap-2 text-gray-700 text-sm ">
                 <div className="text-gray-500 text-sm ">
                   previously Asked Questions
@@ -149,8 +180,8 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <hr className='mx-3' />
+          </div>}
+          {router.pathname === "/user/doubt" && <hr className='mx-3' />}
           <div className=' m-2 mb-0  rounded-lg grid grid-cols-1 gap-2 text-start px-5 '>
 
          
@@ -173,6 +204,12 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
           <Link href="/user/setting">
           <div className="text-lg  ">Setting</div>
           </Link>
+          <div onClick={()=>{
+            localStorage.removeItem("myuser")
+            router.push("/login")
+          }}>
+            <div className="text-lg  ">Logout</div>
+          </div>
           </div>
          
         </div>

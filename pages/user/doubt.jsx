@@ -30,7 +30,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-white max-w-screen max-h-screen flex py-[50px] md:py-0 overflow-x-hidden">
+    <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
       <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />
       <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />

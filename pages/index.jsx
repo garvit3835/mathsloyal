@@ -6,6 +6,7 @@ import Hero from "../components/home/Hero";
 import Navbar from "../components/home/Navbar";
 import Searchbar from "../components/home/Searchbar";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "../components/home/Footer";
 
 
@@ -30,7 +31,7 @@ export default function Home() {
         <div className="md:flex w-full mx-auto max-w-[1400px] items-center px-5 xs:px-10  relative mt-3 sm:mt-5 md:my-10">
           <div className="md:w-[60%]"> 
           <Hero />
-          <Searchbar showLogin={showLogin} setShowLogin={setShowLogin} />
+              <Link href={"/login"}><Searchbar showLogin={showLogin} setShowLogin={setShowLogin} /></Link> 
           </div>
           <img
             src="/icons/hero.webp"

@@ -12,8 +12,8 @@ useEffect(() => {
 }, [])
 
   return (
-    <div onClick={() => setShowLogin("login")}>
-      <div className=" relative items-center flex justify-center  lg:mr-10">
+    <div >
+      <div className=" relative items-center flex justify-center  lg:mr-10 cursor-pointer">
         <input
           type="text"
           placeholder={`${width > 700 ? "Struggling with a doubt?":"Doubt?"} Ask here`}

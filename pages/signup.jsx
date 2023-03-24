@@ -94,7 +94,7 @@ let datal = await fetch("/api/student/signup", {
         pauseOnHover
         theme="light"
       />
-      <div className={`flex justify-center h-screen `}>
+      <div className={`flex justify-center  `}>
         <div className="w-full  sm:w-max px-8 md:px-16    top-20 z-40    py-10 items-center flex justify-center">
           <div className="">
             <div className="flex justify-center">

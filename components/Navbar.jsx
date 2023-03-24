@@ -49,7 +49,8 @@ const Navbar = () => {
 
         </div>
       </div>
-    <div className=" hidden md:flex w-full  justify-between p-10 border-b-2 border-[#ebf2f7]">
+    <div className=" hidden md:flex w-full    justify-between p-10 border-b-2 border-[#ebf2f7]">
+      <div className="max-w-[1300px] flex w-full mx-auto justify-between">
       <Link href="/">
         <div className="text-3xl font-semibold">MATHS LOYAL</div>
       </Link>
@@ -71,6 +72,7 @@ const Navbar = () => {
         </Link>
       </div>
     </div>
+      </div>
     </div>
   );
 }

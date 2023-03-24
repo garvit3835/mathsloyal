@@ -9,7 +9,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="flex md:gap-3 md:mr-10 items-center text-[12px] xs:text-[15px] ">
+      <div className="flex md:gap-3 md:mr-4 items-center text-[12px] xs:text-[15px] ">
         <Link href="/login">
           <div className=" hidden md:flex items-center  px-5 py-1 rounded-full  text-gray-900   font-semibold tracking-wide hover:bg-gray-400 duration-300 ease-in-out cursor-pointer ">
             LOGIN

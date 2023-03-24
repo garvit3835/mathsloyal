@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
     // <AuthContextProvider>
 
       // {noAuthRequired.includes(router.pathname) ? (
+    <div className='h-screen overflow-scroll'>
         <Component {...pageProps} />
+    </div>
       // ) : (
       //   <ProtectedRoute>
       //     <Component {...pageProps} />

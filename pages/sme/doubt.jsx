@@ -2,7 +2,7 @@ import Chatroom from "../../components/sme/Chatroom";
 import Rightbar from "../../components/sme/Rightbar";
 import Sidebar from "../../components/sme/Sidebar";
 import { Leftbar } from "../../components/sme/Leftbar";
-import {useState} from 'react'
+import React,{useState} from "react";
 
 const index = () => {
   const [chat, setChat] = useState([

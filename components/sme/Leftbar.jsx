@@ -16,38 +16,38 @@ export const Leftbar = () => {
     useEffect(() => {
         if(router.pathname === '/sme'){
             setActive('overview')
-            handleNavDrop()
+            handleNavDrop(false)
         }
         else if(router.pathname === '/sme/doubt'){
             setActive('doubt')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/orders'){
             setActive('orders')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/ask'){
             setActive('ask')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/profile'){
             setActive('profile')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/setting'){
             setActive('setting')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
     }, [router.pathname])
   return (
     <div>
       <div>
-        <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
+        {/* <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
           <div className="text-2xl text-blue-700">ML</div>
           <div onClick={handleNavDrop}>
             <svg
@@ -61,14 +61,35 @@ export const Leftbar = () => {
               <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
             </svg>
           </div>
+        </div> */}
+        <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
+
+          <div onClick={handleNavDrop}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width={30}
+              height={30}
+              viewBox="0 0 30 30"
+            >
+              <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
+            </svg>
+          </div>
+          <Link href='/sme' className="text-2xl text-blue-700">ML</Link>
+          <div onClick={() => { setAsk("") }}>
+
+          </div>
         </div>
         <div
           className={` absolute top-0
-       h-max py-10 divide-y-[0.5px] px-5 scroll-m-0 bg-white text-center grid grid-cols-1 gap-5  w-screen md:hidden   z-20 shadow-2xl
-      ${
-        navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"
-      } duration-500   `}
+       h-full   scroll-m-0 bg-white py-5  text-center flex justify-between  flex-col w-[70vw] md:hidden   z-20 shadow-2xl
+      ${navDrop ? "-translate-x-[150%]" : "translate-x-[0px]"
+            } duration-500   `}
         >
+          <div onClick={() => { setNavDrop("false") }} className='absolute border p-2 scale-150 bg-white -right-12'>
+            {"x"}
+          </div>
           <Link href="/sme">
             <div className="text-lg t ">DashBoard</div>
           </Link>
@@ -94,7 +115,7 @@ export const Leftbar = () => {
         <div className="mx-auto">
           <div
             className="text-4xl font-semibold cursor-pointer font-mono text-blue-600 "
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/sme")}
           >
             ML
           </div>
@@ -192,17 +213,34 @@ export const Leftbar = () => {
           </div>
         </div>
         <div className="w-full absolute bottom-5 flex justify-center text-center items-end  ay-200 ">
-          <div
-            className="bg-violet-500 rounded-full px-3 w-max text-3xl mx-auto cursor-pointer"
-            onClick={() => 
-{
-  localStorage.removeItem("token");
-}
-            }
+
+          <div className="flex  h-max p-3 text-center items-center justify-center rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer "
+
+            onClick={() => {
+              localStorage.clear();
+              router.push("/login");
+            }}
           >
-            logout
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth={2}
+              viewBox="0 0 34 34"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-8 w-8"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1={21} y1={12} x2={9} y2={12} />
+            </svg>
+            {/* Log out */}
+
           </div>
-        </div>
+          </div>
       </div>
     </div>
   );

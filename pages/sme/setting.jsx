@@ -13,20 +13,20 @@ const Setting = () => {
           <div className="w-full flex justify-start">
             <div className=" w-full md:px-4 grid lg:grid-cols-2">
               <div className="w-full flex gap-3">
-                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
+                <label className="text-xl w-[40%] md:text-2xl md:w-[90px] font-semibold m-4">
                   Name
                 </label>
                 <input
-                  className="border-2   md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
+                  className="border-2 w-[60%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
                   type="text"
                   placeholder="Tariq"
                 />
               </div>
               <div className="w-full flex gap-3 items-center">
-                <label className="text-xl md:text-2xl md:w-[90px] font-semibold m-4">
+                <label className="text-xl md:text-2xl w-[25%] md:w-[90px] font-semibold m-4">
                   Class
                 </label>
-                <fieldset className="flex gap-4 h-max">
+                <fieldset className="w-[75%] flex gap-2 h-max">
 
 
     <div>

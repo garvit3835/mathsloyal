@@ -8,9 +8,11 @@ const nextConfig = {
         hostname: "**",
         pathname: "**",
 
+
       },
     ],
   },
+  
 }
 
 module.exports = nextConfig

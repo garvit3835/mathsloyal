@@ -1,9 +1,12 @@
 import Navbar from "../../../components/Navbar";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 
 const Ask = () => {
+  const router = useRouter();
 	  const [file, setFile] = useState({});
     const [preview, setPreview] = useState("");
     const [first, setFirst] = useState([]);
@@ -11,10 +14,10 @@ const Ask = () => {
     const [ans, setAns] = useState("")
 
     const PreviewImage = () => {
-      let saida = document.getElementById("file");
-      setFile(saida.files);
-      for (let index = 0; index < saida?.files.length; index++) {
-        const element = saida?.files[index];
+      let filer = document.getElementById("file");
+      setFile(filer.files);
+      for (let index = 0; index < filer?.files.length; index++) {
+        const element = filer?.files[index];
         console.log(element);
         setFirst([...first, URL.createObjectURL(element)]);
       }
@@ -22,6 +25,8 @@ const Ask = () => {
     };
     useEffect(() => {
       console.log(first);
+
+      
     }, [first]);
 const getAnswer = async () => {
 setAns("answering...")
@@ -150,10 +155,12 @@ setAns(data.text)
           <button
             type="submit"
             className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 py-2 text-white"
-            onClick={getAnswer}
+            onClick={
+            getAnswer
+            }
 
           >
-            {file.length? "Proceed to pay":"Proceed to answer"}
+          Proceed to answer
           </button>
         </div>}
         {ans == "answering..."  && <div className=" bg-white mx-5 md:w-[700px] mb-5 rounded-md p-[20px] border-2 border-[#ebf2f7]">
@@ -161,17 +168,29 @@ Getting your answer... from our AI
 </div>
         }
         {ans !=="answering..." && ans !=="" &&<div className=" bg-white mx-5 md:w-[700px] mb-5 rounded-md p-[20px] border-2 border-[#ebf2f7]">
-          <div className="flex w-full justify-between mb-1 font-semibold text-md">
+       <div className="flex justify-between">
+         <div className="flex w-full justify-between mb-1 font-semibold text-md">
             <div>Our AI answer</div>
           </div>
+            <div className="flex justify-between text-center text-white cursor-pointer rounded-2xl mb-4 bg-[#4f7ac0] hover:bg-[#4c80ca] w-max font-semibold text-sm"
+            onClick={
+              ()=>{
+                setAns("")
+              }
+            }
+            >
+            <div>Have more Doubts?</div>
+          </div>
+          </div> 
           <pre className=" whitespace-pre-wrap" >{ans}</pre>
 
-         <button
+     <Link href="/login"><button
             type="submit"
             className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 mt-5 py-2 text-white"
           >
 Not satisfied? Ask by our sme
-          </button>
+          </button></Link> 
+       
         </div>}
         <div className="hidden md:block text-[40px] w-[320px] ml-5 font-semibold leading-[49px]">
           <span className="text-[#39bdff]">Trust</span> make us different from others

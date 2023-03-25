@@ -48,7 +48,7 @@ export default function Home() {
         className="  md:hidden px-10 "
         alt="a h-[50%] w-[50%]"
       />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Faqs/>
       <Footer />
     </div>

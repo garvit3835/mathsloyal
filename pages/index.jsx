@@ -8,6 +8,8 @@ import Searchbar from "../components/home/Searchbar";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/home/Footer";
+import Faqs from "../components/home/Faqs";
+import Testimonials from "../components/home/Testimonials";
 
 
 export default function Home() {
@@ -46,6 +48,8 @@ export default function Home() {
         className="  md:hidden px-10 "
         alt="a h-[50%] w-[50%]"
       />
+      <Testimonials />
+      <Faqs/>
       <Footer />
     </div>
   );

@@ -15,7 +15,7 @@ const testimonials = () => {
           />
           <div className="relative z-10 container px-4 mx-auto">
               <h2 className="mb-16 text-6xl md:text-7xl font-bold font-heading text-center tracking-px-n leading-tight">
-                  Don't just take our word for it
+                  {"Don't"} just take our word for it
               </h2>
               <div className="flex flex-wrap -m-3">
                   <div className="w-full md:w-1/2 lg:w-1/3 p-3">
@@ -92,7 +92,7 @@ const testimonials = () => {
                                   </div>
                                   <p className="text-lg font-medium">
                                       We have built a few web apps using Flaro. It saves us a lot of
-                                      time, because we don't have to build design features from
+                                      time, because we {"don't"} have to build design features from
                                       scratch.
                                   </p>
                               </div>

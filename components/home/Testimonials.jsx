@@ -15,7 +15,7 @@ const Testimonials = () => {
           />
           <div className="relative z-10 container px-4 mx-auto">
               <h2 className="mb-16 text-6xl md:text-7xl font-bold font-heading text-center tracking-px-n leading-tight">
-                  Don't just take our word for it
+                 Do not just take our word for it
               </h2>
               <div className="flex flex-wrap -m-3">
                   <div className="w-full md:w-1/2 lg:w-1/3 p-3">
@@ -35,7 +35,7 @@ const Testimonials = () => {
                                       </div>
                                   </div>
                                   <p className="text-lg font-medium">
-                                      If you haven’t tried out Flaro App yet, I would definitely
+                                      If you have not tried out Flaro App yet, I would definitely
                                       recommend it for both designers and developers 🤙🏻
                                   </p>
                               </div>
@@ -79,21 +79,18 @@ const Testimonials = () => {
                                   <div className="flex flex-wrap mb-4 -m-2">
                                       <div className="w-auto p-2">
                                           <img
-                                              src="flaro-assets/images/testimonials/avatar3.png"
+                                              src="flaro-assets/images/testimonials/avatar2.png"
                                               alt=""
                                           />
                                       </div>
                                       <div className="w-auto p-2">
-                                          <h3 className="font-semibold leading-normal">
-                                              Bessie Cooper
-                                          </h3>
+                                          <h3 className="font-semibold leading-normal">Wade Warren</h3>
                                           <p className="text-gray-500 uppercase">@brooklysim</p>
                                       </div>
                                   </div>
                                   <p className="text-lg font-medium">
-                                      We have built a few web apps using Flaro. It saves us a lot of
-                                      time, because we don't have to build design features from
-                                      scratch.
+                                      If you are thinking of a design partner to help you convert more
+                                      customers, Flaro is a great choice.
                                   </p>
                               </div>
                               <div className="block">
@@ -102,6 +99,7 @@ const Testimonials = () => {
                           </div>
                       </div>
                   </div>
+                  
                   <div className="w-full md:w-1/2 lg:w-1/3 p-3">
                       <div className="p-6 h-full bg-white bg-opacity-60 border rounded-4xl">
                           <div className="flex flex-col justify-between h-full">

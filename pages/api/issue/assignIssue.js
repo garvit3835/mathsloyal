@@ -3,27 +3,31 @@ import connectDB from "../../../middleware/mongoose";
 import findSolution from "../solution/findSolution";
 const mongoose = require('mongoose');
 
-const assignIssue = async (issueId, tutorId) => {
-	let data = await Issue.findOne(
-		{ _id: mongoose.Types.ObjectId(issueId) }
-	)
-	data.tutor = await mongoose.Types.ObjectId(tutorId)
-	await data.save()
-	console.log(`issue assigned to ${data.tutor}`)
-	setTimeout(async() => {
-		const info = await findSolution(issueId)
-		if (info) {
-			console.log("issue alreaady solved")
-			return info
-		} else {
-			console.log(`deassigning tutor`)
-			data = await Issue.updateOne(
-				{ _id: mongoose.Types.ObjectId(issueId) },
-				{ tutor: null }
-			);
-		}
-	}, 10000);
-	return data
+const assignIssue = async (req, res) => {
+	if (req.method === 'POST') {
+		let data = await Issue.updateOne(
+			{ _id: mongoose.Types.ObjectId(req.body.issueId) },
+			{ tutor: mongoose.Types.ObjectId(req.body.tutorId) }
+		);
+		console.log(`issue assigned to ${req.body.tutorId}`)
+		setTimeout(async() => {
+			const info = await findSolution(req.body.issueId)
+			if (info) {
+				console.log("issue alreaady solved")
+				return info
+			} else {
+				console.log(`deassigning tutor`)
+				data = await Issue.updateOne(
+					{ _id: mongoose.Types.ObjectId(req.body.issueId) },
+					{ tutor: null }
+				);
+			}
+		}, 10000);
+		res.status(200).json(data)
+	} else {
+		res.status(400).json({message: "Method not allowed"})
+	}
+	
 };
-connectDB(assignIssue)
-export default assignIssue;
+
+export default connectDB(assignIssue);

@@ -4,15 +4,20 @@ import connectDB from "../../../middleware/mongoose";
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.ObjectId;
 
-const createSolution = async (issueId, image, message, tutorId) => {
-    let data = await Solution.create({
-        "_id": mongoose.Types.ObjectId(issueId),
-		"image": image,
-		"message": message,
-		"tutor": mongoose.Types.ObjectId(tutorId),
-	});
-	console.log("solution created")
-	return data
+const createSolution = async (req, res) => {
+	if (req.method === 'POST') {
+		let data = await Solution.create({
+			"_id": mongoose.Types.ObjectId(req.body.issueId),
+			"image": req.body.image,
+			"message": req.body.message,
+			"tutor": mongoose.Types.ObjectId(req.body.tutorId),
+		});
+		console.log("solution created")
+		res.status(200).json(data)
+	} else {
+		res.status(400).json({message: "Method not allowed"})
+	}
+    
 };
-connectDB(createSolution)
-export default createSolution;
+
+export default connectDB(createSolution);

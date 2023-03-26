@@ -3,10 +3,17 @@ import connectDB from "../../../middleware/mongoose";
 import mongoose from "mongoose";
 // const ObjectId = mongoose.Schema.ObjectId;
 
-const getIssue = async (issueId) => {
-	let data = await Issue.findOne({ tutor: null, _id: { $ne: mongoose.Types.ObjectId(issueId) } });
-	console.log("issue suggested to tutors")
-	return data
+const getIssue = async (req, res) => {
+	if (req.method === "POST") {
+		let data = await Issue.findOne({
+			tutor: null,
+			_id: { $ne: mongoose.Types.ObjectId(req.body.issueId) },
+		});
+		console.log("issue suggested to tutors");
+		res.status(200).json(data);
+	} else {
+		res.status(400).json({message: "Method not allowed"})
+	}
 };
-connectDB(getIssue)
-export default getIssue;
+
+export default connectDB(getIssue);

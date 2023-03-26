@@ -1,8 +1,21 @@
 import Link from "next/link";
+import { useState } from "react";
 
 const Navbar = () => {
+
+  // const [navbarScroll, setNavbarScroll] = useState(false);
+  // if (typeof window !== "undefined") {
+  //   document.addEventListener("scroll", () => {
+  //     if (window.scrollY > 1) {
+  //       setNavbarScroll(true);
+  //     } else {
+  //       setNavbarScroll(false);
+  //     }
+  //   }
+  //   );
+  // }
   return (
-    <nav className=" flex items-center justify-between  w-full  py-5 px-5 xs:px-10 ">
+    <nav className={` flex items-center justify-between  w-full  py-5 px-5 xs:px-10 `}>
       <div className="flex items-center flex-shrink-0 text-white mr-6 B xs:pt-3  lg:mx-0">
         <span className="font-semibold text-black text-xl xs:text-2xl md:text-3xl flex items-center lg:text-4xl xl:text-5xl tracking-wide   ">
           MATHSLOYAL

@@ -5,11 +5,10 @@ import Signup from "../components/auth/Signup";
 import Hero from "../components/home/Hero";
 import Navbar from "../components/home/Navbar";
 import Searchbar from "../components/home/Searchbar";
-import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/home/Footer";
 import Faqs from "../components/home/Faqs";
-import Testimonials from "../components/home/Testimonials";
+import Head from "next/head";
 
 
 export default function Home() {
@@ -25,6 +24,11 @@ export default function Home() {
 
   return (
     <div className="glass-gradient glass-gradient  ">
+      <Head>
+        <title>MathsLoyal</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="MathsLoyal is an AI platform where you can ask your doubts and get them solved by AI or subject experts." />
+        </Head>
       <div className="max-h-screen max-w-[1300px] mx-auto ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />

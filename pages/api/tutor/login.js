@@ -1,4 +1,4 @@
-import Student from "../../../model/Student";
+import Tutor from "../../../model/Tutor";
 import connectDB from "../../../middleware/mongoose";
 var CryptoJS = require("crypto-js");
 var jwt = require('jsonwebtoken');
@@ -8,14 +8,14 @@ var jwt = require('jsonwebtoken');
 const handler = async (req, res) => {
     if (req.method === 'POST') {
         // console.log(req.body);
-        let user = await Student.findOne({ email: req.body.email });
+        let user = await Tutor.findOne({ email: req.body.email });
         if (user) {
             // res.status(200).json({ success: true, message: 'User exists' });
             const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRECT_KEY);
             let decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
             if (req.body.email === user.email && req.body.password === decryptedPassword) {
                 let token = jwt.sign({ name: user.name, email: user.email }, process.env.JWT_SECRET, { expiresIn: '2d' });
-                res.status(200).json({ success: true, token, email: user.email, studentId: user._id });
+                res.status(200).json({ success: true, token, email: user.email, tutorId: user._id });
                 // console.log(user);
             }
             else {

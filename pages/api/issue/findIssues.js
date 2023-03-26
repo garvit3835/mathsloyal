@@ -1,0 +1,18 @@
+import Issue from "../../../model/Issue";
+import connectDB from "../../../middleware/mongoose";
+import mongoose from "mongoose";
+import getStudentIssues from "../student/getStudentIssues";
+// const ObjectId = mongoose.Schema.ObjectId;
+
+const findIssues = async (req, res) => {
+	if (req.method === "POST") {
+		let issues = await getStudentIssues(req.body.studentId);
+		const data = await Issue.find({ _id: { $in: issues } }).toArray();
+		res.status(200).json(data);
+	} else {
+		res.status(400).json({ message: "Method not allowed" });
+	}
+
+};
+
+export default connectDB(findIssues);;

@@ -14,8 +14,8 @@ const Navbar = () => {
   return (
 <div>
      <div className="absolute  z-50 bg-white">
-        <div className="h-[50px] z-40 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
-          <Link href="/" className="text-2xl text-blue-700">MathsLoyal</Link>
+        <div className="h-[50px] z-40 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-full">
+          <Link href="/" className="text-2xl text-blue-700">Maths Loyal</Link>
           <div onClick={handleNavDrop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +49,7 @@ const Navbar = () => {
 
         </div>
       </div>
-    <div className=" hidden md:flex w-full    justify-between p-10 border-b-2 border-[#ebf2f7]">
-      <div className="max-w-[1300px] flex w-full mx-auto justify-between">
+    <div className=" hidden md:flex w-full  justify-between p-10 border-b-2 border-[#ebf2f7]">
       <Link href="/">
         <div className="text-3xl font-semibold">MATHS LOYAL</div>
       </Link>
@@ -72,7 +71,6 @@ const Navbar = () => {
         </Link>
       </div>
     </div>
-      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import getStudentIssues from "../student/getStudentIssues";
 const findIssues = async (req, res) => {
 	if (req.method === "POST") {
 		let issues = await getStudentIssues(req.body.studentId);
-		const data = await Issue.find({ _id: { $in: issues } }).toArray();
+		const data = await Issue.find({ _id: { $in: issues } });
 		res.status(200).json(data);
 	} else {
 		res.status(400).json({ message: "Method not allowed" });

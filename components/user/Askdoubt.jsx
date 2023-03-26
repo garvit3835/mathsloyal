@@ -19,20 +19,6 @@ const Askdoubt = ({ask,setAsk}) => {
   useEffect(() => {
     console.log(first);
   }, [first])
-  // const getUrl = async ()=>{
-  //   const res = await fetch("/api/upload",{
-  //     method:"POST",
-  //     headers:{
-  //       "Content-Type":"application/json"
-  //     },
-  //     body:JSON.stringify({
-  //       file
-  //     })
-  //   })
-  //   const data = await res.json()
-  //   console.log(data);
-  // }
-
 
 
   return (
@@ -53,7 +39,25 @@ const Askdoubt = ({ask,setAsk}) => {
           })
             .then((res) => res.json())
             .then((data) => {
+
               console.log(data);
+              const create = async () => {
+                const res = await fetch("/api/issue/createIssue", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    message: data.fields.text,
+                    image:data.url,
+                    studentId:"63ce1e4c0ee46abedf8db1a6"
+                  }),
+                });
+                const data1 = await res.json();
+                console.log(data1);
+              };
+              create();
+
             });
         }}>
           <textarea

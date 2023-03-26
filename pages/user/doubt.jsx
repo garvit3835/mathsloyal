@@ -5,7 +5,7 @@ import Sidebar from "../../components/user/Sidebar";
 import { useState } from "react";
 import { Leftbar } from "../../components/user/Leftbar";
 
-const Dashboard = () => {
+const Doubt = ({student}) => {
   const [chat, setChat] = useState([
     // {
     //   name: "Junaid",
@@ -31,9 +31,9 @@ const Dashboard = () => {
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
-      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />
+      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} />
       <Askdoubt ask={ask} setAsk={setAsk} />
-      <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />
+      <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student}  />
       <Chatroom chat={chat}/>
 
       <div className=" hidden lg:flex relative">
@@ -51,4 +51,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Doubt;

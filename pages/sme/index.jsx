@@ -20,7 +20,7 @@ const [ask, setAsk] = useState("hidden");
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-full xl:w-4/5 mx-auto mt-10">
+      <div className="w-full xl:w-4/5 mx-auto mt-10 ">
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500 mx-1">Tariq</span>
@@ -45,7 +45,7 @@ const [ask, setAsk] = useState("hidden");
               <div className="flex">
                 <div
                   className="
-                w-3/5 border m-5 p-4 rounded-lg bg-white  shadow-sm
+                w-3/5 border nr-2 m-5 p-4 rounded-lg bg-white  shadow-sm
                 "
                 >
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
@@ -63,7 +63,7 @@ const [ask, setAsk] = useState("hidden");
 Click to Enter the world of solving                  </div>
                 </div>
 
-                <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm  m-5 ">
+                <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm ml-2 m-5 ">
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
                     facing issue / have suggestion
                   </div>

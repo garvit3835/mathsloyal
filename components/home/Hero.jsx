@@ -2,11 +2,18 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className="hero-font text-3xl xs:text-4xl xs-max:text-5xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl 2xl:text-7xl w-[240px] xs:w-[300px] xs-max:w-[420px] sm:w-[460px] md:w-[600px] lg:w-max 2xl:w-[740px] text-gray-800">
+    <div className='mb-5 lg:mb-8'>
+
+    
+    <div className="hero-font text-3xl xs:text-4xl xs-max:text-5xl sm:text-6xl md:text-4xl mb-3 lg:mb-5 lg:text-5xl xl:text-6xl  w-full text-gray-800">
       <h1>
         <span className="line-through	text-gray-600 ">Eliminate</span>{" "}
         uncertainty and move forward with clarity
       </h1>
+    </div>
+      <div className='hero-font  font-[300]'>
+      MathsLoyal is a fresh and innovative Doubt-solving platform where students and experts can come together to solve even the toughest of math problems.
+    </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-export const Leftbar = () => {
+export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
     const router = useRouter()
     const [navDrop, setNavDrop] = useState(false)
     const [active, setActive] = useState('overview')
@@ -11,36 +11,66 @@ export const Leftbar = () => {
         setNavDrop(!navDrop)
     }
 
+    useEffect(() => {
+if (!navDrop) {
+  if (typeof window !== "undefined") {
+    
+  
+window.scrollTo(0, 0);
+        document.body.style.overflow = "hidden";
+  }   
+}else{
+        document.body.style.overflow = "auto";
+
+    }
+    }, [navDrop])
+    useEffect(() => {
+    if (ask=="") {  
+setNavDrop(true)
+if (typeof window !== "undefined") {
+  
+  window.scrollTo(0, 0);
+}
+      document.body.style.overflow = "hidden";
+    }
+    else{
+        document.body.style.overflow = "auto";
+        if (typeof window !== "undefined") {
+          
+          window.scrollY = 0;
+        }
+    }
+    }, [ask])
 
 
     useEffect(() => {
         if(router.pathname === '/user'){
             setActive('overview')
-            handleNavDrop()
+            handleNavDrop(true)
         }
         else if(router.pathname === '/user/doubt'){
             setActive('doubt')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/orders'){
             setActive('orders')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/ask'){
             setActive('ask')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/profile'){
             setActive('profile')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
         else if(router.pathname === '/user/setting'){
             setActive('setting')
-            handleNavDrop();
+            handleNavDrop(true);
 
         }
     }, [router.pathname])
@@ -48,7 +78,7 @@ export const Leftbar = () => {
     <div>
       <div>
         <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
-          <Link href='/' className="text-2xl text-blue-700">ML</Link>
+     
           <div onClick={handleNavDrop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,14 +91,100 @@ export const Leftbar = () => {
               <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
             </svg>
           </div>
+          <Link href='/user' className="text-2xl text-blue-700">ML</Link>
+          <div onClick={() => { setAsk("") }}>
+
+            +
+          </div>
         </div>
         <div
           className={` absolute top-0
-       h-max py-10 divide-y-[0.5px] px-5 scroll-m-0 bg-white text-center grid grid-cols-1 gap-5  w-screen md:hidden   z-20 shadow-2xl
+       h-full   scroll-m-0 bg-white py-5  text-center flex justify-between  flex-col w-[70vw] md:hidden   z-20 shadow-2xl
       ${
-        navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"
+        navDrop ? "-translate-x-[150%]" : "translate-x-[0px]"
       } duration-500   `}
         >
+          <div onClick={() => { setNavDrop("false") }} className='absolute border p-2 scale-150 bg-white -right-12'>
+            {"x"}
+          </div>
+          {router.pathname === "/user/doubt" && <div>
+            {/* <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+              <div className="text-gray-500 text-sm mt-3">
+                Got a New Doubt?
+              </div>
+            </div> */}
+            <div className="flex py-3 relative m-2 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm" onClick={() => { setAsk("") }}>
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1={12} y1={5} x2={12} y2={19} />
+                <line x1={5} y1={12} x2={19} y2={12} />
+              </svg>
+              <div>Ask Doubt</div>
+             
+            </div>
+            
+            <div className="flex-col flex-1 overflow-y-auto border-b border-gray-300 m-2 my-3 shadow-inner bg-gray-50/2 rounded-lg h-[280px] py-4 border ">
+              <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+                <div className="text-gray-500 text-sm ">
+                  previously Asked Questions
+                </div>
+                <div className="flex py-3 px-3 mx-2 items-center gap-3 bg-gray-100  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
+                  setChat([
+                    {
+                      name: "Junaid",
+                      role: "user",
+                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
+                      time: "12:00",
+                    },
+                    {
+                      name: "Junaid",
+                      role: "user",
+                      message: "I am not able to solve this question",
+                      time: "12:00",
+                    },
+                    {
+                      name: "tariq",
+                      role: "sme",
+                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
+                      time: "12:00",
+                    }
+                  ])
+                }} >
+                  <svg
+                    stroke="currentColor"
+                    fill="none"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  <div className="flex-1  max-h-5 overflow-hidden relative">
+                    Solve x^2+2x+1=0
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>}
+          {router.pathname === "/user/doubt" && <hr className='mx-3' />}
+          <div className=' m-2 mb-0  rounded-lg grid grid-cols-1 gap-2 text-start px-5 '>
+
+         
           <Link href="/user">
             <div className="text-lg t ">DashBoard</div>
           </Link>
@@ -82,19 +198,27 @@ export const Leftbar = () => {
           <Link href="/user/ask">
           <div className="text-lg te ">Ask Doubt</div>
           </Link>
-          <Link href="/user/profile">
+          {/* <Link href="/user/profile">
           <div className="text-lg t ">Profile</div>
-          </Link>
+          </Link> */}
           <Link href="/user/setting">
           <div className="text-lg  ">Setting</div>
           </Link>
+          <div onClick={()=>{
+            localStorage.removeItem("myuser")
+            router.push("/login")
+          }}>
+            <div className="text-lg  ">Logout</div>
+          </div>
+          </div>
+         
         </div>
       </div>
       <div className="w-[83px] hidden bg-white border-r h-screen relative en-200 md:grid grid-cols-1 px-2 pt-5">
         <div className="mx-auto">
           <div
             className="text-4xl font-semibold cursor-pointer font-mono text-blue-600 "
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/user")}
           >
             ML
           </div>
@@ -192,11 +316,32 @@ export const Leftbar = () => {
           </div>
         </div>
         <div className="w-full absolute bottom-5 flex justify-center text-center items-end  ay-200 ">
-          <div
-            className="bg-violet-500 rounded-full px-3 w-max text-3xl mx-auto cursor-pointer"
-            onClick={() => router.push("/user/profile")}
-          >
-            J
+         
+            <div className="flex  h-max p-3 text-center items-center justify-center rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer "
+            
+        onClick={() => {
+          localStorage.clear();
+          router.push("/login");
+        }}
+            >
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth={2}
+                viewBox="0 0 34 34"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-8 w-8"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1={21} y1={12} x2={9} y2={12} />
+              </svg>
+              {/* Log out */}
+
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import ChatBox from "./ChatBox";
 import Image from "next/image";
 
-const Chatroom = () => {
+const Chatroom = ({chat}) => {
   return (
-    <div className="  h-[90vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 pt-10">
+    <div className="  h-[98vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 pt-10">
       <div className=" w-full    overflow-y-scroll h-full d">
         <div className=" w-full     ">
-          <div className="flex justify-start w-full  ">
+          {/* <div className="flex justify-start w-full  ">
             <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-3  rounded-full">
               J
             </div>
@@ -29,7 +29,30 @@ const Chatroom = () => {
             <div className="text-4xl h-max mx-2 bg-green-600 w-max px-2  rounded-full">
               B
             </div>
-          </div>
+          </div> */}
+          {
+            chat.length != 0 && chat.map((item, index) => (
+              <div className={`flex ${item?.role === "sme" ? "justify-end" : "justify-start"} w-full  `} key={index}>
+                <div className={` mt-14 text-gray-800 dark:text-gray-100   flex ${item?.role !== "sme" ? "flex-row-reverse" : ""}  w-max justify-start`}>
+                  {
+                    item?.message.indexOf("digital") > 0 && <img src={item?.message}
+                      className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
+                      alt="logo"
+                    />}
+                  {
+                    item?.message.indexOf("digital") == -1 && <p
+                      className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "
+                    >
+                      {item?.message}
+                    </p>
+                  }
+                  <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+                    {item?.name[0]}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
       <div className="w-full border-t md:border-t-0    ">

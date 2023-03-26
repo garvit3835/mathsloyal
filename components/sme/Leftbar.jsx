@@ -2,10 +2,11 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-export const Leftbar = () => {
+export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
     const router = useRouter()
     const [navDrop, setNavDrop] = useState(false)
     const [active, setActive] = useState('overview')
+    const [online, setOnline] = useState(false)
 
     const handleNavDrop = () => {
         setNavDrop(!navDrop)
@@ -16,39 +17,42 @@ export const Leftbar = () => {
     useEffect(() => {
         if(router.pathname === '/sme'){
             setActive('overview')
-            handleNavDrop()
+            handleNavDrop(false)
         }
         else if(router.pathname === '/sme/doubt'){
             setActive('doubt')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/orders'){
             setActive('orders')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/ask'){
             setActive('ask')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/profile'){
             setActive('profile')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
         else if(router.pathname === '/sme/setting'){
             setActive('setting')
-            handleNavDrop();
+            handleNavDrop(false);
 
         }
     }, [router.pathname])
+    // <div onClick = {()=> { setOnline(!online) }}>
+    //   {!online ? <img src="/icons/start.webp" alt='' className='w-[31px]' /> : <img src="/icons/pause.webp" alt='' className='w-[31px]' />}
+    //       </div >
   return (
     <div>
       <div>
         <div className="h-[50px] z-20 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
-          <div className="text-2xl text-blue-700">ML</div>
+
           <div onClick={handleNavDrop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,40 +65,132 @@ export const Leftbar = () => {
               <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
             </svg>
           </div>
+          <Link href='/sme' className="text-2xl text-blue-700">ML</Link>
+           <div onClick = {()=> { setOnline(!online) }}>
+      {!online ? <img src="/icons/start.webp" alt='' className='w-[31px]' /> : <img src="/icons/pause.webp" alt='' className='w-[31px]' />}
+          </div >
         </div>
         <div
           className={` absolute top-0
-       h-max py-10 divide-y-[0.5px] px-5 scroll-m-0 bg-white text-center grid grid-cols-1 gap-5  w-screen md:hidden   z-20 shadow-2xl
-      ${
-        navDrop ? "-translate-y-[150%]" : "translate-y-[50px]"
-      } duration-500   `}
+       h-full   scroll-m-0 bg-white py-5  text-center flex justify-between  flex-col w-[70vw] md:hidden   z-20 shadow-2xl
+      ${navDrop ? "-translate-x-[150%]" : "translate-x-[0px]"
+            } duration-500   `}
         >
-          <Link href="/sme">
-            <div className="text-lg t ">DashBoard</div>
-          </Link>
+          <div onClick={() => { setNavDrop("false") }} className='absolute border p-2 scale-150 bg-white -right-12'>
+            {"x"}
+          </div>
+          {router.pathname === "/sme/doubt" && <div>
+            {/* <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+              <div className="text-gray-500 text-sm mt-3">
+                Got a New Doubt?
+              </div>
+            </div> */}
+            {/* <div className="flex py-3 relative m-2 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm" onClick={() => { setAsk("") }}>
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1={12} y1={5} x2={12} y2={19} />
+                <line x1={5} y1={12} x2={19} y2={12} />
+              </svg>
+              <div>Ask Doubt</div>
 
-          <Link href="/sme/doubt">
-            <div className="text-lg  ">Doubts</div>
-          </Link>
-          <Link href="/sme/orders">
-          <div className="text-lg t ">Orders</div>
-          </Link>
-          <Link href="/sme/ask">
-          <div className="text-lg te ">Ask Doubt</div>
-          </Link>
-          <Link href="/sme/profile">
+            </div> */}
+
+            <div className="flex-col flex-1 overflow-y-auto border-b border-gray-300 m-2 my-3 shadow-inner bg-gray-50/2 rounded-lg h-[280px] py-4 border ">
+              <div className="flex flex-col gap-2 text-gray-700 text-sm ">
+                <div className="text-gray-500 text-sm ">
+                  previously Answered Questions
+                </div>
+                <div className="flex py-3 px-3 mx-2 items-center gap-3 bg-gray-100  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
+                  setChat([
+                    {
+                      name: "Junaid",
+                      role: "sme",
+                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
+                      time: "12:00",
+                    },
+                    {
+                      name: "Junaid",
+                      role: "sme",
+                      message: "I am not able to solve this question",
+                      time: "12:00",
+                    },
+                    {
+                      name: "tariq",
+                      role: "sme",
+                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
+                      time: "12:00",
+                    }
+                  ])
+                }} >
+                  <svg
+                    stroke="currentColor"
+                    fill="none"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  <div className="flex-1  max-h-5 overflow-hidden relative">
+                    Solve x^2+2x+1=0
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>}
+          {router.pathname === "/sme/doubt" && <hr className='mx-3' />}
+          <div className=' m-2 mb-0  rounded-lg grid grid-cols-1 gap-2 text-start px-5 '>
+
+
+            <Link href="/sme">
+              <div className="text-lg t ">DashBoard</div>
+            </Link>
+
+            <Link href="/sme/doubt">
+              <div className="text-lg  ">Doubts</div>
+            </Link>
+            <Link href="/sme/orders">
+              <div className="text-lg t ">Orders</div>
+            </Link>
+            <Link href="/sme/ask">
+              <div className="text-lg te ">Ask Doubt</div>
+            </Link>
+            {/* <Link href="/sme/profile">
           <div className="text-lg t ">Profile</div>
-          </Link>
-          <Link href="/sme/setting">
-          <div className="text-lg  ">Setting</div>
-          </Link>
+          </Link> */}
+            <Link href="/sme/setting">
+              <div className="text-lg  ">Setting</div>
+            </Link>
+            <div onClick={() => {
+              localStorage.removeItem("mysme")
+              router.push("/login")
+            }}>
+              <div className="text-lg  ">Logout</div>
+            </div>
+          </div>
+
         </div>
       </div>
       <div className="w-[83px] hidden bg-white border-r h-screen relative en-200 md:grid grid-cols-1 px-2 pt-5">
         <div className="mx-auto">
           <div
             className="text-4xl font-semibold cursor-pointer font-mono text-blue-600 "
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/sme")}
           >
             ML
           </div>
@@ -103,11 +199,10 @@ export const Leftbar = () => {
         <div className="flex flex-col text-center mb-10 ">
           <div className="grid grid-cols-1 gap-8">
             <div
-              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${
-                active === "overview"
+              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${active === "overview"
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
-              }`}
+                }`}
               onClick={() => router.push("/sme")}
             >
               <svg
@@ -124,11 +219,10 @@ export const Leftbar = () => {
               <div className="text-[11px]">Overview</div>
             </div>
             <div
-              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${
-                active === "doubt"
+              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${active === "doubt"
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
-              }`}
+                }`}
               onClick={() => router.push("/sme/doubt")}
             >
               <svg
@@ -146,11 +240,10 @@ export const Leftbar = () => {
               <div className="text-[11px]">Doubts</div>
             </div>
             <div
-              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${
-                active === "orders"
+              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${active === "orders"
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
-              }`}
+                }`}
               onClick={() => router.push("/sme/orders")}
             >
               <svg
@@ -165,14 +258,15 @@ export const Leftbar = () => {
                 <path d="M 4 3 L 4 15 L 2 15 L 2 18 C 2 19.654 3.346 21 5 21 L 13 21 L 13 20 L 13 19 L 15 17 L 13 15 L 6 15 L 6 5 L 19 5 L 19 9 L 21 9 L 21 3 L 4 3 z M 8 7 L 8 9 L 10 9 L 10 7 L 8 7 z M 12 7 L 12 9 L 17 9 L 17 7 L 12 7 z M 8 11 L 8 13 L 10 13 L 10 11 L 8 11 z M 15 11 L 15 13 L 16 13 L 16 14.914062 L 18.085938 17 L 16 19.085938 L 16 21 L 15 21 L 15 23 L 24 23 L 24 21 L 23 21 L 23 19.085938 L 20.914062 17 L 23 14.914062 L 23 13 L 24 13 L 24 11 L 15 11 z M 18 13 L 21 13 L 21 14.085938 L 19.5 15.585938 L 18 14.085938 L 18 13 z M 19.5 18.414062 L 21 19.914062 L 21 21 L 18 21 L 18 19.914062 L 19.5 18.414062 z"></path>
               </svg>
 
-              <div className="text-[11px]">Orders</div>
+              <div className="text-[11px]">
+                Earnings
+              </div>
             </div>
             <div
-              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${
-                active === "setting"
+              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${active === "setting"
                   ? "bg-gray-200 rounded-lg "
                   : "hover:bg-gray-100"
-              }`}
+                }`}
               onClick={() => router.push("/sme/setting")}
             >
               <svg
@@ -192,11 +286,32 @@ export const Leftbar = () => {
           </div>
         </div>
         <div className="w-full absolute bottom-5 flex justify-center text-center items-end  ay-200 ">
-          <div
-            className="bg-violet-500 rounded-full px-3 w-max text-3xl mx-auto cursor-pointer"
-            onClick={() => router.push("/sme/profile")}
+
+          <div className="flex  h-max p-3 text-center items-center justify-center rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer "
+
+            onClick={() => {
+              localStorage.clear();
+              router.push("/login");
+            }}
           >
-            J
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth={2}
+              viewBox="0 0 34 34"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-8 w-8"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1={21} y1={12} x2={9} y2={12} />
+            </svg>
+            {/* Log out */}
+
           </div>
         </div>
       </div>

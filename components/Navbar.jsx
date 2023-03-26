@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
 <div>
      <div className="absolute  z-50 bg-white">
-        <div className="h-[50px] z-40 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-full">
+        <div className="h-[50px] z-40 flex bg-white shadow-lg items-center justify-between px-5 md:hidden fixed top-0 w-screen">
           <Link href="/" className="text-2xl text-blue-700">Maths Loyal</Link>
           <div onClick={handleNavDrop}>
             <svg

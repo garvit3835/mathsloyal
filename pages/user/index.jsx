@@ -16,12 +16,12 @@ const [ask, setAsk] = useState("hidden");
   return (
     <div className="bg-gray-50 flex ">
       <Askdoubt ask={ask} setAsk={setAsk} />
-      <Leftbar />
+      <Leftbar ask={ask} setAsk={setAsk} />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-full xl:w-4/5 mx-auto mt-10">
+      <div className="w-full xl:w-4/5 mx-auto pt-10 h-screen overflow-y-scroll">
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500">Junaid</span>
@@ -43,7 +43,7 @@ const [ask, setAsk] = useState("hidden");
               <div className="flex">
                 <div
                   className="
-                w-3/5 border m-5 p-4 rounded-lg bg-white  shadow-sm
+                w-3/5 border m-2 ml-5 md:m-5 p-4 rounded-lg bg-white  shadow-sm
                 "
                 >
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
@@ -76,7 +76,7 @@ const [ask, setAsk] = useState("hidden");
                   </div>
                 </div>
 
-                <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm  m-5 ">
+                <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm m-2 mr-5 md:m-5 ">
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
                     facing issue / have suggestion
                   </div>

@@ -3,38 +3,36 @@ import Image from "next/image";
 
 const Askdoubt = ({ask,setAsk}) => {
   const [file, setFile] = useState({});
+  const [text, setText] = useState('')
   const [preview, setPreview] = useState('');
   const [first, setFirst] = useState([])
   const PreviewImage = ()=>{
-    // const file = document.getElementById("file") as HTMLInputElement;
-    // let frame = document.getElementById("frame") as HTMLIFrameElement;
-    //     frame.src = URL.createObjectURL(event.target.files[0]);
-// console.log(URL.createObjectURL(event.target.files[0]));
-// setFile(event.target.files)
-    // setPreview(URL.createObjectURL(event.target.files[0]));
-        let  saida = document.getElementById("file");
-        // let quantos = saida.files.length;
-        // console.log(saida.files);
+        let  saida = document.getElementById("filer");
         setFile(saida?.files)
-        // console.log(saida.files);
-        // for (let i = 0; i < quantos; i++) {
-        //   let urls = URL.createObjectURL(event.target.files[i]);
-        //   setFile([...file, urls])
-        //   document.getElementById("galeria").innerHTML +=
-        //   `<img src="${urls}">`;
-        // }
         for (let index = 0; index < saida?.files.length; index++) {
           const element = saida?.files[index];
           console.log(element); 
           setFirst([...first,URL.createObjectURL(element)])
         }
-        console.log(first);
-
-  
+        console.log(first);  
   }
   useEffect(() => {
     console.log(first);
   }, [first])
+  // const getUrl = async ()=>{
+  //   const res = await fetch("/api/upload",{
+  //     method:"POST",
+  //     headers:{
+  //       "Content-Type":"application/json"
+  //     },
+  //     body:JSON.stringify({
+  //       file
+  //     })
+  //   })
+  //   const data = await res.json()
+  //   console.log(data);
+  // }
+
 
 
   return (
@@ -44,14 +42,29 @@ const Askdoubt = ({ask,setAsk}) => {
           <div>Ask your Doubt</div>
           <div onClick={()=>{setAsk('hidden')}} className='cursor-pointer hover:bg-gray-200 rounded-full px-2'>X</div>
         </div>
-        <div>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append("filer", e.target.filer?.files[0]);
+          formData.append("text", text);
+          fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+            });
+        }}>
           <textarea
             placeholder="write your question"
+            name="text"
             className="bg-gray-100 text-gray-500 w-full rounded-xl px-4 py-1 h-[168px] focus:bg-white ease-in-out duration-300"
             draggable="true"
+            onChange={(e)=>{setText(e.target.value)}}
           />
           <div>
-            <label htmlFor="file" className="w-max ">
+            <label htmlFor="filer" className="w-max ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
@@ -68,46 +81,22 @@ const Askdoubt = ({ask,setAsk}) => {
             <input
               type="file"
               accept="image/png, image/jpeg, image/jpg, image/gif, image/svg,image/webp,image/svg+xml"
-              name="file"
-              id="file"
+              name="filer"
+              id="filer"
               className="hidden w-max"
               onChange={PreviewImage}
             />
           </div>
-        </div>
-        {/* <img id="frame" src="" width="600px" height="100px" /> */}
-        {/* {
-          file.length > 0 && file.map((item)=>{
- <Image
-   src={URL.createObjectURL(item)}
-   width={600}
-   height={100}
-   alt="pic"
-   className="h-[300px]  w-max"
- />;})
-        } */}
-        {/* <div id="galeria"></div> */}
+          {/* <button
+            type="submit"
+            className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 py-2 text-white"
+          >
+            Proceed to pay
+          </button> */}
+       
+     
         <div className="flex gap-2">
-          {/* {Object.keys(file).length > 0 &&
-            Object.keys(file).map((item) => {
-              console.log(file[item]);
-              return (
-               URL && <Image
-                key={item}
-                  src={URL.createObjectURL(file[item])}
-                  width={300}
-                  height={100}
-                  alt="pic"
-                  className="h-max  w-[200px]"
-                  onClick={() => {
-                    console.log(file[item]);
-
-
-                  }
-                  }
-                />
-              );
-            })} */}
+     
           {first.map((item) => {
             return (
               <div key={item} className=" w-[100px] relative mb-5 mt-2">
@@ -118,7 +107,7 @@ const Askdoubt = ({ask,setAsk}) => {
                   alt="pic"
                   className="h-[100px]  w-[100px]"
                 />
-                {/* <div className="text-[8px]">{item.split("/").pop()}</div> */}
+
                 <div
                   className="absolute top-0 text-white hover:text-gray-500 cursor-pointer text-4xl duration-300 ease-in-out right-3 "
                   onClick={() => {
@@ -144,6 +133,7 @@ const Askdoubt = ({ask,setAsk}) => {
         >
           Proceed to pay
         </button>
+        </form>
       </div>
     </div>
   );

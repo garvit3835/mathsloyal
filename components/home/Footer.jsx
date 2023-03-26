@@ -51,7 +51,7 @@ const Footer2 = () => {
 
 
     return (
-        <footer className=" body-font shadow-xl   border-t-2 border-black ">
+        <footer className=" body-font shadow-xl bg-white  border-t-2 border-black ">
             <ToastContainer
                 position="bottom-left"
                 autoClose={5000}

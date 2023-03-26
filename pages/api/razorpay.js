@@ -24,9 +24,8 @@ async function handler(req, res) {
 			notes: {
 				// These notes will be added to your transaction. So you can search it within their dashboard.
 				// Also, it's included in webhooks as well. So you can automate it.
-				paymentFor: "example_ebook",
-				userId: "user_id_here",
-				productId: "your_product_id",
+				studentId: req.body.studentId,
+				issueId: req.body.issueId,
 			},
 		};
 		const order = await razorpay.orders.create(options);

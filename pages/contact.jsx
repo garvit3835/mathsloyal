@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/home/Footer';
 
-const contact = () => {
+const Contact = () => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -114,4 +114,4 @@ const contact = () => {
   )
 }
 
-export default contact
+export default Contact

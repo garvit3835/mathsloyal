@@ -1,8 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken';
 import Student from "../../../model/Student";
 import connectDB from "../../../middleware/mongoose";
-var CryptoJS = require("crypto-js");
-var jwt = require('jsonwebtoken');
 const handler = async (req, res) => {
 
     if (req.method === "POST") {

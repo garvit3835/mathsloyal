@@ -1,31 +1,10 @@
 import Link from 'next/link';
 import { useState ,useEffect} from 'react';
 
-const Sidebar = ({ask,setAsk,setChat,chat,student}) => {
+const Sidebar = ({ ask, setAsk, setChat, chat, student, setQuestion,Questions,SetQuestions }) => {
   // console.log(student)
-  const [Questions, setQuestions] = useState([])
  
-  useEffect(() => {
-    const getIssues = async () => {
-      const res = await fetch(
-        "/api/issue/findIssues",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            studentId: student?.user?._id,
-          }),
-        }
-      );
-      const data = await res.json();
-      console.log(data);
-      setQuestions(data)
-      return data;
-    };
-  getIssues();
-  }, [])
+  console.log(Questions)
   return (
     <div className="hidden sm:flex h-screen bg-white shadow-2xl w-[180px] xl:w-[260px] ">
       <div className="flex h-full min-h-0 flex-col ">
@@ -63,29 +42,10 @@ Hey, <span className='text-blue-500'>Junaid</span>
                 <div className="text-gray-500 text-sm ">
                   previously Asked Questions
                 </div>
-                {Questions?.map((question) => (
+                {Questions.map((question) => (
                   <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
-                    setChat([
-                      {
-                        name: "Junaid",
-                        role: "user",
-                        message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
-                        time: "12:00",
-                      },
-                      {
-                        name: "Junaid",
-                        role: "user",
-                        message: "I am not able to solve this question",
-                        time: "12:00",
-                      },
-                      {
-                        name: "tariq",
-                        role: "sme",
-                        message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
-                        time: "12:00",
-                      }
-                    ])
-                  }} >
+                    setQuestion(question)
+                  }} key={question._id}>
                     <svg
                       stroke="currentColor"
                       fill="none"

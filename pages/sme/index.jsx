@@ -8,13 +8,13 @@ import RecentDoubts from "../../components/sme/dashboard/RecentDoubts";
 import Contact from "../../components/sme/dashboard/Contact";
 
 
-const Dashboard = () => {
+const Dashboard = ({tutor}) => {
 const [contact, setContact] = useState(false);
 const [ask, setAsk] = useState("hidden");
+console.log(tutor)
 
   return (
     <div className="bg-gray-50 flex ">
-
       <Leftbar />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />

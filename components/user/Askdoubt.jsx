@@ -1,7 +1,9 @@
 import { useState ,useEffect} from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Askdoubt = ({ask,setAsk}) => {
+  const router = useRouter();
   const [file, setFile] = useState({});
   const [text, setText] = useState('')
   const [preview, setPreview] = useState('');
@@ -55,6 +57,7 @@ const Askdoubt = ({ask,setAsk}) => {
                 });
                 const data1 = await res.json();
                 console.log(data1);
+                router.push("/user/doubt");
               };
               create();
 

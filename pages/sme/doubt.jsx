@@ -9,6 +9,17 @@ const Doubt = ({tutor}) => {
 const [chat, setChat] = useState([])
 const [Issue, setIssue] = useState({})
 const [Image, setImage] = useState("")
+  const [Question, setQuestion] = useState({
+    "_id": "64213dcac262cc495e63b91e",
+    "image": "https://wrap.sgp1.digitaloceanspaces.com/question.png",
+    "message": "solve the",
+    "student": "63ce1e4c0ee46abedf8db1a6",
+    "tutor": tutor?.user?._id,
+    "createdAt": "2023-03-27T06:55:06.762Z",
+    "updatedAt": "2023-03-27T07:29:36.722Z",
+    "__v": 0
+  
+})
 console.log(tutor)
 useEffect(() => {
 const getIssue = async () => {

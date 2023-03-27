@@ -3,7 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 
-const Chatroom = ({chat,Question,student}) => {
+
+const Chatroom = ({chat,Question,student,Image,setImage}) => {
   console.log(student)
 
   return (
@@ -52,6 +53,9 @@ const Chatroom = ({chat,Question,student}) => {
                 Question?.image && <img src={Question?.image}
                   className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
                   alt="logo"
+                  onClick={() => {
+                    setImage(Question?.image)
+                    }}
                 />}
               <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
                 {student?.user.name[0].toUpperCase()}
@@ -61,7 +65,7 @@ const Chatroom = ({chat,Question,student}) => {
            
           </div>}
           {Question?.message && <div className={`flex justify-end w-full `} >
-            <div className={` mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+            <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
               {
                 Question?.message && <p
                   className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "

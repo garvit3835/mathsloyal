@@ -1,6 +1,7 @@
 import Image from "next/image";
+import ViewImage from "./../ViewImage";
 
-const Rightbar = ({ Issue,tutor }) => {
+const Rightbar = ({ Issue,tutor,setImage }) => {
 
   const AssignIssue=async(id)=>{
     const res = await fetch("/api/issue/assignIssue",
@@ -41,11 +42,18 @@ const Rightbar = ({ Issue,tutor }) => {
                 src={Issue?.image}
                 width={500}
                 height={500}
-                className="w-[260px] mt-2 object-contain bg-gray-100 border px-1 rounded-md mx-auto"
+                className="w-[260px] mt-2 object-contain bg-gray-100 border px-1 cursor-pointer rounded-md mx-auto"
                 alt="logo"
                 priority
+                onClick={() => {
+                  setImage(Issue?.image)
+                }}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 cursor-pointer mt-1"
+              onClick={()=>{
+                setImage(Issue?.image)
+              }}
+              >
                 view in bigger size {">"}
               </p>
             </div>

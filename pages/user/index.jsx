@@ -9,7 +9,7 @@ import RecentDoubts from "../../components/user/dashboard/RecentDoubts";
 import Contact from "../../components/user/dashboard/Contact";
 import Askdoubt from "../../components/user/Askdoubt";
 
-const Dashboard = () => {
+const Dashboard = ({student}) => {
 const [contact, setContact] = useState(false);
 const [ask, setAsk] = useState("hidden");
 
@@ -24,11 +24,11 @@ const [ask, setAsk] = useState("hidden");
       <div className="w-full xl:w-4/5 mx-auto pt-10 h-screen overflow-y-scroll">
         <div className="text-3xl font-semibold m-6">
           Hey,
-          <span className="text-blue-500">Junaid</span>
+          <span className="text-blue-500 px-2">{student?.user?.name}</span>
         </div>
         <div className="grid lg:grid-cols-2">
           <div className="">
-            <ProfilePreview />
+            <ProfilePreview student={student}/>
 
             <Subscription />
             <DoubtStatus />

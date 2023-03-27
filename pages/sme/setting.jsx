@@ -1,5 +1,5 @@
 import { Leftbar } from "../../components/sme/Leftbar";
-const Setting = () => {
+const Setting = ({tutor}) => {
   return (
     <div className="bg-white flex w-full gap-5">
       <Leftbar />
@@ -8,7 +8,7 @@ const Setting = () => {
 
           <div className="text-2xl   md:text-4xl font-semibold mb-4 m-2  md:m-4">
 
-            Hey, <span className="text-blue-500 mx-1">Tariq</span>
+            Hey, <span className="text-blue-500 mx-1">{tutor?.user?.name}</span>
             (sme)
           </div>
 
@@ -21,7 +21,7 @@ const Setting = () => {
                 <input
                   className="border-2 w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
                   type="text"
-                  placeholder="Tariq"
+                  placeholder={tutor?.user?.name}
                 />
               </div>
               <div className="w-full flex gap-3 items-center">
@@ -101,7 +101,7 @@ const Setting = () => {
                 <input
                   className="border-2   md:w-[330px] w-[70%]  bg-gray-300 border-gray-300 p-2 rounded-lg m-4 cursor-not-allowed"
                   type="email"
-                  value="tariq@gmail.com"
+                  value={tutor?.user?.email}
                   disabled
                 />
               </div>

@@ -8,6 +8,7 @@ const StudentSchema = new mongoose.Schema({
     role: { type: String, default: 'student' },
     issues: [ObjectId],
     city: { type: String, default: '' },
+    promo: { type: String, default: null },
     phone: { type: Number, default: '' },
     class:{type:String, default:''},
     school:{type:String, default:''},

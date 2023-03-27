@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 
 const updateStudentIssues = async (studentId, issueId) => {
     const data = await Student.updateOne(
-        { _id: studentId },
-        {$push: {issues: issueId}}
+        { _id: mongoose.Types.ObjectId(studentId) },
+        {$push: {issues: mongoose.Types.ObjectId(issueId)}}
     )
     return data
 };

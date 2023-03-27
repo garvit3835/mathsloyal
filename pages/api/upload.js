@@ -1,6 +1,8 @@
 import fs from 'fs';
 import AWS from 'aws-sdk';
 import formidable from 'formidable'
+import { v4 as uuidv4 } from 'uuid';
+
 
 const s3Client = new AWS.S3({
     endpoint: process.env.DO_ENDPOINT,
@@ -25,10 +27,11 @@ export default async function handler(req, res) {
             return;
         }
         try {
+            let name = uuidv4() + "_" + files.filer.originalFilename
 
             const data = await s3Client.putObject({
                 Bucket: "wrap",
-                Key: files.filer.originalFilename,
+                Key: name,
                 ContentType: files.filer.mimetype,
                 Body: fs.createReadStream(files.filer.filepath),
                 ACL: 'public-read'
@@ -37,7 +40,7 @@ export default async function handler(req, res) {
             res.status(200).json({
                 "message": "File uploaded successfully",
                 "data": data,
-                "url": `https://wrap.sgp1.digitaloceanspaces.com/${files.filer.originalFilename}`,
+                "url": `https://wrap.sgp1.digitaloceanspaces.com/${name}`,
                 "fields": fields,
             });
 

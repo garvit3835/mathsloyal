@@ -20,7 +20,7 @@ export default function Home({student,tutor}) {
     if(student?.user){
       router.push("/user")
     }
-  }, [])
+  }, [student])
   
   return (
     <div className="glass-gradient glass-gradient  scroll-smooth ">

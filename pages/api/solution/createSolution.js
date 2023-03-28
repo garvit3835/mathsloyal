@@ -7,6 +7,11 @@ const ObjectId = mongoose.Schema.ObjectId;
 
 const createSolution = async (req, res) => {
 	if (req.method === 'POST') {
+		let sol = await Solution.findById(req.body.issueId)
+		if (sol) {
+			res.status(400).json({message: "Solution already exists"})
+			return
+		}
 		let data = await Solution.create({
 			"_id": mongoose.Types.ObjectId(req.body.issueId),
 			"image": req.body.image,

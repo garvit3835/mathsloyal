@@ -1,7 +1,9 @@
 import ChatBox from "./ChatBox";
 import Image from "next/image";
+import SolutionBox from "./SolutionBox";
 
-const Chatroom = ({chat}) => {
+const Chatroom = ({chat,Question,tutor}) => {
+  console.log(Question);
   return (
     <div className="  h-[98vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 pt-10">
       <div className=" w-full    overflow-y-scroll h-full d">
@@ -30,7 +32,7 @@ const Chatroom = ({chat}) => {
               B
             </div>
           </div> */}
-          {
+          {/* {
             chat.length != 0 && chat.map((item, index) => (
               <div className={`flex ${item?.role === "sme" ? "justify-end" : "justify-start"} w-full  `} key={index}>
                 <div className={` mt-14 text-gray-800 dark:text-gray-100   flex ${item?.role !== "sme" ? "flex-row-reverse" : ""}  w-max justify-start`}>
@@ -52,8 +54,47 @@ const Chatroom = ({chat}) => {
                 </div>
               </div>
             ))
-          }
+          } */}
+          {
+            Question?.image && <div className={`flex  justify-start w-full `} >
+              <div className={` mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+                <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+                  {/* {tutor?.user.name[0].toUpperCase()} */}
+                  J
+                </div>
+                {
+                  Question?.image && <img src={Question?.image}
+                    className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
+                    alt="logo"
+                    onClick={() => {
+                      setImage(Question?.image)
+                    }}
+                  />}
+              
+              </div>
+
+            </div>}
+          {Question?.message && <div className={`flex justify-start w-full `} >
+            <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+              <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+                {/* {tutor?.user.name[0].toUpperCase()} */}
+                J
+              </div>
+              {
+                Question?.message && <p
+                  className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "
+                >
+                  {Question?.message}
+                </p>
+              }
+            
+            </div>
+
+          </div>}
         </div>
+        <SolutionBox tutor={tutor} Question={Question}/>
+      </div>
+      <div>
       </div>
       {/* <div className="w-full border-t md:border-t-0    ">
         <ChatBox />

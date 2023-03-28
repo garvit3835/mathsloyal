@@ -1,5 +1,6 @@
 import Link from "next/link";
-const Sidebar = ({setChat,chat}) => {
+const Sidebar = ({ setChat, chat, Questions, setQuestion, Question }) => {
+  
   return (
     <div className="hidden sm:flex h-screen bg-white shadow-2xl w-[180px] xl:w-[260px] ">
       <div className="flex h-full min-h-0 flex-col ">
@@ -15,48 +16,54 @@ const Sidebar = ({setChat,chat}) => {
                 <div className="text-gray-500 text-sm ">
                   previously Answered Questions
                 </div>
-                <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group"
+               { 
+                Questions?.map((question) => (
+                  <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group"
                   onClick={() => {
-                    setChat([
-                      {
-                        name: "Junaid",
-                        role: "user",
-                        message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
-                        time: "12:00",
-                      },
-                      {
-                        name: "Junaid",
-                        role: "user",
-                        message: "I am not able to solve this question",
-                        time: "12:00",
-                      },
-                      {
-                        name: "tariq",
-                        role: "sme",
-                        message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
-                        time: "12:00",
-                      }
-                    ])
+                    setQuestion(question);
                   }}
-                >
-                  <svg
-                    stroke="currentColor"
-                    fill="none"
-                    strokeWidth={2}
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
+                  //   setChat([
+                  //     {
+                  //       name: "Junaid",
+                  //       role: "user",
+                  //       message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
+                  //       time: "12:00",
+                  //     },
+                  //     {
+                  //       name: "Junaid",
+                  //       role: "user",
+                  //       message: "I am not able to solve this question",
+                  //       time: "12:00",
+                  //     },
+                  //     {
+                  //       name: "tariq",
+                  //       role: "sme",
+                  //       message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
+                  //       time: "12:00",
+                  //     }
+                  //   ])
+                  // }}
                   >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                  <div className="flex-1  max-h-5 overflow-hidden relative">
-                    Solve x^2+2x+1=0
+                    <svg
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <div className="flex-1  max-h-5 overflow-hidden relative">
+{question?.message}
+                    </div>
                   </div>
-                </div>
+                ))
+               }
               </div>
             </div>
 

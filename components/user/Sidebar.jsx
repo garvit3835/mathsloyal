@@ -47,7 +47,7 @@ Hey, <span className='text-blue-500'>Junaid</span>
                   previously Asked Questions
                 </div>
                 {console.log(Questions)}
-                {Questions.map((question) => (
+                {Questions?.map((question) => (
 
                   <div className={`flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10 ${question === Question ?"bg-gray-100 transform":""} duration-300 relative rounded-md  cursor-pointer break-all  group`}onClick={() => {
 router.push(`/user/doubt?question=${question?._id}`)

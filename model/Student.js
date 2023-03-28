@@ -6,7 +6,7 @@ const StudentSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, default: 'student' },
-    issues: [ObjectId],
+    issues: { type: [ObjectId], default: [null]},
     city: { type: String, default: '' },
     promo: { type: String, default: null },
     phone: { type: Number, default: '' },

@@ -5,10 +5,13 @@ const mongoose = require('mongoose');
 
 const assignIssue = async (req, res) => {
 	if (req.method === 'POST') {
-		let data = await Issue.updateOne(
+		let data = await Issue.findOneAndUpdate(
 			{ _id: mongoose.Types.ObjectId(req.body.issueId) },
-			{ tutor: mongoose.Types.ObjectId(req.body.tutorId) }
+			{ $set: { tutor: mongoose.Types.ObjectId(req.body.tutorId) } },
+			{new: true}
 		);
+		// console.log(data)
+		res.status(200).json(data)
 		console.log(`issue assigned to ${req.body.tutorId}`)
 		setTimeout(async() => {
 			const info = await findSolution(req.body.issueId)
@@ -23,7 +26,7 @@ const assignIssue = async (req, res) => {
 				);
 			}
 		}, 10000);
-		res.status(200).json(data)
+		
 	} else {
 		res.status(400).json({message: "Method not allowed"})
 	}

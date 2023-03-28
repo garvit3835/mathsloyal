@@ -10,7 +10,7 @@ import { Leftbar } from "../../components/user/Leftbar";
 const Doubt = ({student}) => {
   const router = useRouter();
   const [Question, setQuestion] = useState({})
-  // console.log(student)
+
   const [chat, setChat] = useState([
     // {
     //   name: "Junaid",

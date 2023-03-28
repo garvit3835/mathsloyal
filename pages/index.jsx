@@ -16,7 +16,8 @@ export default function Home({student,tutor}) {
   const router = useRouter();
   const [showLogin, setShowLogin] = useState('none')
   useEffect(() => {
-    if(student){
+    console.log(student)
+    if(student?.user){
       router.push("/user")
     }
   }, [])

@@ -290,8 +290,8 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
           <div className="flex  h-max p-3 text-center items-center justify-center rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-gray-[700] cursor-pointer "
 
             onClick={() => {
-              localStorage.clear();
-              router.push("/login");
+              localStorage.removeItem("mysme");
+              router.push("/sme/login");
             }}
           >
             <svg

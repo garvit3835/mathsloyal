@@ -16,7 +16,9 @@ const handler = async (req, res) => {
             // let u = new Tutor({ name, email, password: req.body.password });
             let u = new Tutor({ name, email, password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRECT_KEY).toString() });
             await u.save();
-            res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
+            // res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
+            res.status(200).json({ success: true, message: 'Account Created successfully Now you can login', u });
+
          }
     }
     else {

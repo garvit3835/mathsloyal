@@ -10,7 +10,7 @@ const TutorSchema = new mongoose.Schema({
     issue: { type: ObjectId, default: null },
     city: { type: String, default: '' },
     phone: { type: Number, default: '' },
-    solved: { type: [ObjectId], default: [] },
+    solved: { type: [ObjectId], default: []},
     unanswered: { type: Number, default: 0 },
     skipped: { type: Number, default: 0 },
     class:{type:String, default:''},

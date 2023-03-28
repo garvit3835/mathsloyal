@@ -18,7 +18,6 @@ const handler = async (req, res) => {
             await u.save();
             // res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
             res.status(200).json({ success: true, message: 'Account Created successfully Now you can login', u });
-
          }
     }
     else {

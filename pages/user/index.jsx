@@ -15,7 +15,7 @@ const [ask, setAsk] = useState("hidden");
 
   return (
     <div className="bg-gray-50 flex ">
-      <Askdoubt ask={ask} setAsk={setAsk} />
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} />
       <Leftbar ask={ask} setAsk={setAsk} />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />

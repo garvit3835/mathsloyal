@@ -2,7 +2,8 @@ import { useState ,useEffect} from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const Askdoubt = ({ask,setAsk}) => {
+
+const Askdoubt = ({ ask, setAsk, student }) => {
   const router = useRouter();
   const [file, setFile] = useState({});
   const [text, setText] = useState('')
@@ -11,12 +12,14 @@ const Askdoubt = ({ask,setAsk}) => {
   const PreviewImage = ()=>{
         let  saida = document.getElementById("filer");
         setFile(saida?.files)
-        for (let index = 0; index < saida?.files.length; index++) {
-          const element = saida?.files[index];
-          console.log(element); 
-          setFirst([...first,URL.createObjectURL(element)])
-        }
+        setFirst([URL.createObjectURL(saida?.files[0])])
+        // for (let index = 0; index < saida?.files.length; index++) {
+        //   const element = saida?.files[index];
+        //   console.log(element); 
+        //   setFirst([...first,URL.createObjectURL(element)])
+        // }
         console.log(first);  
+
   }
   useEffect(() => {
     console.log(first);
@@ -52,13 +55,24 @@ const Askdoubt = ({ask,setAsk}) => {
                   body: JSON.stringify({
                     message: data.fields.text,
                     image:data.url,
-                    studentId:"63ce1e4c0ee46abedf8db1a6"
+
+                    studentId:student?.user?._id
+
                   }),
                 });
                 const data1 = await res.json();
                 console.log(data1);
-                router.push("/user/doubt");
-              };
+
+       setFirst([])
+       setText('')
+                if (data1) {
+                  setAsk('hidden')
+                  router.push("/user/doubt"+"?question="+data1._id);
+
+                }
+                
+                            };
+
               create();
 
             });
@@ -66,23 +80,25 @@ const Askdoubt = ({ask,setAsk}) => {
           <textarea
             placeholder="write your question"
             name="text"
+            value={text}
             className="bg-gray-100 text-gray-500 w-full rounded-xl px-4 py-1 h-[168px] focus:bg-white ease-in-out duration-300"
             draggable="true"
             onChange={(e)=>{setText(e.target.value)}}
           />
           <div>
-            <label htmlFor="filer" className="w-max ">
+            <label htmlFor="filer" className="w-max flex items-center gap-2 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
-                width={24}
-                height={24}
+                width={38}
+                height={38}
                 viewBox="0 0 24 24"
                 className="fill-current text-gray-500 "
               >
                 <path d="M 6 2 C 4.9057453 2 4 2.9057453 4 4 L 4 20 C 4 21.094255 4.9057453 22 6 22 L 18 22 C 19.094255 22 20 21.094255 20 20 L 20 8 L 14 2 L 6 2 z M 6 4 L 13 4 L 13 9 L 18 9 L 18 20 L 6 20 L 6 4 z M 13.5 13.333984 L 11 16.667969 L 9.5 14.667969 L 7 18 L 17 18 L 13.5 13.333984 z" />
               </svg>
+              <div className="text-gray-500">Click to Upload Image</div>
             </label>
 
             <input
@@ -106,17 +122,17 @@ const Askdoubt = ({ask,setAsk}) => {
      
           {first.map((item) => {
             return (
-              <div key={item} className=" w-[100px] relative mb-5 mt-2">
+              <div key={item} className=" w-max relative mb-5 mt-2">
                 <Image
                   src={item}
-                  width={300}
-                  height={100}
+                  width={500}
+                  height={200}
                   alt="pic"
-                  className="h-[100px]  w-[100px]"
+                  className="h-[100px]  w-auto"
                 />
 
                 <div
-                  className="absolute top-0 text-white hover:text-gray-500 cursor-pointer text-4xl duration-300 ease-in-out right-3 "
+                  className="absolute top-0 text-gray-900 hover:text-gray-500 cursor-pointer text-4xl duration-300 ease-in-out right-3 "
                   onClick={() => {
                     setFirst([...first.filter((i) => i !== item)]);
                   }}

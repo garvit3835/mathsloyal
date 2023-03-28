@@ -32,6 +32,50 @@ const Doubt = ({student}) => {
   const [Image, setImage] = useState("")
 
 
+
+  const getIssues =  () => {
+    fetch("/api/issue/findIssues", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        studentId: student?.user?._id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => setQuestions(data))
+      .catch(error => console.log(error));
+  };
+  
+  // useEffect(() => {
+  
+  //   getIssues();
+
+  // }, [])
+  useEffect(() => {
+    getIssues()
+    // if (router?.query?.question) {
+    //   const question = Questions.find(
+    //     (question) => question._id === router?.query?.question
+    //   );
+    //   setQuestion(question);
+    // }
+    
+  }, [student,router?.query?.question]);
+
+useEffect(() => {
+    if (router?.query?.question) {
+      const question = Questions.find(
+        (question) => question._id === router?.query?.question
+      );
+      setQuestion(question);
+    }
+    console.log("Questions")
+}, [Questions,router?.query?.question])
+
+
+
   const getIssues = async () => {
     const res = await fetch(
       "/api/issue/findIssues",
@@ -65,7 +109,9 @@ const Doubt = ({student}) => {
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
       <ViewImage Image={Image} setImage={setImage} />
       <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} />
-      <Askdoubt ask={ask} setAsk={setAsk} />
+
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} Question={Question} setQuestion={setQuestion}/>
+
       <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} Question={Question} setQuestion={setQuestion} Questions={Questions} setQuestions={setQuestions} />
       <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} student={student} Image={Image} setImage={setImage} />
 

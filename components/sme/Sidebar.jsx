@@ -22,6 +22,7 @@ const Sidebar = ({ setChat, chat, Questions, setQuestion, Question }) => {
                   onClick={() => {
                     setQuestion(question);
                   }}
+                  key={question.id}
                   //   setChat([
                   //     {
                   //       name: "Junaid",

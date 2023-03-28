@@ -1,6 +1,6 @@
 import Student from "../../../model/Student";
 import connectDB from "../../../middleware/mongoose";
-import Promo from "../../../model/promo";
+import Promo from "../../../model/Promo";
 import mongoose from "mongoose";
 // const ObjectId = mongoose.Schema.ObjectId;
 

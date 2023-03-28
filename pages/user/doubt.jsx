@@ -76,24 +76,6 @@ useEffect(() => {
 
 
 
-  const getIssues = async () => {
-    const res = await fetch(
-      "/api/issue/findIssues",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          studentId: student?.user?._id,
-        }),
-      }
-    );
-    const data = await res.json();
-    console.log(data);
-    setQuestions(data)
-    return data;
-  };
 
   useEffect(() => {
   

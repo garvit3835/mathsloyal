@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 const getTutorSolved = async (tutorId) => {
 	let data = await Tutor.findOne({ _id: mongoose.Types.ObjectId(tutorId) });
-	if (data.issues) {
+	if (data?.issue) {
 		return data.solved
 	} else {
 		return false

@@ -33,11 +33,11 @@ const Rightbar = ({ Issue,tutor,setImage }) => {
           <div className="mt-10 mb-4 text-xs text-gray-600">
             Status of upcoming question
           </div>
-     {Issue &&     <div w-full>
+     {Issue &&     <div >
             <div className="text-6xl px-4 bg-vio bg-violet-600 rounded-full w-max mx-auto">
               J
             </div>
-            <div>
+            {Issue?.image &&<div>
               <Image
                 src={Issue?.image}
                 width={500}
@@ -56,7 +56,10 @@ const Rightbar = ({ Issue,tutor,setImage }) => {
               >
                 view in bigger size {">"}
               </p>
-            </div>
+            </div>}
+            {Issue?.message &&  <p>
+             Question:-  {Issue?.message}
+              </p>}
             <div className="mt-3 flex justify-center mx-auto">
               <button className="px-2 bg-green-400 hover:bg-green-500 rounded-md  mx-2 text-xl "
               onClick={()=>{

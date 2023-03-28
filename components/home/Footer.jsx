@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
+import Image from "next/image";
 const Footer2 = () => {
     const [email, setEmail] = useState("");
     const changeHandler = (e) => {
@@ -257,7 +258,9 @@ const Footer2 = () => {
                     </div>
                     <div className="">
 
-                        <img src="/icons/payment.webp" alt="payment methods" className="max-w-[400px] w-full " />
+                        <Image src="/icons/payment.webp" alt="payment methods" className="max-w-[400px] w-full " 
+                        width={400} height={50}
+                        />
 
 
                     </div>

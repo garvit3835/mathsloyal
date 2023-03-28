@@ -1,11 +1,11 @@
 import { Leftbar } from "../../components/user/Leftbar";
 import Askdoubt from "../../components/user/Askdoubt";
 import { useState } from "react";
-const Setting = () => {
+const Setting = ({student}) => {
   const [ask, setAsk] = useState("hidden");
   return (
     <div className="bg-white pt-10 md:pt-0 flex w-full ">
-      <Askdoubt ask={ask} setAsk={setAsk} />
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} />
       <Leftbar ask={ask} setAsk={setAsk} />
       <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">

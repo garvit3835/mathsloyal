@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useState ,useEffect} from 'react';
+import { useRouter } from 'next/router';
 
-const Sidebar = ({ ask, setAsk, setChat, chat, student, setQuestion,Questions,SetQuestions }) => {
+const Sidebar = ({ ask, setAsk, setChat, chat, student, Question,setQuestion,Questions,SetQuestions }) => {
+  const router = useRouter();
   // console.log(student)
  
   console.log(Questions)
@@ -43,8 +45,8 @@ Hey, <span className='text-blue-500'>Junaid</span>
                   previously Asked Questions
                 </div>
                 {Questions.map((question) => (
-                  <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
-                    setQuestion(question)
+                  <div className={`flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10 ${question === Question ?"bg-gray-100 transform":""} duration-300 relative rounded-md  cursor-pointer break-all  group`}onClick={() => {
+router.push(`/user/doubt?question=${question._id}`)
                   }} key={question._id}>
                     <svg
                       stroke="currentColor"
@@ -64,7 +66,7 @@ Hey, <span className='text-blue-500'>Junaid</span>
                      {question?.message}
                     </div>
                   </div>)
-                  )}
+                  ).reverse()}
               </div>
             </div>
 {/* 

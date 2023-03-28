@@ -77,11 +77,11 @@ useEffect(() => {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    getIssues();
+  //   getIssues();
 
-  }, [])
+  // }, [])
 
   const right =()=>{
     setRightBar(!rightBar)

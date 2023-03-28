@@ -65,7 +65,7 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
               <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z" />
             </svg>
           </div>
-          <Link href='/sme' className="text-2xl text-blue-700">ML</Link>
+          <Link href='/sme' className="text-2xl text-blue-700">Ml</Link>
            <div onClick = {()=> { setOnline(!online) }}>
       {!online ? <img src="/icons/start.webp" alt='' className='w-[31px]' /> : <img src="/icons/pause.webp" alt='' className='w-[31px]' />}
           </div >
@@ -192,7 +192,7 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
             className="text-4xl font-semibold cursor-pointer font-mono text-blue-600 "
             onClick={() => router.push("/sme")}
           >
-            ML
+            M
           </div>
           <div className="text-[8px] -mt-2">mathsloyal</div>
         </div>

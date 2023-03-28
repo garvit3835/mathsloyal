@@ -33,7 +33,7 @@ const Login = () => {
                 if (data1.success) {
                   localStorage.setItem(
                     "myuser",
-                    JSON.stringify({ email: data1.email, token: data1.token })
+                    JSON.stringify({ email: data1.email, token: data1.token, studentId: data1.studentId })
                   );
                   toast.success("Login Success", {
                     position: "top-left",

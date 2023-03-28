@@ -8,13 +8,13 @@ import RecentDoubts from "../../components/sme/dashboard/RecentDoubts";
 import Contact from "../../components/sme/dashboard/Contact";
 
 
-const Dashboard = () => {
+const Dashboard = ({tutor}) => {
 const [contact, setContact] = useState(false);
 const [ask, setAsk] = useState("hidden");
+console.log(tutor)
 
   return (
     <div className="bg-gray-50 flex ">
-
       <Leftbar />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
@@ -23,14 +23,14 @@ const [ask, setAsk] = useState("hidden");
       <div className="w-full xl:w-4/5 mx-auto mt-10 ">
         <div className="text-3xl font-semibold m-6">
           Hey,
-          <span className="text-blue-500 mx-1">Tariq</span>
+          <span className="text-blue-500 mx-1">{ tutor?.user?.name}</span>
           <span className="tex">
             (sme)
           </span>
         </div>
         <div className="grid lg:grid-cols-2">
           <div className="">
-            <ProfilePreview />
+            <ProfilePreview tutor={tutor} />
 
             <Subscription />
 

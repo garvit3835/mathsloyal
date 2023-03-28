@@ -10,7 +10,6 @@ const getStudentIssues = async (studentId) => {
 	} else {
 		return false
 	}
-	
 };
 connectDB(getStudentIssues)
 export default getStudentIssues;

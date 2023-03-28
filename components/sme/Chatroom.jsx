@@ -55,9 +55,9 @@ const Chatroom = ({chat}) => {
           }
         </div>
       </div>
-      <div className="w-full border-t md:border-t-0    ">
+      {/* <div className="w-full border-t md:border-t-0    ">
         <ChatBox />
-      </div>
+      </div> */}
     </div>
   );
 };

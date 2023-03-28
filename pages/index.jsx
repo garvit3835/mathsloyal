@@ -12,17 +12,15 @@ import Faqs from "../components/home/Faqs";
 import Head from "next/head";
 
 
-export default function Home() {
+export default function Home({student,tutor}) {
   const router = useRouter();
   const [showLogin, setShowLogin] = useState('none')
   useEffect(() => {
-   if(typeof window !== "undefined"){
-    if(localStorage.getItem('myuser')){
-      router.push('/user')
+    if(student){
+      router.push("/user")
     }
-    }
-  }, []);
-
+  }, [])
+  
   return (
     <div className="glass-gradient glass-gradient  scroll-smooth ">
       <Head>

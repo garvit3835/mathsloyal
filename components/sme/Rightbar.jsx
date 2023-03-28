@@ -1,5 +1,24 @@
 import Image from "next/image";
-const Rightbar = () => {
+import ViewImage from "./../ViewImage";
+
+const Rightbar = ({ Issue,tutor,setImage }) => {
+
+  const AssignIssue=async(id)=>{
+    const res = await fetch("/api/issue/assignIssue",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        issueId: Issue?._id,
+        tutorId: tutor?.user?._id,
+      }),
+    }
+    );
+    const data = await res.json();
+    console.log(data);
+  }
   return (
     <div
       className={`hidden relative lg:flex w-[260px] bg-white shadow-2xl h-screen  right-0  top-0 p-2`}
@@ -14,31 +33,47 @@ const Rightbar = () => {
           <div className="mt-10 mb-4 text-xs text-gray-600">
             Status of upcoming question
           </div>
-          <div w-full>
+     {Issue &&     <div w-full>
             <div className="text-6xl px-4 bg-vio bg-violet-600 rounded-full w-max mx-auto">
               J
             </div>
             <div>
               <Image
-                src="https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG"
+                src={Issue?.image}
                 width={500}
                 height={500}
-                className="w-[260px] mt-2 object-contain bg-gray-100 border px-1 rounded-md mx-auto"
+                className="w-[260px] mt-2 object-contain bg-gray-100 border px-1 cursor-pointer rounded-md mx-auto"
                 alt="logo"
+                priority
+                onClick={() => {
+                  setImage(Issue?.image)
+                }}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 cursor-pointer mt-1"
+              onClick={()=>{
+                setImage(Issue?.image)
+              }}
+              >
                 view in bigger size {">"}
               </p>
             </div>
             <div className="mt-3 flex justify-center mx-auto">
-              <button className="px-2 bg-green-400 hover:bg-green-500 rounded-md  mx-2 text-xl ">
+              <button className="px-2 bg-green-400 hover:bg-green-500 rounded-md  mx-2 text-xl "
+              onClick={()=>{
+                AssignIssue(tutor?.user?._id)
+              }}
+              >
                 Accept
               </button>
-              <button className="px-5 bg-red-400 hover:bg-red-500 rounded-md  mx-2 text-xl">
+              <button className="px-5 bg-red-400 hover:bg-red-500 rounded-md  mx-2 text-xl"
+                onClick={() => {
+                  AssignIssue(null)
+                }}
+              >
                 Pass
               </button>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>

@@ -2,10 +2,15 @@ import Askdoubt from "../../components/user/Askdoubt";
 import Chatroom from "../../components/user/Chatroom";
 import Rightbar from "../../components/user/Rightbar";
 import Sidebar from "../../components/user/Sidebar";
-import { useState } from "react";
+import ViewImage from "../../components/ViewImage";
+import { useState,useEffect } from "react";
+import { useRouter } from "next/router";
 import { Leftbar } from "../../components/user/Leftbar";
 
-const Dashboard = () => {
+const Doubt = ({student}) => {
+  const router = useRouter();
+  const [Question, setQuestion] = useState({})
+  // console.log(student)
   const [chat, setChat] = useState([
     // {
     //   name: "Junaid",
@@ -23,7 +28,34 @@ const Dashboard = () => {
   const [ask, setAsk] = useState("hidden");
   const [rightBar, setRightBar] = useState(false)
   const [sideBar, setSideBar] = useState(true)
+  const [Questions, setQuestions] = useState([])
+  const [Image, setImage] = useState("")
 
+
+  const getIssues = async () => {
+    const res = await fetch(
+      "/api/issue/findIssues",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          studentId: student?.user?._id,
+        }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    setQuestions(data)
+    return data;
+  };
+
+  useEffect(() => {
+  
+    getIssues();
+
+  }, [])
 
   const right =()=>{
     setRightBar(!rightBar)
@@ -31,16 +63,17 @@ const Dashboard = () => {
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
-      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />
+      <ViewImage Image={Image} setImage={setImage} />
+      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} />
       <Askdoubt ask={ask} setAsk={setAsk} />
-      <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} />
-      <Chatroom chat={chat}/>
+      <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} Question={Question} setQuestion={setQuestion} Questions={Questions} setQuestions={setQuestions} />
+      <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} student={student} Image={Image} setImage={setImage} />
 
       <div className=" hidden lg:flex relative">
         <div
           className={`absolute ${
             !rightBar ? "left-2 top-2 rotate-180" : "-left-5 top-2 " 
-          } z-50 cursor-pointer duration-300 bg-white shadow-xl`}
+          } z-20 cursor-pointer duration-300 bg-white shadow-xl`}
           onClick={right}
         >
           {"<<"}
@@ -51,4 +84,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Doubt;

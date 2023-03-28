@@ -2,6 +2,7 @@ import { useState ,useEffect} from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+
 const Askdoubt = ({ ask, setAsk, student }) => {
   const router = useRouter();
   const [file, setFile] = useState({});
@@ -54,11 +55,14 @@ const Askdoubt = ({ ask, setAsk, student }) => {
                   body: JSON.stringify({
                     message: data.fields.text,
                     image:data.url,
+
                     studentId:student?.user?._id
+
                   }),
                 });
                 const data1 = await res.json();
                 console.log(data1);
+
        setFirst([])
        setText('')
                 if (data1) {
@@ -68,6 +72,7 @@ const Askdoubt = ({ ask, setAsk, student }) => {
                 }
                 
                             };
+
               create();
 
             });

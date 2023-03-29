@@ -1,13 +1,13 @@
 
 const ProfilePreview = ({ student }) => {
   return (
-    <div className="flex border bg-white rounded-2xl p-3 sm:p-4 md:p-8 m-5 shadow-lg  ">
+    <div className="flex border bg-white rounded-2xl p-3 sm:p-4 md:p-6 m-5 shadow-lg  ">
       <div className="w-2/5 items-center flex justify-center">
-        <div>
-          <div className="bg-violet-500 rounded-full scale-110 w-[60px] h-[60px] md:w-[80px] md:h-[80px] px-3 md:px-5 py-1 text-white text-6xl flex text-center items-center  font-semibold mx-auto">
+        <div className="text-center flex flex-col justify-center">
+          <div className="bg-violet-500 rounded-full scale-110 w-[60px] h-[60px] md:w-[80px] md:h-[80px]  text-white text-6xl flex text-center justify-center items-center  mx-auto font-semibold ">
             {student?.user?.name[0].toUpperCase()}
           </div>
-          <div className="text-xl md:text-2xl font-semibold mt-2  w-max mx-auto">{student?.user?.name}</div>
+          <div className="text-xl md:text-xl text-center w-full px-2 font-semibold mt-2   mx-auto">{student?.user?.name}</div>
         </div>
       </div>
 

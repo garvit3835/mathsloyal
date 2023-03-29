@@ -32,6 +32,7 @@ const Doubt = ({ student, setStudent }) => {
   const [sideBar, setSideBar] = useState(true)
   const [Questions, setQuestions] = useState([])
   const [Image, setImage] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
 
 
 
@@ -46,7 +47,8 @@ const Doubt = ({ student, setStudent }) => {
       }),
     })
       .then(res => res.json())
-      .then(data => setQuestions(data))
+      .then(data => {setQuestions(data)
+        setIsLoading(false)})
       .catch(error => console.log(error));
   };
   
@@ -91,7 +93,7 @@ useEffect(() => {
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
-    {Questions.length===0 &&  <Loading/>}
+      {isLoading &&  <Loading/>}
       <ViewImage Image={Image} setImage={setImage} />
       <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} setStudent={setStudent} Question={Question} setQuestion={setQuestion} Questions={Questions} />
 

@@ -47,7 +47,7 @@ const Footer2 = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         emailHandler()
-        // console.log(email);
+
     };
 
 

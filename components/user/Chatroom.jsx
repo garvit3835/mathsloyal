@@ -139,7 +139,7 @@ useEffect(() => {
           </div>}
           {solution?.message === "solution does not exist" && Question?._id && <div className={`flex flex-wrap justify-start w-full `} >
             <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
-              <div className="text-4xl  mx-2 bg-violet-600 w-min h-min px-2 py-1  rounded-full">
+              <div className="text-4xl  mx-2 bg-violet-600 w-min h-min px-2 py-1  rounded-full ">
                 {/* {student?.user.name[0].toUpperCase()} */}
                 M
               </div>

@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 const Dashboard = ({ student, setStudent }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true)
+  const [text, setText] = useState("");
 
 
 const [contact, setContact] = useState(false);
@@ -55,7 +56,7 @@ useEffect(() => {
 console.log(student)
   return (
     <div className="bg-gray-50 flex ">
-      <Askdoubt ask={ask} setAsk={setAsk} student={student} />
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
       {isLoading && <Loading/>}
       <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent}/>
       {/* <Askdoubt ask={ask} setAsk={setAsk} />

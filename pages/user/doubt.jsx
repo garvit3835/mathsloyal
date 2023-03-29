@@ -27,6 +27,7 @@ const Doubt = ({ student, setStudent }) => {
     // },
   ]);
   const [ask, setAsk] = useState("hidden");
+  const [text, setText] = useState("")
   const [rightBar, setRightBar] = useState(false)
   const [sideBar, setSideBar] = useState(true)
   const [Questions, setQuestions] = useState([])
@@ -94,7 +95,7 @@ useEffect(() => {
       <ViewImage Image={Image} setImage={setImage} />
       <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} setStudent={setStudent} Question={Question} setQuestion={setQuestion} Questions={Questions} />
 
-      <Askdoubt ask={ask} setAsk={setAsk} student={student} Question={Question} setQuestion={setQuestion}/>
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} Question={Question} setQuestion={setQuestion} text={text} setText={setText}/>
 
       <Sidebar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} Question={Question} setQuestion={setQuestion} Questions={Questions} setQuestions={setQuestions} />
       <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} student={student} Image={Image} setImage={setImage} />

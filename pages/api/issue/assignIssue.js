@@ -27,7 +27,7 @@ const assignIssue = async (req, res) => {
 					{ tutor: null }
 				);
 			}
-		}, 10000);
+		}, 1000000);
 		
 	} else {
 		res.status(400).json({message: "Method not allowed"})

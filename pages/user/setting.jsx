@@ -4,10 +4,11 @@ import { useState } from "react";
 import Loading from "../../components/Loading";
 const Setting = ({student,setStudent}) => {
   const [ask, setAsk] = useState("hidden");
+  const [text, setText] = useState("");
   return (
     <div className="bg-white pt-10 md:pt-0 flex w-full ">
      {!student.user && <Loading/>}
-      <Askdoubt ask={ask} setAsk={setAsk} student={student} />
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
       <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
       <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">

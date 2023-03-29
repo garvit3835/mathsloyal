@@ -3,11 +3,12 @@ import Askdoubt from "../../components/user/Askdoubt";
 import { useState } from "react";
 const Orders = ({student,setStudent}) => {
   const [ask, setAsk] = useState("hidden");
+  const [text, setText] = useState("");
 
 
   return (
     <div className="bg-white flex pt-10 md:pt-0 ">
-      <Askdoubt ask={ask} setAsk={setAsk} student={student} />
+      <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
       <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
       <div className="w-full">
         <div className="text-3xl font-semibold m-6  px-10 text-blue-500">

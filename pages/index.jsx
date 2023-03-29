@@ -11,9 +11,10 @@ import Footer from "../components/home/Footer";
 import Faqs from "../components/home/Faqs";
 import Head from "next/head";
 import Loading from "../components/Loading";
+import Ques from "../components/home/Ques";
 
 
-export default function Home({ student, tutor }) {
+export default function Home({ student, tutor, setStudent, setTutor }) {
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter();
   const [showLogin, setShowLogin] = useState('none')
@@ -31,12 +32,16 @@ export default function Home({ student, tutor }) {
          .then((res) => res.json())
          .then((data) => {
            console.log(data);
-          //  setStudent(data);
-           setIsLoading(false)
+           setStudent(data);
+           if(data.user){
+             router.push("/user")
+             setIsLoading(false)
+           }
+
          });
   
 }else{
-  // router.push("/")
+  router.push("/")
   setIsLoading(false)
 }
     
@@ -84,6 +89,7 @@ export default function Home({ student, tutor }) {
         height={500}
       />
       {/* <Testimonials /> */}
+      <Ques/>
       <Faqs/>
       <Footer />
     </div>

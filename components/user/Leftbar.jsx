@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
+export const Leftbar = ({ ask, setAsk, setChat, chat ,setStudent}) => {
     const router = useRouter()
     const [navDrop, setNavDrop] = useState(false)
     const [active, setActive] = useState('overview')
@@ -205,8 +205,14 @@ if (typeof window !== "undefined") {
           <div className="text-lg  ">Setting</div>
           </Link>
           <div onClick={()=>{
-            localStorage.removeItem("myuser")
+            if (typeof window !== "undefined") {
+              localStorage.removeItem("myuser")
+
+              // window.location.reload()
+              setStudent({})
             router.push("/login")
+            }
+
           }}>
             <div className="text-lg  ">Logout</div>
           </div>

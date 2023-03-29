@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Leftbar } from "../../components/user/Leftbar";
 import Status from "../../components/user/dashboard/Status";
 import ProfilePreview from "../../components/user/dashboard/ProfilePreview";
@@ -8,15 +8,56 @@ import DoubtStatus from "../../components/user/dashboard/DoubtStatus";
 import RecentDoubts from "../../components/user/dashboard/RecentDoubts";
 import Contact from "../../components/user/dashboard/Contact";
 import Askdoubt from "../../components/user/Askdoubt";
+import Loading from "../../components/Loading";
+import { useRouter } from "next/router";
 
-const Dashboard = ({student}) => {
+const Dashboard = ({ student, setStudent }) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true)
+
+
 const [contact, setContact] = useState(false);
 const [ask, setAsk] = useState("hidden");
+console.log(student);
+useEffect(() => {
+  if(typeof window !== "undefined"){
+    // window.location.reload()
+    // if(student!==null && student!==undefined){
+    //   setIsLoading(false)
+    // }
+   if(!localStorage.getItem("myuser")){
+    router.push("/")
+   }else{
+    fetch("/api/student/checkStudent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: JSON.parse(localStorage.getItem("myuser")).token }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setStudent(data);
+        setIsLoading(false)
+      });
 
+    // setTimeout(() => {
+    //   // window.location.reload()
+    //   setIsLoading(false)
+    // }, 2000);
+   }
+  // }else{
+  //   setIsLoading(false)
+  // }
+}
+}, [])
+console.log(student)
   return (
     <div className="bg-gray-50 flex ">
       <Askdoubt ask={ask} setAsk={setAsk} student={student} />
-      <Leftbar ask={ask} setAsk={setAsk} />
+      {isLoading && <Loading/>}
+      <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent}/>
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />

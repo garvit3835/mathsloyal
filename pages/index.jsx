@@ -10,17 +10,42 @@ import Image from "next/image";
 import Footer from "../components/home/Footer";
 import Faqs from "../components/home/Faqs";
 import Head from "next/head";
+import Loading from "../components/Loading";
 
 
-export default function Home({student,tutor}) {
+export default function Home({ student, tutor }) {
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter();
   const [showLogin, setShowLogin] = useState('none')
+
   useEffect(() => {
-    console.log(student)
-    if(student?.user){
-      router.push("/user")
-    }
-  }, [student])
+   if (typeof window !== "undefined") {
+     if (localStorage.getItem("myuser")) {
+       fetch("/api/student/checkStudent", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({ token: JSON.parse(localStorage.getItem("myuser")).token }),
+       })
+         .then((res) => res.json())
+         .then((data) => {
+           console.log(data);
+          //  setStudent(data);
+           setIsLoading(false)
+         });
+  
+}else{
+  // router.push("/")
+  setIsLoading(false)
+}
+    
+   }
+    // console.log(student)
+    // if(student?.user){
+    //   router.push("/user")
+    // }
+  }, [])
   
   return (
     <div className="glass-gradient glass-gradient  scroll-smooth ">
@@ -29,6 +54,7 @@ export default function Home({student,tutor}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="MathsLoyal is an AI platform where you can ask your doubts and get them solved by AI or subject experts." />
         </Head>
+      {isLoading && <Loading/>}
       <div className="max-h-screen max-w-[1300px] mx-auto ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />

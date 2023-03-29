@@ -6,8 +6,9 @@ import ViewImage from "../../components/ViewImage";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import { Leftbar } from "../../components/user/Leftbar";
+import Loading from "../../components/Loading";
 
-const Doubt = ({student}) => {
+const Doubt = ({ student, setStudent }) => {
   const router = useRouter();
   const [Question, setQuestion] = useState({})
 
@@ -71,7 +72,7 @@ useEffect(() => {
       );
       setQuestion(question);
     }
-    console.log("Questions")
+    console.log(Questions)
 }, [Questions,router?.query?.question])
 
 
@@ -89,8 +90,9 @@ useEffect(() => {
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
+    {Questions.length===0 &&  <Loading/>}
       <ViewImage Image={Image} setImage={setImage} />
-      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} />
+      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} setStudent={setStudent}/>
 
       <Askdoubt ask={ask} setAsk={setAsk} student={student} Question={Question} setQuestion={setQuestion}/>
 

@@ -1,13 +1,17 @@
 import Link from "next/link";
-const Sidebar = ({ setChat, chat, Questions, setQuestion, Question }) => {
-  
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+const Sidebar = ({ setChat, chat, Questions, setQuestion, Question,tutor }) => {
+  const router = useRouter();
+console.log(Questions)
+
   return (
     <div className="hidden sm:flex h-screen bg-white shadow-2xl w-[180px] xl:w-[260px] ">
       <div className="flex h-full min-h-0 flex-col ">
         <div className="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
           <nav className="flex h-full flex-1 flex-col space-y-1 p-2">
             <div className="text-2xl font-semibold mt-3">
-              Hey, <span className="text-blue-500">Tariq</span>{" "}
+              Hey, <span className="text-blue-500">{tutor?.user?.name}</span>{" "}
               <span>(sme)</span>
             </div>
 
@@ -20,7 +24,12 @@ const Sidebar = ({ setChat, chat, Questions, setQuestion, Question }) => {
                 Questions?.map((question) => (
                   <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group"
                   onClick={() => {
-                    setQuestion(question);
+                    // setQuestion(question);
+router.push(`/sme/doubt?question=${question._id}`);
+setQuestion(
+  Questions?.filter((q) => q._id === question._id)[0]
+);
+
                   }}
                   key={question.id}
                   //   setChat([
@@ -63,7 +72,7 @@ const Sidebar = ({ setChat, chat, Questions, setQuestion, Question }) => {
 {question?.message}
                     </div>
                   </div>
-                ))
+                )).reverse()
                }
               </div>
             </div>

@@ -5,6 +5,7 @@ import { Leftbar } from "../../components/sme/Leftbar";
 import ViewImage from "../../components/ViewImage";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Loading from "../../components/Loading";
 const Doubt = ({tutor}) => {
   const router = useRouter();
 const [Issue, setIssue] = useState({})
@@ -59,16 +60,18 @@ const getIssue = async () => {
 };
 getIssue();
 getTutIssues();
-}, [router?.query?.question, tutor?.user?._id])
+}, [router?.query?.question, tutor])
 console.log(Questions)
+  console.log(router.query.question)
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex py-[50px] md:py-0 overflow-x-hidden">
       <ViewImage Image={Image} setImage={setImage} />
+      {!Questions && <Loading/>}
 
       <Leftbar setChat={setChat} chat={chat} />
-      <Sidebar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion}/>
-      <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} tutor={tutor} />
+      <Sidebar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion} tutor={tutor}/>
+      <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} tutor={tutor} setImage={setImage}/>
       <Rightbar Issue={Issue} setIssue={setIssue} tutor={tutor} setImage={setImage} />
     </div>
   );

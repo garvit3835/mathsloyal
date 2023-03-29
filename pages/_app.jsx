@@ -51,7 +51,7 @@ useEffect(() => {
 
   return (
     <div className='h-screen overflow-scroll'>
-      <Component {...pageProps} student={student} tutor={tutor} />
+      <Component {...pageProps} student={student} tutor={tutor} setTutor={setTutor} setStudent={setStudent} />
     </div>
   )
 }

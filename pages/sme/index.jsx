@@ -1,21 +1,55 @@
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Leftbar } from "../../components/sme/Leftbar";
 import Status from "../../components/sme/dashboard/Status.jsx";
 import ProfilePreview from "../../components/sme/dashboard/ProfilePreview";
 import Subscription from "../../components/sme/dashboard/Subscription";
 import RecentDoubts from "../../components/sme/dashboard/RecentDoubts";
 import Contact from "../../components/sme/dashboard/Contact";
+import Loading from "../../components/Loading";
+import { useRouter } from "next/router";
 
 
-const Dashboard = ({tutor}) => {
+const Dashboard = ({tutor,setTutor}) => {
+  const router = useRouter();
 const [contact, setContact] = useState(false);
+const [isLoading, setIsLoading] = useState(true)
 const [ask, setAsk] = useState("hidden");
 console.log(tutor)
+useEffect(() => {
+  console.log(tutor)
+if (typeof window !== "undefined") {
+  if (!localStorage.getItem("mysme")) {
+    router.push("/sme/login");
+    setIsLoading(false);
+  } else {
+    fetch("/api/tutor/checkTut", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: JSON.parse(localStorage.getItem("mysme")).token,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTutor(data);
+        setIsLoading(false);
+      });
+  }
+}  
+
+}, [])
+
+
 
 
   return (
     <div className="bg-gray-50 flex ">
+    { isLoading && <Loading />}
+
       <Leftbar />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />

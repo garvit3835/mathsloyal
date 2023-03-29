@@ -1,12 +1,14 @@
 import { Leftbar } from "../../components/user/Leftbar";
 import Askdoubt from "../../components/user/Askdoubt";
 import { useState } from "react";
-const Setting = ({student}) => {
+import Loading from "../../components/Loading";
+const Setting = ({student,setStudent}) => {
   const [ask, setAsk] = useState("hidden");
   return (
     <div className="bg-white pt-10 md:pt-0 flex w-full ">
+     {!student.user && <Loading/>}
       <Askdoubt ask={ask} setAsk={setAsk} student={student} />
-      <Leftbar ask={ask} setAsk={setAsk} />
+      <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
       <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">
           <div className="text-2xl   md:text-4xl font-semibold mb-8 m-2  md:m-4">

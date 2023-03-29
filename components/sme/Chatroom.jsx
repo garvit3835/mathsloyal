@@ -1,9 +1,30 @@
 import ChatBox from "./ChatBox";
 import Image from "next/image";
 import SolutionBox from "./SolutionBox";
+import { useEffect, useState } from "react";
 
-const Chatroom = ({chat,Question,tutor}) => {
+const Chatroom = ({ chat, Question, tutor, setImage ,Image}) => {
   console.log(Question);
+  const [solution, setSolution] = useState({})
+  const getSolu = () => {
+    fetch("/api/solution/getSolution", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        issueId: Question?._id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => setSolution(data))
+      .catch(error => console.log(error));
+  };
+  useEffect(() => {
+    getSolu()
+  }, [Question])
+  console.log(solution)
+
   return (
     <div className="  h-[98vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 pt-10">
       <div className=" w-full    overflow-y-scroll h-full d">
@@ -91,6 +112,45 @@ const Chatroom = ({chat,Question,tutor}) => {
             </div>
 
           </div>}
+          {
+            solution?.image && <div className={`flex  justify-end w-full `} >
+              <div className={` mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+                {
+                  solution?.image && <img src={solution?.image}
+                    className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
+                    alt="logo"
+                    onClick={() => {
+                      setImage(solution?.image)
+                    }}
+                  />}
+                <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+                  {/* {tutor?.user.name[0].toUpperCase()} */}
+                  T
+                </div>
+                
+              
+              </div>
+
+            </div>}
+          {solution?.message && <div className={`flex justify-end w-full `} >
+            <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+              {
+                solution?.message && <p
+                  className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "
+                >
+                  {solution?.message}
+                </p>
+              }
+              <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+                {/* {tutor?.user.name[0].toUpperCase()} */}
+                T
+              </div>
+            
+            
+            </div>
+
+          </div>}
+
         </div>
         <SolutionBox tutor={tutor} Question={Question}/>
       </div>

@@ -9,7 +9,7 @@ We Are the new age doubt solving platform, where you can ask your doubts and get
     </div>
       <div className=" w-full mx-auto  max-w-[1400px]  px-5  py-5  relative  sm:pt-5 md:p-16 ">
 <div className='w-full md:flex gap-10 md:w-[90%]'>
-        <Image src="/Ques.webp" width={350} height={460} className='shadow-xl w-[250px] mx-auto md:ml-20' alt=''/>
+        <Image src="/Ques.webp" width={350} height={460} className='shadow-xl w-[250px] mx-auto md:ml-20' alt='image'/>
         <div className=''>
           <div className='text-2xl md:text-5xl xl:text-6xl font-semibold px-5 md:leading-[90px] mt-8 md:mt-20'>
 Struggling with your math Doubt? 
@@ -24,7 +24,7 @@ Struggling with your math Doubt?
           </div>
          
           </div>
-          <Image src="/Solu.webp" width={350} height={460} className='shadow-xl w-[250px] mx-auto md:ml-20' alt='' />
+          <Image src="/Solu.webp" width={350} height={460} className='shadow-xl w-[250px] mx-auto md:ml-20' alt='image' />
           <div className='md:hidden'>
             <div className='text-2xl md:text-5xl xl:text-6xl font-semibold px-5 md:leading-[90px] mt-8 md:mt-20'>
 

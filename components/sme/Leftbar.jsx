@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
+export const Leftbar = ({ ask, setAsk, setChat, chat, Questions, Question, setQuestion }) => {
     const router = useRouter()
     const [navDrop, setNavDrop] = useState(false)
     const [active, setActive] = useState('overview')
@@ -12,7 +12,7 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
         setNavDrop(!navDrop)
     }
 
-
+console.log(Questions)
 
     useEffect(() => {
         if(router.pathname === '/sme'){
@@ -44,6 +44,7 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
             handleNavDrop(false);
 
         }
+
     }, [router.pathname])
     // <div onClick = {()=> { setOnline(!online) }}>
     //   {!online ? <img src="/icons/start.webp" alt='' className='w-[31px]' /> : <img src="/icons/pause.webp" alt='' className='w-[31px]' />}
@@ -110,46 +111,60 @@ export const Leftbar = ({ ask, setAsk, setChat, chat }) => {
                 <div className="text-gray-500 text-sm ">
                   previously Answered Questions
                 </div>
-                <div className="flex py-3 px-3 mx-2 items-center gap-3 bg-gray-100  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
-                  setChat([
-                    {
-                      name: "Junaid",
-                      role: "sme",
-                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
-                      time: "12:00",
-                    },
-                    {
-                      name: "Junaid",
-                      role: "sme",
-                      message: "I am not able to solve this question",
-                      time: "12:00",
-                    },
-                    {
-                      name: "tariq",
-                      role: "sme",
-                      message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
-                      time: "12:00",
-                    }
-                  ])
-                }} >
-                  <svg
-                    stroke="currentColor"
-                    fill="none"
-                    strokeWidth={2}
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                  <div className="flex-1  max-h-5 overflow-hidden relative">
-                    Solve x^2+2x+1=0
-                  </div>
-                </div>
+                {
+                  Questions?.map((question) => (
+                    <div className="flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10  relative rounded-md  cursor-pointer break-all  group"
+                      onClick={() => {
+                        // setQuestion(question);
+                        router.push(`/sme/doubt?question=${question._id}`);
+                        setQuestion(
+                          Questions?.filter((q) => q._id === question._id)[0]
+                        );
+
+                      }}
+                      key={question.id}
+                    //   setChat([
+                    //     {
+                    //       name: "Junaid",
+                    //       role: "user",
+                    //       message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/b63c2df59f616465c9cec1546539ffb3c574dd2e_2_690x211.JPG",
+                    //       time: "12:00",
+                    //     },
+                    //     {
+                    //       name: "Junaid",
+                    //       role: "user",
+                    //       message: "I am not able to solve this question",
+                    //       time: "12:00",
+                    //     },
+                    //     {
+                    //       name: "tariq",
+                    //       role: "sme",
+                    //       message: "https://gt2.sgp1.digitaloceanspaces.com/optimized/1X/870290aafeac5605fa96ceecac6fdac27101bd44_2_375x500.jpg",
+                    //       time: "12:00",
+                    //     }
+                    //   ])
+                    // }}
+                    >
+                      <svg
+                        stroke="currentColor"
+                        fill="none"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="h-4 w-4"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                      <div className="flex text-start  max-h-5 overflow-hidden relative">
+                        {question?.message}
+                      </div>
+                    </div>
+                  )).reverse()
+                }
               </div>
             </div>
           </div>}

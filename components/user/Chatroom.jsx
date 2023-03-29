@@ -31,7 +31,7 @@ useEffect(() => {
   return (
     <div className="  h-[98vh]  w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1">
       <div className=" w-full    overflow-y-scroll h-full d">
-        <div className=" w-full     ">
+        <div className=" w-full    mt-10 ">
          {/* {
         chat.length != 0 &&  chat.map((item, index) => (
             <div className={`flex ${item?.role==="user"?"justify-end":""} w-full  `} key={index}>
@@ -69,7 +69,7 @@ useEffect(() => {
           </div> */}
           {
             Question?.image &&<div className={`flex justify-end w-full `} >
-            <div className={` mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
+            <div className={` mt-5 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
               {
                 Question?.image && <img src={Question?.image}
                   className="w-[60vw] max-w-[500px] h-auto object-contain bg-gray-100 border px-1 rounded-md"
@@ -137,15 +137,15 @@ useEffect(() => {
             </div>
 
           </div>}
-          {solution?.message === "solution does not exist" && Object.keys(Question).length!==0&& <div className={`flex justify-start w-full `} >
+          {solution?.message === "solution does not exist" && Question?._id && <div className={`flex flex-wrap justify-start w-full `} >
             <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
-              <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-4  rounded-full">
+              <div className="text-4xl  mx-2 bg-violet-600 w-min h-min px-2 py-1  rounded-full">
                 {/* {student?.user.name[0].toUpperCase()} */}
                 M
               </div>
               {
                 solution?.message && <p
-                  className="w-max px-5 max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "
+                  className="max-w-4/5 mr-5 md:w-max px-5 md:max-w-[500px] h-auto object-contain bg-gray-50 border text-start flex items-center  rounded-md "
                 >
                   
                   Finding a solution to your problem is our top priority. We will get back to you as soon as possible.

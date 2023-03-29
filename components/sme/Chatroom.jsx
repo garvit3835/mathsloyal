@@ -26,8 +26,8 @@ const Chatroom = ({ chat, Question, tutor, setImage ,Image}) => {
   console.log(solution)
 
   return (
-    <div className="  h-[98vh] md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 pt-10">
-      <div className=" w-full    overflow-y-scroll h-full d">
+    <div className="  h-max md:h-screen w-full transition-width flex flex-col overflow-y-hidden  overflow-hidden i flex-1 ">
+      <div className=" w-full    overflow-y-scroll h-full ">
         <div className=" w-full     ">
           {/* <div className="flex justify-start w-full  ">
             <div className="text-4xl h-max mx-2 bg-violet-600 w-max px-3  rounded-full">
@@ -132,7 +132,7 @@ const Chatroom = ({ chat, Question, tutor, setImage ,Image}) => {
               </div>
 
             </div>}
-          {solution?.message && <div className={`flex justify-end w-full `} >
+          {solution?.message !== "solution does not exist" && <div className={`flex justify-end w-full `} >
             <div className={`mt-5  md:mt-10 xl:mt-14 text-gray-800 dark:text-gray-100   flex   w-max justify-start`}>
               {
                 solution?.message && <p
@@ -152,7 +152,8 @@ const Chatroom = ({ chat, Question, tutor, setImage ,Image}) => {
           </div>}
 
         </div>
-        <SolutionBox tutor={tutor} Question={Question}/>
+
+        {solution?.message === "solution does not exist" && Question?._id &&<SolutionBox tutor={tutor} Question={Question}/>}
       </div>
       <div>
       </div>

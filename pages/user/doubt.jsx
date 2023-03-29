@@ -92,7 +92,7 @@ useEffect(() => {
     <div className="bg-white max-w-screen max-h-screen flex  md:py-0 overflow-x-hidden">
     {Questions.length===0 &&  <Loading/>}
       <ViewImage Image={Image} setImage={setImage} />
-      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} setStudent={setStudent}/>
+      <Leftbar ask={ask} setAsk={setAsk} setChat={setChat} chat={chat} student={student} setStudent={setStudent} Question={Question} setQuestion={setQuestion} Questions={Questions} />
 
       <Askdoubt ask={ask} setAsk={setAsk} student={student} Question={Question} setQuestion={setQuestion}/>
 

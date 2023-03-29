@@ -1,7 +1,9 @@
 import Image from "next/image";
 import ViewImage from "./../ViewImage";
+import { useRouter } from "next/router";
 
 const Rightbar = ({ Issue,tutor,setImage }) => {
+  const router = useRouter();
 
   const AssignIssue=async(id)=>{
     const res = await fetch("/api/issue/assignIssue",
@@ -18,6 +20,8 @@ const Rightbar = ({ Issue,tutor,setImage }) => {
     );
     const data = await res.json();
     console.log(data);
+    router.push("/sme/doubt?question="+Issue?._id)
+
   }
   return (
     <div

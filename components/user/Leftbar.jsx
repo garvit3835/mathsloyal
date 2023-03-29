@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-export const Leftbar = ({ ask, setAsk, setChat, chat ,setStudent}) => {
+export const Leftbar = ({ ask, setAsk, setChat, chat ,setStudent,Question,Questions}) => {
     const router = useRouter()
     const [navDrop, setNavDrop] = useState(false)
     const [active, setActive] = useState('overview')
@@ -72,6 +72,9 @@ if (typeof window !== "undefined") {
             setActive('setting')
             handleNavDrop(true);
 
+        }else if(router.pathname === '/user/ai'){
+            setActive('ai')
+            handleNavDrop(true);
         }
     }, [router.pathname])
   return (
@@ -138,7 +141,7 @@ if (typeof window !== "undefined") {
                 <div className="text-gray-500 text-sm ">
                   previously Asked Questions
                 </div>
-                <div className="flex py-3 px-3 mx-2 items-center gap-3 bg-gray-100  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
+                {/* <div className="flex py-3 px-3 mx-2 items-center gap-3 bg-gray-100  relative rounded-md  cursor-pointer break-all  group" onClick={() => {
                   setChat([
                     {
                       name: "Junaid",
@@ -177,7 +180,33 @@ if (typeof window !== "undefined") {
                   <div className="flex-1  max-h-5 overflow-hidden relative">
                     Solve x^2+2x+1=0
                   </div>
-                </div>
+                </div> */}
+                {Questions?.map((question) => (
+
+                  <div className={`flex py-3 px-3 items-center gap-3 hover:bg-gray-500/10 ${question === Question ? "bg-gray-100 transform" : ""} duration-300 relative rounded-md  cursor-pointer break-all  group`} onClick={() => {
+                    router.push(`/user/doubt?question=${question?._id}`)
+
+                  }} key={question?._id}>
+                    <svg
+                      stroke="currentColor"
+                      fill="none"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <div className="flex text-start max-h-5 overflow-hidden relative">
+                      {question?.message}
+                    </div>
+                  </div>)
+
+                ).reverse()}
               </div>
             </div>
           </div>}
@@ -274,6 +303,30 @@ if (typeof window !== "undefined") {
               </svg>
 
               <div className="text-[11px]">Doubts</div>
+            </div>
+            <div
+              className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${
+                active === "ai"
+                  ? "bg-gray-200 rounded-lg "
+                  : "hover:bg-gray-100"
+              }`}
+              onClick={() => router.push("/user/ai")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width={35}
+                height={35}
+                viewBox="0 0 24 24"
+                className="mx-auto"
+              >
+                <path d="M 4 3 C 2.9 3 2 3.9 2 5 L 2 17 L 5 14 L 8 14 L 8 17 C 8 18.1 8.9 19 10 19 L 19 19 L 22 22 L 22 10 C 22 8.9 21.1 8 20 8 L 16 8 L 16 5 C 16 3.9 15.1 3 14 3 L 4 3 z M 4 5 L 14 5 L 14 12 L 4 12 L 4 5 z M 16 10 L 20 10 L 20 17 L 10 17 L 10 14 L 14 14 C 15.1 14 16 13.1 16 12 L 16 10 z" />
+              </svg>
+
+              <div className="text-[11px]">
+                Ask AI
+              </div>
             </div>
             <div
               className={`grid grid-cols-1 w-max mx-auto px-2 py-1 cursor-pointer  ${

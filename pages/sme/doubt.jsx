@@ -60,16 +60,26 @@ const getIssue = async () => {
 };
 getIssue();
 getTutIssues();
-}, [router?.query?.question, tutor])
+
+}, [router.query.question, tutor])
+  useEffect(() => {
+    if (router?.query?.question) {
+      const question = Questions.find(
+        (question) => question._id === router?.query?.question
+      );
+      setQuestion(question);
+    }
+    console.log(Questions)
+  }, [Questions, router?.query?.question])
 console.log(Questions)
   console.log(router.query.question)
 
   return (
     <div className="bg-white max-w-screen max-h-screen flex py-[50px] md:py-0 overflow-x-hidden">
       <ViewImage Image={Image} setImage={setImage} />
-      {!Questions && <Loading/>}
+      {Questions.length ===0 && <Loading/>}
 
-      <Leftbar setChat={setChat} chat={chat} />
+      <Leftbar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion} tutor={tutor} />
       <Sidebar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion} tutor={tutor}/>
       <Chatroom chat={chat} Question={Question} setQuestion={setQuestion} tutor={tutor} setImage={setImage}/>
       <Rightbar Issue={Issue} setIssue={setIssue} tutor={tutor} setImage={setImage} />

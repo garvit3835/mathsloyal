@@ -3,10 +3,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 
-const Askdoubt = ({ ask, setAsk, student }) => {
+const Askdoubt = ({ ask, setAsk, student,text,setText }) => {
   const router = useRouter();
   const [file, setFile] = useState({});
-  const [text, setText] = useState('')
+ 
   const [preview, setPreview] = useState('');
   const [first, setFirst] = useState([])
   const PreviewImage = ()=>{

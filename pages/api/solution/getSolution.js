@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const getSolution = async (req, res) => {
     if (req.method === 'POST') {
-        let data = await Solution.findOne({ "_id": mongoose.Types.ObjectId(req.body.issueId), });
+        let data = await Solution.findOne({ "_id": mongoose.Types.ObjectId(req.body.issueId)});
     if (data) {
         res.status(200).json(data)
     } else {

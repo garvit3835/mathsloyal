@@ -63,7 +63,7 @@ console.log(student)
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-full xl:w-4/5 mx-auto pt-10 h-screen overflow-y-scroll">
+      <div className="w-full  mx-auto pt-10 h-screen  overflow-y-scroll">
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500 px-2">{student?.user?.name}</span>

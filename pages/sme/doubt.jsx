@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
 const Doubt = ({tutor}) => {
   const router = useRouter();
-const [Issue, setIssue] = useState({})
+const [Issue, setIssue] = useState()
 const [Image, setImage] = useState("")
 const [Questions, setQuestions] = useState([])
 const [Question, setQuestion] = useState({})
@@ -39,26 +39,46 @@ console.log(tutor)
       .then(data => setQuestions(data))
       .catch(error => console.log(error));
   };
+  const getIssue = async () => {
+    const res = await fetch("/api/issue/getIssue",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tutorId: tutor?.user?._id,
+        }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    setIssue(data);
+    // setChat(data);
+  };
+setInterval(() => {
+  getIssue();
 
+}, 10000);
 useEffect(() => {
-const getIssue = async () => {
-  const res = await fetch("/api/issue/getIssue",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      tutorId: tutor?.user?._id,
-    }),
-  }
-  );
-  const data = await res.json();
-  console.log(data);
-  setIssue(data);
-  // setChat(data);
-};
-getIssue();
+// const getIssue = async () => {
+//   const res = await fetch("/api/issue/getIssue",
+//   {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       tutorId: tutor?.user?._id,
+//     }),
+//   }
+//   );
+//   const data = await res.json();
+//   console.log(data);
+//   setIssue(data);
+//   // setChat(data);
+// };
+// getIssue();
 getTutIssues();
 
 }, [router.query.question, tutor])

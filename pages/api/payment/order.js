@@ -9,7 +9,7 @@ const razorpay = new Razorpay({
 async function handler(req, res) {
 	if (req.method === "POST") {
 		const payment_capture = 1;
-		const amount = req.body.amount; // amount in paisa.
+		const amount = req.body.amount * 100 ; // amount in paisa.
 		const currency = "INR";
 		const options = {
 			amount: amount.toString(),

@@ -4,6 +4,66 @@ import { useRouter } from "next/router";
 
 
 const Askdoubt = ({ ask, setAsk, student,text,setText }) => {
+  // const [issueId, setIssueId] = useState("")
+  let issueId = ""
+  const makePayment = async () => {
+
+    console.log("here...");
+
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+    const studentId = student?.user?._id;
+    const  amount = 10;
+    const bodyData = { studentId, issueId, amount };
+
+    // Make API call to the serverless API
+    const data = await fetch("/api/payment/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyData),
+    }).then((t) =>
+      t.json()
+    )
+    console.log(data);
+    // console.log(data);
+    // console.log(data.success);
+    if (data.status === "created") {
+      var options = {
+        key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+        name: "Mathsloyal",
+        currency: data.currency,
+        amount: data.amount,
+        order_id: data.id,
+        description: "Thank you for your order",
+        callback_url: "/api/payment/verification"
+      };
+      // console.log(options);
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } else {
+      alert("Something went wrong");
+    }
+  };
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
   const router = useRouter();
   const [file, setFile] = useState({});
  
@@ -66,8 +126,11 @@ const Askdoubt = ({ ask, setAsk, student,text,setText }) => {
        setFirst([])
        setText('')
                 if (data1) {
-                  setAsk('hidden')
-                  router.push("/user/doubt"+"?question="+data1._id);
+                  issueId = data1._id
+                  // setIssueId(data1._id)
+                  makePayment()
+                  // setAsk('hidden')
+                  // router.push("/user/doubt"+"?question="+data1._id);
 
                 }
                 

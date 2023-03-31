@@ -59,7 +59,7 @@ export default function Home({ student, tutor, setStudent, setTutor }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="MathsLoyal is an AI platform where you can ask your doubts and get them solved by AI or subject experts." />
         </Head>
-      {isLoading && <Loading/>}
+      {/* {isLoading && <Loading/>} */}
       <div className="max-h-screen max-w-[1300px] mx-auto ">
         <Login showLogin={showLogin} setShowLogin={setShowLogin} />
         <Signup showLogin={showLogin} setShowLogin={setShowLogin} />

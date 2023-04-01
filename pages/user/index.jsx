@@ -75,7 +75,7 @@ console.log(student)
             <Subscription />
             <DoubtStatus />
 
-            <RecentDoubts />
+            <RecentDoubts student={student} />
           </div>
           <div className="flex flex-col">
             <Status />

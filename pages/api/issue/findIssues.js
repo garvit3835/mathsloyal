@@ -10,7 +10,13 @@ const findIssues = async (req, res) => {
 
 		// if (issues) {
 			const data = await Issue.find({ _id: { $in: issues } });
-			res.status(200).json(data);
+			if (data) {
+				res.status(200).json(data);
+			}
+		 else {
+			res.status(400).json({ error: "No data available" });
+		}
+			// res.status(200).json(data);
 		// } else {
 		// 	res.status(400).json({ error: "No data available" });
 		// }

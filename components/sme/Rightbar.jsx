@@ -74,7 +74,7 @@ const Rightbar = ({ Issue,tutor,setImage }) => {
               </button>
               <button className="px-5 bg-red-400 hover:bg-red-500 rounded-md  mx-2 text-xl"
                 onClick={() => {
-                  AssignIssue()
+                  AssignIssue(" ")
                 }}
               >
                 Pass

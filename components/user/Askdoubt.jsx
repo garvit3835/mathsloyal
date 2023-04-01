@@ -128,9 +128,9 @@ const Askdoubt = ({ ask, setAsk, student,text,setText }) => {
                 if (data1) {
                   issueId = data1._id
                   // setIssueId(data1._id)
-                  makePayment()
-                  // setAsk('hidden')
-                  // router.push("/user/doubt"+"?question="+data1._id);
+                  // makePayment()
+                  setAsk('hidden')
+                  router.push("/user/doubt"+"?question="+data1._id);
 
                 }
                 

@@ -53,6 +53,7 @@ console.log(Questions)
           onClick={()=>{
             router.push("/user/doubt?question="+q?._id)
           }}
+          key={q?._id}
           >
             <div className="flex items-center gap-5 ">
               <svg

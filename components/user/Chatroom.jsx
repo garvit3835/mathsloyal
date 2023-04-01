@@ -26,6 +26,9 @@ console.log(solution)
 useEffect(() => {
   getSolu()
 }, [Question])
+// setInterval(() => {
+//   getSolu()
+// }, 10000);
 
 
   return (

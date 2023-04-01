@@ -75,7 +75,7 @@ const Signup = () => {
         if (typeof window !== "undefined") {
             const token = localStorage.getItem("mysme");
             if (token) {
-                Router.push("/sme");
+                Router.push("/sme/login");
             }
         }
     }, []);

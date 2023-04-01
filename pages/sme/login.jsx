@@ -154,7 +154,7 @@ const Login = () => {
                         <div className="flex justify-center">
                             <p className="text-md mt-2">
                                 not have an account?{" "}
-                                <Link href="/signup" className="text-[#242f40]">
+                                <Link href="/sme/signup" className="text-[#242f40]">
                                     Signup{" "}
                                 </Link>
                             </p>

@@ -55,7 +55,7 @@ export default function Home({ student, tutor, setStudent, setTutor }) {
   return (
     <div className="glass-gradient glass-gradient  scroll-smooth ">
       <Head>
-        <title>MathsLoyal</title>
+        <title>Mathsloyal</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="MathsLoyal is an AI platform where you can ask your doubts and get them solved by AI or subject experts." />
         </Head>

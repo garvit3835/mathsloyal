@@ -26,15 +26,18 @@ const Faqs = () => {
                   <div className="mb-11 flex flex-wrap -m-1">
                       <div className="w-full p-1">
                           <a href="#">
-                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 1 ? "transform border-indigo-600" :"transform"} duration-300 rounded-2xl shadow-10xl`}>
+                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 1 ? "transform border-indigo-600" : "transform"} duration-300 rounded-2xl shadow-10xl`} onClick={
+                                  () => {
+                                      Show(1)
+                                  }
+                              } >
                                   <div className="flex flex-wrap justify-between -m-2">
                                       <div className="flex-1 p-2">
                                           <h3 className="mb-4 text-lg font-semibold leading-normal">
                                               Do you provide any free plan?
                                           </h3>
                                         {show===1 &&  <p className="text-gray-600 font-medium ease-in-out">
-                                              Lorem ipsum dolor sit amet, to the consectr adipiscing elit.
-                                              Volutpat tempor to the condi mentum vitae vel purus.
+                                            we have our ai based free plan for all our users. In which you can get your answers in less than 1 minute.
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2" onClick={()=>{
@@ -63,16 +66,19 @@ const Faqs = () => {
                       </div>
                       <div className="w-full p-1">
                           <a href="#">
-                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 2 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`}>
+                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 2 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`} onClick={
+                                  () => {
+                                      Show(2)
+                                  }
+                              } >
 
                                   <div className="flex flex-wrap justify-between -m-2">
                                       <div className="flex-1 p-2">
                                           <h3 className="text-lg font-semibold leading-normal">
-                                              How to claim your 25% discount offer?
+                                              How to claim your 30% discount offer?
                                           </h3>
                                         {show===2&&  <p className="text-gray-600 font-medium">
-                                              Lorem ipsum dolor sit amet, to the consectr adipiscing elit.
-                                              Volutpat tempor to the condi mentum vitae vel purus.
+                                            We have a special offer for our new users. You can claim your 30% discount by using the coupon code NEWUSER at the checkout.
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"
@@ -105,16 +111,19 @@ const Faqs = () => {
                       </div>
                       <div className="w-full p-1">
                           <a href="#">
-                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 3 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`}>
+                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 3 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`} onClick={
+                                  () => {
+                                      Show(3)
+                                  }
+                              } >
 
                                   <div className="flex flex-wrap justify-between -m-2">
                                       <div className="flex-1 p-2">
                                           <h3 className="text-lg font-semibold leading-normal">
-                                              What’s your refund policy?
+                                              Whats your refund policy?
                                           </h3>
                                       {show===3 &&    <p className="text-gray-600 font-medium">
-                                              Lorem ipsum dolor sit amet, to the consectr adipiscing elit.
-                                              Volutpat tempor to the condi mentum vitae vel purus.
+                                        We do not have any refund policy. But in case of any issue you can contact us at care@mathsloyal.com
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"
@@ -147,7 +156,11 @@ const Faqs = () => {
                       </div>
                       <div className="w-full p-1">
                           <a href="#">
-                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 4 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`}>
+                              <div className={`py-7 px-8 bg-white bg-opacity-60 border-2 ${show === 4 ? "border-indigo-600" : ""} rounded-2xl shadow-10xl`} onClick={
+                                  () => {
+                                      Show(4)
+                                  }
+                              } >
 
                                   <div className="flex flex-wrap justify-between -m-2">
                                       <div className="flex-1 p-2">
@@ -155,8 +168,7 @@ const Faqs = () => {
                                               How to get support for the product?
                                           </h3>
                                         {show===4 &&  <p className="text-gray-600 font-medium">
-                                              Lorem ipsum dolor sit amet, to the consectr adipiscing elit.
-                                              Volutpat tempor to the condi mentum vitae vel purus.
+                                            Our product is very easy to use. But in case of any issue  you can contact us at care@mathsloyal.com
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"

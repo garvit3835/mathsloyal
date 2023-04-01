@@ -91,7 +91,8 @@ if (typeof window !== "undefined") {
                   <div
                     className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-300 bg-gray-100 transition-colors duration-200 text-gray-700 cursor-pointer text-center justify-center text-sm mb-2 flex-shrink-0 border border-white/20 shadow-sm"
                     onClick={() => {
-                      setAsk("");
+                      // setAsk("");
+                      router.push("/sme/doubt")
                     }}
                   >
                    

@@ -78,7 +78,7 @@ const Faqs = () => {
                                               How to claim your 30% discount offer?
                                           </h3>
                                         {show===2&&  <p className="text-gray-600 font-medium">
-                                            We have a special offer for our new users. You can claim your 30% discount by using the coupon code "NEWUSER" at the checkout.
+                                            We have a special offer for our new users. You can claim your 30% discount by using the coupon code NEWUSER at the checkout.
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"
@@ -120,10 +120,10 @@ const Faqs = () => {
                                   <div className="flex flex-wrap justify-between -m-2">
                                       <div className="flex-1 p-2">
                                           <h3 className="text-lg font-semibold leading-normal">
-                                              What’s your refund policy?
+                                              Whats your refund policy?
                                           </h3>
                                       {show===3 &&    <p className="text-gray-600 font-medium">
-                                        We don’t have any refund policy. But in case of any issue, you can contact us at care@mathsloyal.com
+                                        We do not have any refund policy. But in case of any issue you can contact us at care@mathsloyal.com
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"
@@ -168,7 +168,7 @@ const Faqs = () => {
                                               How to get support for the product?
                                           </h3>
                                         {show===4 &&  <p className="text-gray-600 font-medium">
-                                            Our product is very easy to use. But in case of any issue, you can contact us at care@mathsloyal.com
+                                            Our product is very easy to use. But in case of any issue  you can contact us at care@mathsloyal.com
                                           </p>}
                                       </div>
                                       <div className="w-auto p-2"

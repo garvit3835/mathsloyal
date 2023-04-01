@@ -7,8 +7,8 @@ const Hero = () => {
     
     <div className="hero-font text-3xl xs:text-4xl xs-max:text-5xl sm:text-6xl md:text-4xl mb-3 lg:mb-5 lg:text-5xl xl:text-6xl  w-full text-gray-800">
       <h1>
-        <span className="line-through	text-gray-600 ">Eliminate</span>{" "}
-        uncertainty and move forward with clarity
+        Eliminate{" "}
+        <span className="line-through	text-gray-600 ">uncertainty</span> and move forward with clarity
       </h1>
     </div>
       <div className='hero-font  font-[300]'>

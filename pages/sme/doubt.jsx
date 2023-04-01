@@ -13,6 +13,7 @@ const [Image, setImage] = useState("")
 const [Questions, setQuestions] = useState([])
 const [Question, setQuestion] = useState({})
 const [chat, setChat] = useState([])
+const [isLoading, setIsLoading] = useState(true)
 //   const [Question, setQuestion] = useState({
 //     "_id": "64213dcac262cc495e63b91e",
 //     "image": "https://wrap.sgp1.digitaloceanspaces.com/question.png",
@@ -36,7 +37,10 @@ console.log(tutor)
       }),
     })
       .then(res => res.json())
-      .then(data => setQuestions(data))
+      .then(data =>{ setQuestions(data)
+        setIsLoading(false)
+      }
+      )
       .catch(error => console.log(error));
   };
   const getIssue = async () => {
@@ -59,7 +63,7 @@ console.log(tutor)
 setInterval(() => {
   getIssue();
 
-}, 10000);
+}, 100000);
 useEffect(() => {
 // const getIssue = async () => {
 //   const res = await fetch("/api/issue/getIssue",
@@ -97,7 +101,8 @@ console.log(Questions)
   return (
     <div className="bg-white max-w-screen max-h-screen flex py-[50px] md:py-0 overflow-x-hidden">
       <ViewImage Image={Image} setImage={setImage} />
-      {Questions.length ===0 && <Loading/>}
+      {isLoading && <Loading />}
+
 
       <Leftbar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion} tutor={tutor} />
       <Sidebar setChat={setChat} chat={chat} Questions={Questions} Question={Question} setQuestion={setQuestion} tutor={tutor}/>

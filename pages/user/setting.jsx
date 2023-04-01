@@ -13,7 +13,10 @@ const Setting = ({student,setStudent}) => {
       <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">
           <div className="text-2xl   md:text-4xl font-semibold mb-8 m-2  md:m-4">
-            Hey, <span className="text-blue-500">JUNAID</span>
+            Hey, <span className="text-blue-500">{
+              student?.user?.name
+            }
+            </span>
           </div>
 
           <div className="w-full flex justify-start">

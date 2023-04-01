@@ -37,7 +37,7 @@ const Rightbar = ({ Issue,tutor,setImage }) => {
           <div className="mt-10 mb-4 text-xs text-gray-600">
             Status of upcoming question
           </div>
-     {Issue &&     <div >
+     {Issue?.message &&     <div >
             <div className="text-6xl px-4 bg-vio bg-violet-600 rounded-full w-max mx-auto">
               J
             </div>

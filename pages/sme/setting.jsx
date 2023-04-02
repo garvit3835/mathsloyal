@@ -8,7 +8,6 @@ const Setting = ({tutor,setTutor}) => {
     class: "",
     board: "",
     target: "",
-    school: "",
     city: "",
     phone: "",
   })
@@ -30,7 +29,7 @@ const Setting = ({tutor,setTutor}) => {
    
     setInfo({
       ...info,
-      class: {
+      classs: {
         ...info.class,
         [e.target.name]: e.target.value
       }
@@ -255,7 +254,7 @@ checked={tutor?.user?.board?.state}
           </div>
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
-
+            onClick={handleSubmit}
             >
               Save Changes
             </button>

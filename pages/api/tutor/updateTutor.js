@@ -5,25 +5,30 @@ import mongoose from "mongoose";
 const updateTutor = async (req, res) => {
 
     if (req.method === "POST") {
-        const {tutorId, name, password, city, phone, board, target, subscription} = req.body
-
+        const {tutorId, name, city, phone, board, target, classs } = req.body
         let result = await Tutor.findById(tutorId)
-        name ? result.name = name : result.name
-        password ? result.password = password : result.password
-        city ? result.city = city : result.city
-        req.body.class ? result.class = req.body.class : result.class
-        phone ? result.phone = phone : result.phone
-        board ? result.board = board : result.board
-        target ? result.target = target : result.target
-        subscription ? result.subscription = subscription : result.subscription
-        await result.save()
-        if (result) {
-            res.status(200).json(result);
-        } else {
+        if(result){
+        await Tutor.findOneAndUpdate(
+            {
+               _id: tutorId
+            },
+            {
+                name: name ? name : result.name,
+                city: city ? city : result.city,
+                phone: phone ? phone : result.phone,
+                board: board ? board : result.board,
+                target: target ? target : result.target,
+                class: classs ? classs:result.class
+            }
+        )
+      
+        res.status(200).json(
+          await  Tutor.findById(tutorId,{password: 0, })
+        )
+        }else{
             res.status(200).json({error: "not found"});
         }
         
-
     } else {
         res.status(400).json({ success: false, error: 'Method not allowed' });
     }

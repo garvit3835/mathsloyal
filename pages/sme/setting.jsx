@@ -1,5 +1,93 @@
 import { Leftbar } from "../../components/sme/Leftbar";
-const Setting = ({tutor}) => {
+import { useState,useEffect } from "react";
+import Loading from "../../components/Loading";
+
+const Setting = ({tutor,setTutor}) => {
+  const [info, setInfo] = useState({
+    name: "",
+    class: "",
+    board: "",
+    target: "",
+    school: "",
+    city: "",
+    phone: "",
+  })
+  const handleChange = (e) => {
+    setTutor({
+      ...tutor,
+      user:{
+        ...tutor.user,
+        [e.target.name]:e.target.value
+      }
+    })
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value,
+    })
+    console.log(info)
+  }
+  const handleClass = (e) => {
+   
+    setInfo({
+      ...info,
+      class: {
+        ...info.class,
+        [e.target.name]: e.target.value
+      }
+    })
+    console.log(info)
+  }
+  const handleBoard = (e) => {
+    
+    setInfo({
+      ...info,
+      board: {
+        ...info.board,
+        [e.target.name]: e.target.value
+      }
+    })
+    console.log(info)
+  }
+  const handleTarget = (e) => {
+    setInfo({
+      ...info,
+      target: {
+        ...info.target,
+        [e.target.name]: e.target.value
+      }
+    })
+    console.log(info)
+  }
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault()
+
+    fetch("/api/tutor/updateTutor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: info?.name,
+        class: info?.class,
+        board: info?.board,
+        target: info?.target,
+        city: info?.city,
+        phone: info?.phone,
+        tutorId: tutor?.user?._id
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setTutor({
+          ...tutor,
+          user: data
+        })
+      })
+
+
+  }
   return (
     <div className="bg-white flex w-full gap-5">
       <Leftbar />
@@ -20,6 +108,9 @@ const Setting = ({tutor}) => {
                 </label>
                 <input
                   className="border-2 w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
+                  name="name"
+                  onChange={handleChange}
+                  value={tutor?.user?.name}
                   type="text"
                   placeholder={tutor?.user?.name}
                 />
@@ -28,49 +119,97 @@ const Setting = ({tutor}) => {
                 <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
                   Class
                 </label>
-                <fieldset className="w-[70%] flex gap-2 h-max">
+                <fieldset className="w-[70%] flex gap-2 h-max" name="class"  >
 
 
     <div>
-      <input type="checkbox" id="ninth" name="ninth" />
+                    <input type="checkbox" id="ninth" name="ninth" value='9' onChange={handleClass}
+      checked={tutor?.user?.class?.ninth}
+       />
 <label htmlFor="ninth">9th</label>
     </div>
     <div>
-      <input type="checkbox" id="tenth" name="tenth" />
+                    <input type="checkbox" id="tenth" name="tenth" value="10" onChange={handleClass}
+                    checked={tutor?.user?.class?.tenth}
+                    />
 <label htmlFor="tenth">10th</label>
     </div>
     <div>
-      <input type="checkbox" id="eleventh" name="eleventh" />
+                    <input type="checkbox" id="eleventh" name="eleventh" value="11" onChange={handleClass}
+                    checked={tutor?.user?.class?.eleventh}
+                     />
 <label htmlFor="eleventh">11th</label>
     </div>
     <div>
-      <input type="checkbox" id="tweleth" name="tweleth" />
+                    <input type="checkbox" id="tweleth" name="tweleth" value="12" onChange={handleClass}
+                    checked={tutor?.user?.class?.tweleth}
+                     />
 <label htmlFor="tweleth">12th</label>
     </div>
 
 
 </fieldset>
               </div>
-              <div className="w-full flex gap-3">
+              <div className="w-full items-center flex gap-3">
                 <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
                   Board
                 </label>
-                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
+                <fieldset className="w-[70%] flex gap-2 h-max" name="board" onChange={handleBoard} >
+                  <input type="checkbox" id="cbse" name="board" value="cbse"
+                  checked={tutor?.user?.board?.cbse}
+                    onChange={handleBoard}
+                  />
+<label htmlFor="cbse">CBSE</label>
+                  <input type="checkbox" id="icse" name="board" value="icse"
+checked={tutor?.user?.board?.icse}
+                  onChange={handleBoard}
+/>
+<label htmlFor="icse">ICSE</label>
+<input type="checkbox" id="state" name="board" value="state"
+checked={tutor?.user?.board?.state}
+                  onChange={handleBoard}
+/>
+<label htmlFor="state">State Board</label>
+
+                </fieldset>
+                {/* <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
                   <option>CBSE</option>
                   <option>ICSE</option>
                   <option>State Board</option>
-                </select>
+                </select> */}
               </div>
               <div className="w-full flex gap-3">
                 <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
                   Target
                 </label>
-                <select className="border-2  md:w-[330px] w-[70%]   border-gray-300 p-2 rounded-lg m-4">
-                  <option>JEE MAINS</option>
+                <fieldset className="w-[70%] flex gap-2 h-max" name="target" onChange={handleTarget} >
+                  <input type="checkbox" id="jeemains" name="jeemains" value="jeemains"
+                    checked={tutor?.user?.target?.jeemains}
+                  onChange={handleTarget}
+                  />
+<label htmlFor="jeemains">JEE MAINS</label>
+                  <input type="checkbox" id="jeeadv" name="jeeadv" value="jeeadv"
+                  checked={tutor?.user?.target?.jeeadv}
+                  onChange={handleTarget}
+                  />
+<label htmlFor="jeeadv">JEE ADVANCED</label>
+                  <input type="checkbox" id="nda" name="nda" value="nda"
+                  checked={tutor?.user?.target?.nda}
+                  onChange={handleTarget}
+                  />
+<label htmlFor="nda">NDA</label>
+                  <input type="checkbox" id="board" name="board" value="board"
+                  checked={tutor?.user?.target?.board}
+                  onChange={handleTarget}
+                  />
+<label htmlFor="board">Board</label>
+{/* 
+                  <option
+                  >JEE MAINS</option>
                   <option>JEE ADVANCED</option>
                   <option>NDA</option>
-                  <option>Board</option>
-                </select>
+                  <option>Board</option> */}
+                </fieldset>
               </div>
            
               <div className="w-full flex gap-3">
@@ -79,6 +218,10 @@ const Setting = ({tutor}) => {
                 </label>
                 <input
                   className="border-2   md:w-[330px] w-[70%]  border-gray-300 p-2 rounded-lg m-4"
+                  name="city"
+                  onChange={handleChange}
+                  value={tutor?.user?.city}
+
                   type="text"
                   placeholder="City Name"
                 />
@@ -91,6 +234,9 @@ const Setting = ({tutor}) => {
                 <input
                   className="border-2   md:w-[330px] w-[70%]  border-gray-300 p-2 rounded-lg m-4"
                   type="number"
+                  name="phone"
+                  onChange={handleChange}
+                  value={tutor?.user?.phone}
                   placeholder="9922993344"
                 />
               </div>
@@ -108,7 +254,9 @@ const Setting = ({tutor}) => {
             </div>
           </div>
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
-            <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg">
+            <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
+
+            >
               Save Changes
             </button>
 

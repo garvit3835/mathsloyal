@@ -12,6 +12,7 @@ const StudentSchema = new mongoose.Schema({
     phone: { type: Number, default: '' },
     class:{type:String, default:''},
     school:{type:String, default:''},
+    board:{type:String, default:''},
     target:{type:String, default:''},
     subscription:{type:Object, default:''},
 

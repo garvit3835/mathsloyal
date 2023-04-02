@@ -3,8 +3,62 @@ import Askdoubt from "../../components/user/Askdoubt";
 import { useState } from "react";
 import Loading from "../../components/Loading";
 const Setting = ({student,setStudent}) => {
+
+  console.log(student)
   const [ask, setAsk] = useState("hidden");
   const [text, setText] = useState("");
+  const [info, setInfo] = useState({
+    name: "",
+    class: "",
+    board: "",
+    target: "",
+    school: "",
+    city: "",
+    phone: "",
+  })
+  const handleChange = (e) => {
+    setStudent({
+      ...student,
+      user:{
+        ...student.user,
+        [e.target.name]:e.target.value
+      }
+    })
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value,
+    })
+    console.log(info)
+  }
+  const handleSubmit = (e) => {
+
+    e.preventDefault()
+fetch("/api/student/updateStudent",{
+  method:"POST",
+  headers:{
+    "Content-Type":"application/json"
+  },
+  body:JSON.stringify({
+    name:info?.name,
+    class:info?.class,
+    board:info?.board,
+    target:info?.target,
+    school:info?.school,
+    city:info?.city,
+    phone:info?.phone,
+    studentId:student?.user?._id
+  })
+}).then(res=>res.json())
+.then(data=>{
+  console.log(data)
+  setStudent({
+    ...student,
+    user:data
+  })
+})
+  
+
+  }
   return (
     <div className="bg-white pt-10 md:pt-0 flex w-full ">
      {!student.user && <Loading/>}
@@ -28,40 +82,61 @@ const Setting = ({student,setStudent}) => {
                 <input
                   className="border-2 w-[70%]   md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="text"
-                  placeholder="JUNAID"
+                  placeholder={student?.user?.name}
+                  name="name"
+                  value={student?.user?.name ? student?.user?.name : info.name}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full flex gap-1  md:gap-3">
                 <label className="text-lg w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Class
                 </label>
-                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4">
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                  <option>12+</option>
+                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
+                name="class"
+                value={student?.user?.class?student?.user?.class:info.class}
+                onChange={handleChange}
+                >
+                  <option value="select your class" >Select your class</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="10">11</option>
+                  <option value="11">12</option>
+                  <option value="12+">12+</option>
                 </select>
               </div>
               <div className="w-full flex gap-1  md:gap-3">
                 <label className="text-lg  w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Board
                 </label>
-                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4">
-                  <option>CBSE</option>
-                  <option>ICSE</option>
-                  <option>State Board</option>
+                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
+                name="board"
+                  value={student?.user?.board ? student?.user?.board:info.board}
+                onChange={handleChange}
+                >
+                  <option value="select your board">Select your Board</option>
+
+                  <option value="cbse">CBSE</option>
+                  <option value="icse">ICSE</option>
+                  <option value="state board">State Board</option>
                 </select>
               </div>
               <div className="w-full flex gap-1  md:gap-3">
                 <label className="text-lg  w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Target
                 </label>
-                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4">
-                  <option>JEE MAINS</option>
-                  <option>JEE ADVANCED</option>
-                  <option>NDA</option>
-                  <option>Board</option>
+                <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
+                name="target"
+                  value={student?.user?.target ? student?.user?.target : info.target}
+                
+                onChange={handleChange}
+                >
+                  <option value="select your target">Select your Target</option>
+
+                  <option value="jee mains">JEE MAINS</option>
+                  <option value="jee advanced">JEE ADVANCED</option>
+                  <option value="nda">NDA</option>
+                  <option value="board">Board</option>
                 </select>
               </div>
               <div className="w-full flex gap-1  md:gap-3">
@@ -72,6 +147,9 @@ const Setting = ({student,setStudent}) => {
                   className="border-2 w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="text"
                   placeholder="School Name"
+                  name="school"
+                  value={student?.user?.school ? student?.user?.school : info.school}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full flex gap-1  md:gap-3">
@@ -82,6 +160,9 @@ const Setting = ({student,setStudent}) => {
                   className="border-2 w-[70%]   md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="text"
                   placeholder="City Name"
+                  name="city"
+                  value={student?.user?.city ? student?.user?.city : info.city}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -93,6 +174,9 @@ const Setting = ({student,setStudent}) => {
                   className="border-2  w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="number"
                   placeholder="9922993344"
+                  name="phone"
+                  value={student?.user?.phone ? student?.user?.phone : info.phone}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full flex gap-1  md:gap-3">
@@ -102,14 +186,16 @@ const Setting = ({student,setStudent}) => {
                 <input
                   className="border-2  w-[70%]  md:w-[330px]  bg-gray-300 border-gray-300 p-2 rounded-lg m-2  md:m-4 cursor-not-allowed"
                   type="email"
-                  value="junaidmalik9069@gmail.com"
+                  value={student?.user?.email}
                   disabled
                 />
               </div>
             </div>
           </div>
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
-            <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg">
+            <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
+            onClick={handleSubmit}
+            >
               Save Changes
             </button>
 

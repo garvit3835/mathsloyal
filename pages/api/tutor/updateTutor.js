@@ -5,14 +5,15 @@ import mongoose from "mongoose";
 const updateTutor = async (req, res) => {
 
     if (req.method === "POST") {
-        const {tutorId, name, password, city, phone, school, target, subscription} = req.body
+        const {tutorId, name, password, city, phone, board, target, subscription} = req.body
+
         let result = await Tutor.findById(tutorId)
         name ? result.name = name : result.name
         password ? result.password = password : result.password
         city ? result.city = city : result.city
         req.body.class ? result.class = req.body.class : result.class
         phone ? result.phone = phone : result.phone
-        school ? result.school = school : result.school
+        board ? result.board = board : result.board
         target ? result.target = target : result.target
         subscription ? result.subscription = subscription : result.subscription
         await result.save()

@@ -109,6 +109,15 @@ const Footer2 = () => {
                     </h2>
                     <ul className="font-mono">
                         <li>
+                            <Link className="text-black hover:text-gray-400" href="/price_and_plans">Price And Plans</Link>
+                        </li>
+                        <li>
+                            <Link className="text-black hover:text-gray-400" href="/team">
+                               Meet Our Experts
+                            </Link>
+                        </li>
+
+                        <li>
                             <Link className="text-black hover:text-gray-400" href="/about">About Us</Link>
                         </li>
                         <li>
@@ -117,6 +126,7 @@ const Footer2 = () => {
                         <li>
                             <Link className="text-black hover:text-gray-400" href="/faqs">FAQs</Link>
                         </li>
+
 
                     </ul>
                 </div>

@@ -207,13 +207,28 @@ const Price_and_plans = () => {
               </Link> */}
             </div>
             {/* Pricing Card */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg  border-blue-600 border-2 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold">Pro</h3>
+            <div className="flex relative flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg  border-blue-600 border-2 shadow dark:border-gray-600 xl:p-8 xl:pt-4 dark:bg-gray-800 dark:text-white">
+              <div>
+                <span className="inline-flex items-center justify-center px-3 py-1 text-sm font-medium leading-5 text-blue-800 bg-blue-100 rounded-full">
+                  Most Popular
+                </span>
+
+              </div>
+              <div className="absolute top-0 right-0">
+                <h2 className="m-4 -mt-4 text-2xl font-extrabold leading-8 tracking-tight text-gray-900 bg-white dark:text-white border rounded border-blue-600 px-2">
+                  27% <span className="text-base font-normal">
+                    off
+                  </span>
+                  </h2>
+              </div>
+              <h3 className="my-2 text-2xl font-semibold">Pro</h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                 Relevant for the user, who wants to learn in a more structured way
               </p>
               <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold">&#8377;15</span>
+                <span className="text-gray-500 dark:text-gray-400 text-2xl line-through mr-3">&#8377;15</span>
+
+                <span className="mr-2 text-5xl font-extrabold">&#8377;11</span>
                 <span
                   className="text-gray-500 dark:text-gray-400"
 
@@ -323,7 +338,14 @@ const Price_and_plans = () => {
               </Link>
             </div>
             {/* Pricing Card */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+            <div className="flex relative flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+              <div className="absolute top-0 right-0">
+                <h2 className="m-4 -mt-4 text-2xl font-extrabold leading-8 tracking-tight text-gray-900 bg-white dark:text-white border rounded-lg border-gray-100 px-2">
+                  31% <span className="text-base font-normal">
+                    off
+                  </span>
+                </h2>
+              </div>
               <h3 className="mb-4 text-2xl font-semibold">
                 Premium
               </h3>
@@ -331,6 +353,7 @@ const Price_and_plans = () => {
                 For the Person who wants to get Top Grades 
               </p>
               <div className="flex justify-center items-baseline my-8">
+                <span className="text-gray-500 dark:text-gray-400 text-2xl line-through mr-3">&#8377;600</span>
                 <span className="mr-2 text-5xl font-extrabold">&#8377;414</span>
                 <span className="text-gray-500 dark:text-gray-400">/21 days</span>
               </div>

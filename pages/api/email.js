@@ -1,26 +1,35 @@
+const nodemailer = require("nodemailer");
 
-const nodemailer = require('nodemailer');
- 
- 
-let mailTransporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'xyz@gmail.com',
-        pass: '*************'
-    }
-});
- 
-let mailDetails = {
-    from: 'xyz@gmail.com',
-    to: 'abc@gmail.com',
-    subject: 'Test mail',
-    text: 'Node.js testing mail for GeeksforGeeks'
-};
- 
-mailTransporter.sendMail(mailDetails, function(err, data) {
-    if(err) {
-        console.log('Error Occurs');
+async function handler(req, res) {
+    if (req.method === 'GET') {
+        let OTP = Math.floor(100000 + Math.random() * 900000)
+        let mailTransporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "mathsloyalpvt.ltd@gmail.com",
+                pass: process.env.GENERATED_PASS,
+            },
+        });
+    
+        let mailDetails = {
+            from: "mathsloyalpvt.ltd@gmail.com",
+            to: "garvit3835@gmail.com",
+            subject: "Mathsloyal - Email verification",
+            text: `The One-time password for email verification is ${OTP}`,
+        };
+    
+        mailTransporter.sendMail(mailDetails, function (err, data) {
+            if (err) {
+                res.status(400).json({ error: err });     
+            } else {
+                // console.log("Email sent successfully");
+                res.status(200).json({data: OTP})
+            }
+        });
     } else {
-        console.log('Email sent successfully');
+        res.send("wrong method")
     }
-});
+	
+}
+
+export default handler;

@@ -1,7 +1,7 @@
 var crypto = require("crypto");
 
 async function handler(req, res) {
-	if (res.method === "POST") {
+	if (req.method === "POST") {
 		let body =
 			req.body.response.razorpay_order_id +
 			"|" +

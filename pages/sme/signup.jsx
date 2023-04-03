@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from "../../context/AuthContext";
 import Navbar from "../../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,8 +9,7 @@ import Footer from "../../components/home/Footer";
 
 const Signup = () => {
     const router = Router;
-    const { user, signup } = useAuth();
-    console.log(user);
+
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -36,7 +34,7 @@ const Signup = () => {
             if (data1.success) {
                 localStorage.setItem(
                     "mysme",
-                    JSON.stringify({ email: data1.email, token: data1.token ,tutorId:data1.tutorId })
+                    JSON.stringify({ email: data1.email, token: data1.token, tutorId: data1.tutorId })
                 );
                 toast.success(data1.message, {
                     position: "top-left",

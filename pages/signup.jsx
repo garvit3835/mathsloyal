@@ -51,6 +51,7 @@ const Signup = () => {
         }, 1500);
       } else {
         toast.error(data1.message, {
+
           position: "top-left",
           autoClose: 5000,
           hideProgressBar: false,

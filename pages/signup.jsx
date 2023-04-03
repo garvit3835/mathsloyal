@@ -1,85 +1,75 @@
 import Image from "next/image";
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
-  import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Router from "next/router";
 import Footer from "../components/home/Footer";
 
 const Signup = () => {
-const router = Router;
-    const { user, signup } = useAuth();
-    console.log(user);
-    const [data, setData] = useState({
-      name: "",
-      email: "",
-      password: ""
+  const router = Router;
 
-    });
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: ""
 
-    const handleSignup = async (e) => {
-      e.preventDefault();
+  });
 
-      try {
-        // await signup(data.email, data.password);
-let datal = await fetch("/api/student/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-        const data1 = await datal.json();
-        console.log(data1);
-  if (data1.success) {
-    localStorage.setItem(
-      "myuser",
-      JSON.stringify({ email: data1.email, token: data1.token })
-    );
-    toast.success(data1.message, {
-      position: "top-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    setTimeout(() => {
-      router.push("/login");
-    }, 1500);
-  } else {
-    toast.error(data1.message, {
-      position: "top-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-
-      } catch (err) {
-        console.log(err);
+    try {
+      // await signup(data.email, data.password);
+      let datal = await fetch("/api/student/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      const data1 = await datal.json();
+      console.log(data1);
+      if (data1.success) {
+        localStorage.setItem(
+          "myuser",
+          JSON.stringify({ email: data1.email, token: data1.token })
+        );
+        toast.success(data1.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
+      } else {
+        toast.error(data1.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
 
-      console.log(data);
-    };
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
-        if (token) {
-          Router.push("/user");
-        }
-      }
-    }, []);
-	return (
+
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log(data);
+  };
+  return (
     <main className="pt-10 md:pt-0">
       <Navbar />
       <ToastContainer
@@ -180,7 +170,7 @@ let datal = await fetch("/api/student/signup", {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
 }

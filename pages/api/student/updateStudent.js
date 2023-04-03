@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const updateStudent = async (req, res) => {
 
     if (req.method === "POST") {
-        const {studentId, name, password, city, phone, school, target, subscription,board} = req.body
+        const { studentId, name, password, city, phone, school, target, subscription, board } = req.body
         let result = await Student.findById(studentId)
 
         if (result) {
@@ -16,14 +16,14 @@ const updateStudent = async (req, res) => {
             phone ? result.phone = phone : result.phone
             school ? result.school = school : result.school
             target ? result.target = target : result.target
-            board? result.board = board : result.board
+            board ? result.board = board : result.board
             subscription ? result.subscription = subscription : result.subscription
             await result.save()
             res.status(200).json(result);
         } else {
-            res.status(200).json({error: "not found"});
+            res.status(200).json({ error: "not found" });
         }
-        
+
 
     } else {
         res.status(400).json({ success: false, error: 'Method not allowed' });

@@ -4,18 +4,19 @@ import Issue from "../../../model/Issue";
 async function handler(req, res) {
 	if (req.method === "POST") {
 		let body =
-			req.body.response.razorpay_order_id +
+			req.body.razorpay_order_id +
 			"|" +
-			req.body.response.razorpay_payment_id;
+			req.body.razorpay_payment_id;
 
 		var expectedSignature = crypto
 			.createHmac("sha256", process.env.RAZORPAY_KEY)
 			.update(body.toString())
 			.digest("hex");
-		console.log("sig received ", req.body.response.razorpay_signature);
+		console.log("sig received ", req.body.razorpay_signature);
 		console.log("sig generated ", expectedSignature);
 		var response = { signatureIsValid: "false" };
 		if (expectedSignature === req.body.response.razorpay_signature) {
+		if (expectedSignature === req.body.razorpay_signature)
 			response = { signatureIsValid: "true" };
 			let data = await Issue.findOneAndUpdate(
 				{ _id: mongoose.Types.ObjectId(req.body.issueId) },

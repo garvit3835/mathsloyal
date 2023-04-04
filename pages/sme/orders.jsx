@@ -3,7 +3,7 @@ import Loading from "../../components/Loading";
 import { useEffect, useState } from "react";
 
 
-const Orders = () => {
+const Orders = ({ tutor, setTutor }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {

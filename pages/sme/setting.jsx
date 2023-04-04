@@ -143,35 +143,35 @@ const Setting = ({ tutor, setTutor }) => {
 
 
   return (
-    <div className="bg-white flex w-full gap-5">
+    <div className="bg-white pt-10 md:pt-0 flex w-full ">
+
       <Leftbar />
       {isLoading && <Loading />}
-      <div className="w-full h-screen overflow-scroll pt-12 px-3">
+      <div className="w-full h-screen overflow-scroll">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">
-
-          <div className="text-2xl   md:text-4xl font-semibold mb-4 m-2  md:m-4">
+          <div className="text-2xl   md:text-4xl font-semibold mb-8 m-2  md:m-4">
 
             Hey, <span className="text-blue-500 mx-1">{tutor?.user?.name}</span>
             (sme)
           </div>
-
           <div className="w-full flex justify-start">
-            <div className=" w-full md:px-4 grid lg:grid-cols-2">
-              <div className="w-full flex gap-3">
-                <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
+            <div className=" w-full px-2 md:px-4 grid lg:grid-cols-2">
+              <div className="w-full flex gap-1  md:gap-3">
+                <label className="text-lg w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Name
                 </label>
                 <input
-                  className="border-2 w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
-                  name="name"
-                  disabled
-                  value={tutor?.user?.name}
+                  className="border-2 w-[70%]   md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="text"
                   placeholder={tutor?.user?.name}
+                  name="name"
+                  value={tutor?.user?.name ? tutor?.user?.name : info.name}
+                  onChange={handleChange}
                 />
               </div>
               <div className="w-full flex gap-3 items-center">
-                <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
+                <label className="text-lg w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
+
                   Class
                 </label>
                 <fieldset className="w-[70%] flex gap-2 h-max" name="class"  >
@@ -206,10 +206,10 @@ const Setting = ({ tutor, setTutor }) => {
                 </fieldset>
               </div>
               <div className="w-full items-center flex gap-3">
-                <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
+                <label className="text-lg w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Board
                 </label>
-                <fieldset className="w-[70%] flex gap-2 h-max" name="board" onChange={handleBoard} >
+                <fieldset className="w-[70%] flex flex-wrap gap-2 h-max" name="board" onChange={handleBoard} >
                   <input type="checkbox" id="cbse" name="board" value="cbse"
                     checked={tutor?.user?.board?.cbse}
                     onChange={handleBoard}
@@ -234,10 +234,10 @@ const Setting = ({ tutor, setTutor }) => {
                 </select> */}
               </div>
               <div className="w-full flex gap-3">
-                <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
+                <label className="text-lg w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Target
                 </label>
-                <fieldset className="w-[70%] flex gap-2 h-max" name="target" onChange={handleTarget} >
+                <fieldset className="w-[70%] flex flex-wrap gap-2 h-max" name="target" onChange={handleTarget} >
                   <input type="checkbox" id="jeemains" name="jeemains" value="jeemains"
                     checked={tutor?.user?.target?.jeemains}
                     onChange={handleTarget}
@@ -266,41 +266,39 @@ const Setting = ({ tutor, setTutor }) => {
                   <option>Board</option> */}
                 </fieldset>
               </div>
-
-              <div className="w-full flex gap-3">
-                <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
+              <div className="w-full flex gap-1  md:gap-3">
+                <label className="text-lg  w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   City
                 </label>
                 <input
-                  className="border-2   md:w-[330px] w-[70%]  border-gray-300 p-2 rounded-lg m-4"
-                  name="city"
-                  onChange={handleChange}
-                  value={tutor?.user?.city}
-
+                  className="border-2 w-[70%]   md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="text"
                   placeholder="City Name"
+                  name="city"
+                  value={tutor?.user?.city ? tutor?.user?.city : info.city}
+                  onChange={handleChange}
                 />
               </div>
 
-              <div className="w-full flex gap-3">
-                <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
+              <div className="w-full flex gap-1  md:gap-3">
+                <label className="text-lg  w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Phone
                 </label>
                 <input
-                  className="border-2   md:w-[330px] w-[70%]  border-gray-300 p-2 rounded-lg m-4"
+                  className="border-2  w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-2  md:m-4"
                   type="number"
-                  name="phone"
-                  onChange={handleChange}
-                  value={tutor?.user?.phone}
                   placeholder="9922993344"
+                  name="phone"
+                  value={tutor?.user?.phone ? tutor?.user?.phone : info.phone}
+                  onChange={handleChange}
                 />
               </div>
-              <div className="w-full flex gap-3">
-                <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
+              <div className="w-full flex gap-1  md:gap-3">
+                <label className="text-lg  w-[30%]  md:text-2xl md:w-[90px] font-semibold m-2  md:m-4">
                   Email
                 </label>
                 <input
-                  className="border-2   md:w-[330px] w-[70%]  bg-gray-300 border-gray-300 p-2 rounded-lg m-4 cursor-not-allowed"
+                  className="border-2  w-[70%]  md:w-[330px]  bg-gray-300 border-gray-300 p-2 rounded-lg m-2  md:m-4 cursor-not-allowed"
                   type="email"
                   value={tutor?.user?.email}
                   disabled
@@ -308,6 +306,7 @@ const Setting = ({ tutor, setTutor }) => {
               </div>
             </div>
           </div>
+
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
               onClick={handleSubmit}

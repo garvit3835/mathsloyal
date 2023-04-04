@@ -16,6 +16,7 @@ async function handler(req, res) {
 		var response = { signatureIsValid: "false" };
 		if (expectedSignature === req.body.razorpay_signature)
 			response = { signatureIsValid: "true" };
+
 		res.status(200).json(response);
 	} else {
 		res.status(400).json({ error: "Method not allowed!" });

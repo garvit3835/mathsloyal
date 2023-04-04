@@ -15,9 +15,13 @@ const handler = async (req, res) => {
             // res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
             // let u = new Student({ name, email, password: req.body.password });
             if (req.body.password.length < 6) return res.status(400).json({ success: false, message: 'Password must be at least 6 characters' });
-            let u = new Student({ name, email, password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRECT_KEY).toString() });
-            await u.save();
-            res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
+            try {
+                let u = new Student({ name, email, password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRECT_KEY).toString() });
+                await u.save();
+                res.status(200).json({ success: true, message: 'Account Created successfully Now you can login' });
+            } catch {
+                res.status(400).json({ success: "falsee" })
+            }
         }
     }
     else {

@@ -79,6 +79,7 @@ const Ask = ({ student, setStudent }) => {
                                     if (data.success) {
                                         setStudent(data);
                                         setIsLoading(false)
+
                                     } else {
                                         setIsLoading(false)
                                         router.push("/login")
@@ -108,6 +109,12 @@ const Ask = ({ student, setStudent }) => {
         }
 
     }, [])
+    useEffect(() => {
+        if (router.query.question) {
+            setText(router.query.question.split("_").join(" "))
+            // getAnswer()
+        }
+    }, [router.query.question])
 
     return (
         <div className="w-screen flex  pt-10 md:pt-0">
@@ -133,19 +140,24 @@ const Ask = ({ student, setStudent }) => {
                             onChange={(e) => setText(e.target.value)}
                         />
                         <div>
-                            <label htmlFor="file" className="w-max ">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    x="0px"
-                                    y="0px"
-                                    width={24}
-                                    height={24}
-                                    viewBox="0 0 24 24"
-                                    className="fill-current text-gray-500 "
-                                >
-                                    <path d="M 6 2 C 4.9057453 2 4 2.9057453 4 4 L 4 20 C 4 21.094255 4.9057453 22 6 22 L 18 22 C 19.094255 22 20 21.094255 20 20 L 20 8 L 14 2 L 6 2 z M 6 4 L 13 4 L 13 9 L 18 9 L 18 20 L 6 20 L 6 4 z M 13.5 13.333984 L 11 16.667969 L 9.5 14.667969 L 7 18 L 17 18 L 13.5 13.333984 z" />
-                                </svg>
-                            </label>
+                            {/* <label htmlFor="file" className="w-max "> */}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                x="0px"
+                                y="0px"
+                                width={24}
+                                height={24}
+                                viewBox="0 0 24 24"
+                                onClick={
+                                    () => {
+                                        setAsk("")
+                                    }
+                                }
+                                className="fill-current text-gray-500 "
+                            >
+                                <path d="M 6 2 C 4.9057453 2 4 2.9057453 4 4 L 4 20 C 4 21.094255 4.9057453 22 6 22 L 18 22 C 19.094255 22 20 21.094255 20 20 L 20 8 L 14 2 L 6 2 z M 6 4 L 13 4 L 13 9 L 18 9 L 18 20 L 6 20 L 6 4 z M 13.5 13.333984 L 11 16.667969 L 9.5 14.667969 L 7 18 L 17 18 L 13.5 13.333984 z" />
+                            </svg>
+                            {/* </label> */}
 
                             <input
                                 type="file"
@@ -153,7 +165,16 @@ const Ask = ({ student, setStudent }) => {
                                 name="file"
                                 id="file"
                                 className="hidden w-max"
-                                onChange={PreviewImage}
+                                onClick={
+                                    () => {
+                                        setAns("")
+                                    }
+                                }
+                            // onChange={
+                            //     () => {
+                            //         setAsk("")
+                            //     }
+                            // }
                             />
                         </div>
                     </div>

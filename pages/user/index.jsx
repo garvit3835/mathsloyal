@@ -44,6 +44,7 @@ const Dashboard = ({ student, setStudent }) => {
                 .then((data) => {
                   console.log(data);
                   if (data.success) {
+
                     setStudent(data);
                     setIsLoading(false)
                   } else {

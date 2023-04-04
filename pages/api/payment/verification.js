@@ -21,6 +21,10 @@ async function handler(req, res) {
 			response = { signatureIsValid: "true" };
 			let data = await Issue.findOne({ orderId: req.body.razorpay_order_id })
 			res.redirect(`/user/doubt?question=${data.issueId}`)
+			await Issue.findByIdAndUpdate(
+				data.issueId,
+				{$set : {payment: true}}
+			)
 		}
 			
 		} else {

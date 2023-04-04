@@ -17,55 +17,58 @@ const Dashboard = ({ tutor, setTutor }) => {
   const [ask, setAsk] = useState("hidden");
   console.log(tutor)
   useEffect(() => {
-    console.log(tutor)
     if (typeof window !== "undefined") {
+      // window.location.reload()
+      // if(student!==null && student!==undefined){
+      //   setIsLoading(false)
+      // }
       if (!localStorage.getItem("mysme")) {
-        router.push("/sme/login");
-        setIsLoading(false);
+        router.push("/login")
       } else {
         if (typeof window !== "undefined") {
-          // const token = localStorage.getItem("token");
-          const user = localStorage.getItem("mysme");
-          const user1 = JSON.parse(user);
-          // console.log(student)
-          if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
-            console.log(user1?.token)
-            fetch("/api/tutor/checkTut", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                token: user1?.token
+          const token = JSON.parse(localStorage.getItem("mysme")).token
+          try {
+            if (token && token != "undefined" && token != null) {
+              fetch("/api/tutor/checkTut", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token: token }),
               })
-            }).then((res) => res.json())
-              .then((res) => {
-                if (res.success) {
-                  // router.push("/sme");
-                  setIsLoading(false)
-                  console.log("success")
-                } else {
-                  router.push("/sme/login");
-                  setIsLoading(false)
-                }
-              }
-              ).catch((err) => {
-                console.log(err);
-              }
-              )
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.success) {
+
+                    setTutor(data);
+                    setIsLoading(false)
+                  } else {
+                    setIsLoading(false)
+                    router.push("/sme/login")
+                  }
+                }).catch((err) => {
+                  console.log(err);
+                })
+
+            } else {
+              router.push("/sme/login")
+            }
+          } catch (err) {
+            router.push("/sme/login")
+            console.log(err)
           }
 
-
-          // if(user?.email && user?.token && user?.token!="undefined"){
-          //   Router.push("/user");
-          // }
-
-          // if(token && token!="undefined"){
-          //   Router.push("/user");
-          // }
-
+          // setTimeout(() => {
+          //   // window.location.reload()
+          //   setIsLoading(false)
+          // }, 2000);
         }
       }
+
+      // }else{
+      //   setIsLoading(false)
+      // }
     }
 
   }, [])
@@ -75,6 +78,7 @@ const Dashboard = ({ tutor, setTutor }) => {
 
   return (
     <div className="bg-gray-50 flex ">
+
       {isLoading && <Loading />}
 
       <Leftbar />
@@ -82,7 +86,8 @@ const Dashboard = ({ tutor, setTutor }) => {
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
       <Rightbar /> */}
-      <div className="w-full xl:w-4/5 mx-auto mt-10 ">
+      <div className="w-full  mx-auto pt-10 h-screen  overflow-y-scroll">
+
         <div className="text-3xl font-semibold m-6">
           Hey,
           <span className="text-blue-500 mx-1">{tutor?.user?.name}</span>

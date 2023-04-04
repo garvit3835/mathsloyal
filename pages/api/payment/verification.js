@@ -19,6 +19,7 @@ async function handler(req, res) {
 		var response = { signatureIsValid: "false" };
 		if (expectedSignature === req.body.razorpay_signature) {
 			response = { signatureIsValid: "true" };
+
 			await Issue.findOneAndUpdate(
 				{ _id: mongoose.Types.ObjectId(req.body.issueId) },
 				{ $set: { payment: true } },

@@ -1,4 +1,5 @@
 var crypto = require("crypto");
+import Issue from "../../../model/Issue";
 
 async function handler(req, res) {
 	if (req.method === "POST") {
@@ -14,9 +15,16 @@ async function handler(req, res) {
 		console.log("sig received ", req.body.response.razorpay_signature);
 		console.log("sig generated ", expectedSignature);
 		var response = { signatureIsValid: "false" };
-		if (expectedSignature === req.body.response.razorpay_signature)
+		if (expectedSignature === req.body.response.razorpay_signature) {
 			response = { signatureIsValid: "true" };
-		res.status(200).json(response);
+			let data = await Issue.findOneAndUpdate(
+				{ _id: mongoose.Types.ObjectId(req.body.issueId) },
+				{ $set: { payment: true } },
+				{new: true}
+			);
+		}
+
+		res.status(200).json(response, data);
 	} else {
 		res.status(400).json({ error: "Method not allowed!" });
 	}

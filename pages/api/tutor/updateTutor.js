@@ -10,7 +10,7 @@ const updateTutor = async (req, res) => {
         if(result){
         await Tutor.findOneAndUpdate(
             {
-               _id: tutorId
+               _id: mongoose.Types.ObjectId(tutorId)
             },
             {
                 name: name ? name : result.name,

@@ -34,7 +34,7 @@ const Signup = () => {
             if (data1.success) {
                 localStorage.setItem(
                     "mysme",
-                    JSON.stringify({ email: data1.email, token: data1.token, tutorId: data1.tutorId })
+                    JSON.stringify({ token: data1.token })
                 );
                 toast.success(data1.message, {
                     position: "top-left",
@@ -71,12 +71,44 @@ const Signup = () => {
     };
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const token = localStorage.getItem("mysme");
-            if (token) {
-                Router.push("/sme/login");
+            // const token = localStorage.getItem("token");
+            const user = localStorage.getItem("mysme");
+            const user1 = JSON.parse(user);
+            // console.log(student)
+            if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+                console.log(user1?.token)
+                fetch("/api/tutor/checkTut", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        token: user1?.token
+                    })
+                }).then((res) => res.json())
+                    .then((res) => {
+                        if (res.success) {
+                            Router.push("/sme");
+                        }
+                    }
+                    ).catch((err) => {
+                        console.log(err);
+                    }
+                    )
             }
+
+
+            // if(user?.email && user?.token && user?.token!="undefined"){
+            //   Router.push("/user");
+            // }
+
+            // if(token && token!="undefined"){
+            //   Router.push("/user");
+            // }
+
         }
-    }, []);
+    }, [])
+
     return (
         <main className="pt-10 md:pt-0">
             <Navbar />
@@ -93,14 +125,16 @@ const Signup = () => {
                 theme="light"
             />
             <div className={`flex justify-center  `}>
-                <div className="w-full  sm:w-max px-8 md:px-16    top-20 z-40    py-10 items-center flex justify-center">
+                <div className="w-full  sm:w-max px-8 md:px-16  max-w-[600px] text-center top-20 z-40    py-10 items-center flex justify-center">
                     <div className="">
                         <div className="flex justify-center">
                             <h1 className="text-4xl mb-1 font-bold">Signup</h1>
                         </div>
                         <div className="flex justify-center">
                             <p className="text-xl">
-                                we are very happy to see you,lets know each other{" "}
+                                we are very happy to see you,
+                                lets Solve
+                                student{"'"}s doubt together{" "}
                             </p>
                         </div>
                         <div className="flex justify-center">
@@ -111,7 +145,8 @@ const Signup = () => {
                                 <input
                                     type="text"
                                     placeholder="Name"
-                                    className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                                    required
+                                    className="w-full h-[50px] mx-2 rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                                     onChange={(e) =>
                                         setData({
                                             ...data,
@@ -125,7 +160,8 @@ const Signup = () => {
                                 <input
                                     type="email"
                                     placeholder="Email"
-                                    className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                                    required
+                                    className="w-full h-[50px] mx-2 rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                                     onChange={(e) =>
                                         setData({
                                             ...data,
@@ -139,7 +175,9 @@ const Signup = () => {
                                 <input
                                     type="password"
                                     placeholder="Password"
-                                    className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                                    required
+                                    minLength={6}
+                                    className="w-full h-[50px] mx-2  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                                     onChange={(e) =>
                                         setData({
                                             ...data,

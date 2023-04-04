@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/home/Footer";
 import Link from "next/link";
 const Price_and_plans = () => {
+
   return (
     <div className=" ">
       <Navbar />
@@ -128,7 +129,7 @@ const Price_and_plans = () => {
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              Designed By Love For Your Grades
+              Choose the plan that suites you and ace your exam
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
               We are a team of students who are passionate about education and want to make it more accessible to everyone.
@@ -197,7 +198,7 @@ const Price_and_plans = () => {
                     For: <span className="font-semibold">Small And simple Doubts</span>
                   </span>
                 </li>
-             
+
               </ul>
               {/* <Link
                 href="#"
@@ -219,7 +220,7 @@ const Price_and_plans = () => {
                   27% <span className="text-base font-normal">
                     off
                   </span>
-                  </h2>
+                </h2>
               </div>
               <h3 className="my-2 text-2xl font-semibold">Pro</h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -271,7 +272,7 @@ const Price_and_plans = () => {
                     />
                   </svg>
                   <span>
-                    Get Doubt Solved in 6 hours
+                    Get Doubt Solved in 3 hours
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -331,7 +332,7 @@ const Price_and_plans = () => {
                 </li> */}
               </ul>
               <Link
-                href="#"
+                href="/login"
                 className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-blue-900"
               >
                 Get started
@@ -350,7 +351,7 @@ const Price_and_plans = () => {
                 Premium
               </h3>
               <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                For the Person who wants to get Top Grades 
+                For the Person who wants to get Top Grades
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="text-gray-500 dark:text-gray-400 text-2xl line-through mr-3">&#8377;600</span>
@@ -414,7 +415,7 @@ const Price_and_plans = () => {
 
                   </span>
                 </li>
-               
+
                 <li className="flex items-center space-x-3">
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"

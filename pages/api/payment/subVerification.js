@@ -29,7 +29,8 @@ async function handler(req, res) {
                 req.body.studentId,
                 {queCount: {$inc: -1}}
             )
-			res.redirect(`/user/doubt?question=${req.body.issueId}`)
+			let data = await Issue.findOne({ orderId: req.body.razorpay_order_id })
+			res.redirect(`/user/doubt?question=${data.issueId}`)
 		}
 			
 		} else {

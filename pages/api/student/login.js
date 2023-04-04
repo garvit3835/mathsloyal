@@ -9,6 +9,7 @@ const handler = async (req, res) => {
     if (req.method === 'POST') {
         // console.log(req.body);
         let user = await Student.findOne({ email: req.body.email });
+        console.log(user)
         if (user) {
             // res.status(200).json({ success: true, message: 'User exists' });
             const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRECT_KEY);

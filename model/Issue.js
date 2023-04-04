@@ -7,6 +7,8 @@ const IssueSchema = new mongoose.Schema({
     message: { type: String, default: '' },
     student: { type: ObjectId, default: null },
     tutor: { type: ObjectId, default: null },
+    payment: { type: Boolean, default: false },
+    solved: { type: Boolean, default: false },
 }, { timestamps: true });
 mongoose.models = {};
 

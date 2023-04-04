@@ -1,5 +1,6 @@
 var crypto = require("crypto");
 import Issue from "../../../model/Issue";
+import Student from "../../../model/Student";
 import connectDB from "../../../middleware/mongoose";
 import mongoose from "mongoose";
 
@@ -19,12 +20,15 @@ async function handler(req, res) {
 		var response = { signatureIsValid: "false" };
 		if (expectedSignature === req.body.razorpay_signature) {
 			response = { signatureIsValid: "true" };
-
 			await Issue.findOneAndUpdate(
 				{ _id: mongoose.Types.ObjectId(req.body.issueId) },
 				{ $set: { payment: true } },
 				{new: true}
-			)
+            )
+            await Student.findByIdAndUpdate(
+                req.body.studentId,
+                {queCount: {$inc: -1}}
+            )
 			res.redirect(`/user/doubt?question=${req.body.issueId}`)
 		}
 			

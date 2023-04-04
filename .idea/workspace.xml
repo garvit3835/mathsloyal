@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b077699a-14e6-4dc3-87c0-6e44bd289cf0" name="Changes" comment="promo code">
+      <change beforePath="$PROJECT_DIR$/model/Student.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/Student.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/solution/getSolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/solution/getSolution.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NXPcAgMr1KeULuUYUvdlICkOpt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Garvit/kavach-web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\Garvit\\mathsloyal\\mathsloyal\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b077699a-14e6-4dc3-87c0-6e44bd289cf0" name="Changes" comment="" />
+      <created>1679807531174</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679807531174</updated>
+      <workItem from="1679807533720" duration="1427000" />
+      <workItem from="1679825660869" duration="716000" />
+      <workItem from="1679835367714" duration="779000" />
+      <workItem from="1679837623020" duration="323000" />
+      <workItem from="1679964654873" duration="884000" />
+      <workItem from="1680166879809" duration="166000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1679807600363</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679807600363</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <created>1679807806462</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679807806462</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first commit">
+      <created>1679825704914</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679825704914</updated>
+    </task>
+    <task id="LOCAL-00004" summary="first commit">
+      <created>1679825776153</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679825776153</updated>
+    </task>
+    <task id="LOCAL-00005" summary="first commit">
+      <created>1679835412431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679835412432</updated>
+    </task>
+    <task id="LOCAL-00006" summary="first commit">
+      <created>1679836068186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679836068187</updated>
+    </task>
+    <task id="LOCAL-00007" summary="promo code">
+      <created>1679837683204</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679837683204</updated>
+    </task>
+    <task id="LOCAL-00008" summary="promo code">
+      <created>1679843234916</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679843234916</updated>
+    </task>
+    <task id="LOCAL-00009" summary="promo code">
+      <created>1679964717310</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679964717310</updated>
+    </task>
+    <task id="LOCAL-00010" summary="promo code">
+      <created>1679965419500</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679965419500</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="promo code" />
+    <option name="LAST_COMMIT_MESSAGE" value="promo code" />
+  </component>
+</project>

@@ -8,6 +8,9 @@ const razorpay = new Razorpay({
 
 async function handler(req, res) {
 	if (req.method === "POST") {
+		if (req.body.subscribed === true) {
+			res.redirect('/user')
+		}
 		const payment_capture = 1;
 		const amount = req.body.amount * 100 ; // amount in paisa.
 		const currency = "INR";

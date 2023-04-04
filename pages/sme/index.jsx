@@ -1,5 +1,5 @@
 
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Leftbar } from "../../components/sme/Leftbar";
 import Status from "../../components/sme/dashboard/Status.jsx";
 import ProfilePreview from "../../components/sme/dashboard/ProfilePreview";
@@ -10,45 +10,72 @@ import Loading from "../../components/Loading";
 import { useRouter } from "next/router";
 
 
-const Dashboard = ({tutor,setTutor}) => {
+const Dashboard = ({ tutor, setTutor }) => {
   const router = useRouter();
-const [contact, setContact] = useState(false);
-const [isLoading, setIsLoading] = useState(true)
-const [ask, setAsk] = useState("hidden");
-console.log(tutor)
-useEffect(() => {
+  const [contact, setContact] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
+  const [ask, setAsk] = useState("hidden");
   console.log(tutor)
-if (typeof window !== "undefined") {
-  if (!localStorage.getItem("mysme")) {
-    router.push("/sme/login");
-    setIsLoading(false);
-  } else {
-    fetch("/api/tutor/checkTut", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: JSON.parse(localStorage.getItem("mysme")).token,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setTutor(data);
+  useEffect(() => {
+    console.log(tutor)
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("mysme")) {
+        router.push("/sme/login");
         setIsLoading(false);
-      });
-  }
-}  
+      } else {
+        if (typeof window !== "undefined") {
+          // const token = localStorage.getItem("token");
+          const user = localStorage.getItem("mysme");
+          const user1 = JSON.parse(user);
+          // console.log(student)
+          if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+            console.log(user1?.token)
+            fetch("/api/tutor/checkTut", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token: user1?.token
+              })
+            }).then((res) => res.json())
+              .then((res) => {
+                if (res.success) {
+                  // router.push("/sme");
+                  setIsLoading(false)
+                  console.log("success")
+                } else {
+                  router.push("/sme/login");
+                  setIsLoading(false)
+                }
+              }
+              ).catch((err) => {
+                console.log(err);
+              }
+              )
+          }
 
-}, [])
+
+          // if(user?.email && user?.token && user?.token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+          // if(token && token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+        }
+      }
+    }
+
+  }, [])
 
 
 
 
   return (
     <div className="bg-gray-50 flex ">
-    { isLoading && <Loading />}
+      {isLoading && <Loading />}
 
       <Leftbar />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
@@ -58,7 +85,7 @@ if (typeof window !== "undefined") {
       <div className="w-full xl:w-4/5 mx-auto mt-10 ">
         <div className="text-3xl font-semibold m-6">
           Hey,
-          <span className="text-blue-500 mx-1">{ tutor?.user?.name}</span>
+          <span className="text-blue-500 mx-1">{tutor?.user?.name}</span>
           <span className="tex">
             (sme)
           </span>
@@ -75,7 +102,7 @@ if (typeof window !== "undefined") {
           <div className="flex flex-col">
             <Status />
             {contact ? (
-              <Contact setContact={setContact}/>
+              <Contact setContact={setContact} />
             ) : (
               <div className="flex">
                 <div
@@ -85,7 +112,7 @@ if (typeof window !== "undefined") {
                 >
                   <div className="flex flex-col gap-2 text-gray-700 text-sm ">
                     <div className="text-gray-500 text-sm my-3">
-                     Start Solving
+                      Start Solving
                     </div>
                   </div>
                   <div
@@ -95,8 +122,8 @@ if (typeof window !== "undefined") {
                       router.push("/sme/doubt")
                     }}
                   >
-                   
-Click to Enter the world of solving                  </div>
+
+                    Click to Enter the world of solving                  </div>
                 </div>
 
                 <div className=" w-2/5 text-center bg-white rounded-lg   p-1 py-2 border border-red-100 shadow-sm ml-2 m-5 ">

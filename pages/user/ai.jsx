@@ -3,13 +3,16 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Loading from "../../components/Loading";
+
 
 
 import { Leftbar } from "../../components/user/Leftbar";
 import Askdoubt from "../../components/user/Askdoubt";
 
 
-const Ask = ({student}) => {
+const Ask = ({ student, setStudent }) => {
+    const [isLoading, setIsLoading] = useState(true)
     const router = useRouter();
     const [ask, setAsk] = useState("hidden");
     const [file, setFile] = useState({});
@@ -50,14 +53,70 @@ const Ask = ({student}) => {
         setAns(data.text)
         console.log(data);
     }
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            // window.location.reload()
+            // if(student!==null && student!==undefined){
+            //   setIsLoading(false)
+            // }
+            if (!localStorage.getItem("myuser")) {
+                router.push("/login")
+            } else {
+                if (typeof window !== "undefined") {
+                    const token = JSON.parse(localStorage.getItem("myuser")).token
+                    try {
+                        if (token && token != "undefined" && token != null) {
+                            fetch("/api/student/checkStudent", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ token: token }),
+                            })
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    console.log(data);
+                                    if (data.success) {
+                                        setStudent(data);
+                                        setIsLoading(false)
+                                    } else {
+                                        setIsLoading(false)
+                                        router.push("/login")
+                                    }
+                                }).catch((err) => {
+                                    console.log(err);
+                                })
+
+                        } else {
+                            router.push("/login")
+                        }
+                    } catch (err) {
+                        router.push("/login")
+                        console.log(err)
+                    }
+
+                    // setTimeout(() => {
+                    //   // window.location.reload()
+                    //   setIsLoading(false)
+                    // }, 2000);
+                }
+            }
+
+            // }else{
+            //   setIsLoading(false)
+            // }
+        }
+
+    }, [])
 
     return (
         <div className="w-screen flex  pt-10 md:pt-0">
             {/* <Navbar /> */}
-            <Leftbar/>
-            <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText}  />
+            {isLoading && <Loading />}
+            <Leftbar />
+            <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
 
-            <div className="w-full  md:flex justify-center mt-5">
+            <div className="w-full  lg:flex justify-center mt-5">
                 <div className="block pt-5 w-4/5 mb-5 mx-auto md:hidden text-[40px]  md:ml-5 font-semibold leading-[49px]">
                     <span className="text-[#39bdff]">Trust</span> make us different from others
                 </div>
@@ -194,11 +253,11 @@ const Ask = ({student}) => {
                     <pre className=" whitespace-pre-wrap" >{ans}</pre>
 
                     <button
-                    onClick={
-                        () => {
-                            setAsk("")
+                        onClick={
+                            () => {
+                                setAsk("")
+                            }
                         }
-                    }
                         type="submit"
                         className="bg-[#333b48] hover:bg-[#22272e] duration-300 ease-in-out rounded-full px-6 mt-5 py-2 text-white"
                     >

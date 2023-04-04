@@ -1,15 +1,72 @@
 import { Leftbar } from "../../components/user/Leftbar";
 import Askdoubt from "../../components/user/Askdoubt";
-import { useState } from "react";
-const Orders = ({student,setStudent}) => {
+import Loading from "../../components/Loading";
+import { useState, useEffect } from "react";
+const Orders = ({ student, setStudent }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const [ask, setAsk] = useState("hidden");
   const [text, setText] = useState("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // window.location.reload()
+      // if(student!==null && student!==undefined){
+      //   setIsLoading(false)
+      // }
+      if (!localStorage.getItem("myuser")) {
+        router.push("/login")
+      } else {
+        if (typeof window !== "undefined") {
+          const token = JSON.parse(localStorage.getItem("myuser")).token
+          try {
+            if (token && token != "undefined" && token != null) {
+              fetch("/api/student/checkStudent", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token: token }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.success) {
+                    setStudent(data);
+                    setIsLoading(false)
+                  } else {
+                    setIsLoading(false)
+                    router.push("/login")
+                  }
+                }).catch((err) => {
+                  console.log(err);
+                })
 
+            } else {
+              router.push("/login")
+            }
+          } catch (err) {
+            router.push("/login")
+            console.log(err)
+          }
+
+          // setTimeout(() => {
+          //   // window.location.reload()
+          //   setIsLoading(false)
+          // }, 2000);
+        }
+      }
+
+      // }else{
+      //   setIsLoading(false)
+      // }
+    }
+
+  }, [])
 
   return (
     <div className="bg-white flex pt-10 md:pt-0 ">
       <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
       <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
+      {isLoading && <Loading />}
       <div className="w-full">
         <div className="text-3xl font-semibold m-6  px-10 text-blue-500">
           Order History

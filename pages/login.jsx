@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
-import React, { useState ,useEffect} from "react";
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
 import Footer from "../components/home/Footer";
-const Login = () => {
+const Login = ({ student }) => {
   const router = Router;
 
   const [data, setData] = useState({
@@ -28,39 +28,38 @@ const Login = () => {
         body: JSON.stringify(data),
       });
       const data1 = await datal.json();
-      if(typeof window !== "undefined"){
-        localStorage.setItem("token", data1.token);
-                if (data1.success) {
-                  localStorage.setItem(
-                    "myuser",
-                    JSON.stringify({ email: data1.email, token: data1.token, studentId: data1.studentId })
-                  );
-                  toast.success("Login Success", {
-                    position: "top-left",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
-                  setTimeout(() => {
-                    router.push("/user");
-                  }, 1500);
-                } else {
-                  toast.error(data1.error, {
-                    position: "top-left",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
-                }
-               
+      if (typeof window !== "undefined") {
+        if (data1.success) {
+          localStorage.setItem(
+            "myuser",
+            JSON.stringify({ token: data1.token })
+          );
+          toast.success("Login Success", {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setTimeout(() => {
+            router.push("/user");
+          }, 1000);
+        } else {
+          toast.error(data1.error, {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+
       }
       console.log(data1);
     } catch (err) {
@@ -68,29 +67,47 @@ const Login = () => {
     }
   }
 
-useEffect(() => {
-  if(typeof window !== "undefined"){
-    // const token = localStorage.getItem("token");
-    const user = localStorage.getItem("myuser");
-    const user1 = JSON.parse(user);
-    console
-    if(user1?.email && user1?.token && user1?.token!="undefined"){
-      Router.push("/user");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // const token = localStorage.getItem("token");
+      const user = localStorage.getItem("myuser");
+      const user1 = JSON.parse(user);
+      // console.log(student)
+      if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+        console.log(user1?.token)
+        fetch("/api/student/checkStudent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: user1?.token
+          })
+        }).then((res) => res.json())
+          .then((res) => {
+            if (res.success) {
+              Router.push("/user");
+            }
+          }
+          ).catch((err) => {
+            console.log(err);
+          }
+          )
+      }
+
+
+      // if(user?.email && user?.token && user?.token!="undefined"){
+      //   Router.push("/user");
+      // }
+
+      // if(token && token!="undefined"){
+      //   Router.push("/user");
+      // }
+
     }
+  }, [])
 
-
-    // if(user?.email && user?.token && user?.token!="undefined"){
-    //   Router.push("/user");
-    // }
-
-    // if(token && token!="undefined"){
-    //   Router.push("/user");
-    // }
-
-  }
-}, [])
-
-	return (
+  return (
     <main className="pt-10 md:pt-0">
       <ToastContainer
         position="bottom-left"
@@ -124,7 +141,8 @@ useEffect(() => {
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                required
+                className="w-full h-[50px] mx-2 rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                 onChange={(e) => {
                   setData({ ...data, email: e.target.value });
                 }}
@@ -135,7 +153,8 @@ useEffect(() => {
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                required
+                className="w-full h-[50px] mx-2 rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                 onChange={(e) => {
                   setData({ ...data, password: e.target.value });
                 }}
@@ -173,7 +192,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
 }

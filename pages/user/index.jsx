@@ -1,5 +1,5 @@
 
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Leftbar } from "../../components/user/Leftbar";
 import Status from "../../components/user/dashboard/Status";
 import ProfilePreview from "../../components/user/dashboard/ProfilePreview";
@@ -17,48 +17,71 @@ const Dashboard = ({ student, setStudent }) => {
   const [text, setText] = useState("");
 
 
-const [contact, setContact] = useState(false);
-const [ask, setAsk] = useState("hidden");
-console.log(student);
-useEffect(() => {
-  if(typeof window !== "undefined"){
-    // window.location.reload()
-    // if(student!==null && student!==undefined){
-    //   setIsLoading(false)
-    // }
-   if(!localStorage.getItem("myuser")){
-    router.push("/")
-   }else{
-    fetch("/api/student/checkStudent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: JSON.parse(localStorage.getItem("myuser")).token }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setStudent(data);
-        setIsLoading(false)
-      });
+  const [contact, setContact] = useState(false);
+  const [ask, setAsk] = useState("hidden");
+  console.log(student);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // window.location.reload()
+      // if(student!==null && student!==undefined){
+      //   setIsLoading(false)
+      // }
+      if (!localStorage.getItem("myuser")) {
+        router.push("/login")
+      } else {
+        if (typeof window !== "undefined") {
+          const token = JSON.parse(localStorage.getItem("myuser")).token
+          try {
+            if (token && token != "undefined" && token != null) {
+              fetch("/api/student/checkStudent", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token: token }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.success) {
+                    setStudent(data);
+                    setIsLoading(false)
+                  } else {
+                    setIsLoading(false)
+                    router.push("/login")
+                  }
+                }).catch((err) => {
+                  console.log(err);
+                })
 
-    // setTimeout(() => {
-    //   // window.location.reload()
-    //   setIsLoading(false)
-    // }, 2000);
-   }
-  // }else{
-  //   setIsLoading(false)
-  // }
-}
-}, [])
-console.log(student)
+            } else {
+              router.push("/login")
+            }
+          } catch (err) {
+            router.push("/login")
+            console.log(err)
+          }
+
+          // setTimeout(() => {
+          //   // window.location.reload()
+          //   setIsLoading(false)
+          // }, 2000);
+        }
+      }
+
+      // }else{
+      //   setIsLoading(false)
+      // }
+    }
+
+  }, [])
+
+  console.log(student)
   return (
     <div className="bg-gray-50 flex ">
       <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
-      {isLoading && <Loading/>}
-      <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent}/>
+      {isLoading && <Loading />}
+      <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
       {/* <Askdoubt ask={ask} setAsk={setAsk} />
       <Sidebar ask={ask} setAsk={setAsk} />
       <Chatroom />
@@ -70,7 +93,7 @@ console.log(student)
         </div>
         <div className="grid lg:grid-cols-2">
           <div className="">
-            <ProfilePreview student={student}/>
+            <ProfilePreview student={student} />
 
             <Subscription />
             <DoubtStatus />
@@ -80,7 +103,7 @@ console.log(student)
           <div className="flex flex-col">
             <Status />
             {contact ? (
-              <Contact setContact={setContact}/>
+              <Contact setContact={setContact} />
             ) : (
               <div className="flex">
                 <div

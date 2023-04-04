@@ -1,8 +1,9 @@
 import { Leftbar } from "../../components/sme/Leftbar";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 
-const Setting = ({tutor,setTutor}) => {
+const Setting = ({ tutor, setTutor }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const [info, setInfo] = useState({
     name: "",
     class: "",
@@ -14,9 +15,9 @@ const Setting = ({tutor,setTutor}) => {
   const handleChange = (e) => {
     setTutor({
       ...tutor,
-      user:{
+      user: {
         ...tutor.user,
-        [e.target.name]:e.target.value
+        [e.target.name]: e.target.value
       }
     })
     setInfo({
@@ -26,7 +27,7 @@ const Setting = ({tutor,setTutor}) => {
     console.log(info)
   }
   const handleClass = (e) => {
-   
+
     setInfo({
       ...info,
       classs: {
@@ -37,7 +38,7 @@ const Setting = ({tutor,setTutor}) => {
     console.log(info)
   }
   const handleBoard = (e) => {
-    
+
     setInfo({
       ...info,
       board: {
@@ -68,7 +69,6 @@ const Setting = ({tutor,setTutor}) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: info?.name,
         class: info?.class,
         board: info?.board,
         target: info?.target,
@@ -87,9 +87,65 @@ const Setting = ({tutor,setTutor}) => {
 
 
   }
+  useEffect(() => {
+    console.log(tutor)
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("mysme")) {
+        router.push("/sme/login");
+        setIsLoading(false);
+      } else {
+        if (typeof window !== "undefined") {
+          // const token = localStorage.getItem("token");
+          const user = localStorage.getItem("mysme");
+          const user1 = JSON.parse(user);
+          // console.log(student)
+          if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+            console.log(user1?.token)
+            fetch("/api/tutor/checkTut", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token: user1?.token
+              })
+            }).then((res) => res.json())
+              .then((res) => {
+                if (res.success) {
+                  // router.push("/sme");
+                  setIsLoading(false)
+                  console.log("success")
+                } else {
+                  router.push("/sme/login");
+                  setIsLoading(false)
+                }
+              }
+              ).catch((err) => {
+                console.log(err);
+              }
+              )
+          }
+
+
+          // if(user?.email && user?.token && user?.token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+          // if(token && token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+        }
+      }
+    }
+
+  }, [])
+
+
   return (
     <div className="bg-white flex w-full gap-5">
       <Leftbar />
+      {isLoading && <Loading />}
       <div className="w-full h-screen overflow-scroll pt-12 px-3">
         <div className=" border-2 h-max w-[95%] md:w-[85%]  my-4 mx-auto rounded-2xl bg-white">
 
@@ -108,7 +164,7 @@ const Setting = ({tutor,setTutor}) => {
                 <input
                   className="border-2 w-[70%]  md:w-[330px]  border-gray-300 p-2 rounded-lg m-4"
                   name="name"
-                  onChange={handleChange}
+                  disabled
                   value={tutor?.user?.name}
                   type="text"
                   placeholder={tutor?.user?.name}
@@ -121,33 +177,33 @@ const Setting = ({tutor,setTutor}) => {
                 <fieldset className="w-[70%] flex gap-2 h-max" name="class"  >
 
 
-    <div>
+                  <div>
                     <input type="checkbox" id="ninth" name="ninth" value='9' onChange={handleClass}
-      checked={tutor?.user?.class?.ninth}
-       />
-<label htmlFor="ninth">9th</label>
-    </div>
-    <div>
-                    <input type="checkbox" id="tenth" name="tenth" value="10" onChange={handleClass}
-                    checked={tutor?.user?.class?.tenth}
+                      checked={tutor?.user?.class?.ninth}
                     />
-<label htmlFor="tenth">10th</label>
-    </div>
-    <div>
+                    <label htmlFor="ninth">9th</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="tenth" name="tenth" value="10" onChange={handleClass}
+                      checked={tutor?.user?.class?.tenth}
+                    />
+                    <label htmlFor="tenth">10th</label>
+                  </div>
+                  <div>
                     <input type="checkbox" id="eleventh" name="eleventh" value="11" onChange={handleClass}
-                    checked={tutor?.user?.class?.eleventh}
-                     />
-<label htmlFor="eleventh">11th</label>
-    </div>
-    <div>
+                      checked={tutor?.user?.class?.eleventh}
+                    />
+                    <label htmlFor="eleventh">11th</label>
+                  </div>
+                  <div>
                     <input type="checkbox" id="tweleth" name="tweleth" value="12" onChange={handleClass}
-                    checked={tutor?.user?.class?.tweleth}
-                     />
-<label htmlFor="tweleth">12th</label>
-    </div>
+                      checked={tutor?.user?.class?.tweleth}
+                    />
+                    <label htmlFor="tweleth">12th</label>
+                  </div>
 
 
-</fieldset>
+                </fieldset>
               </div>
               <div className="w-full items-center flex gap-3">
                 <label className="text-xl w-[30%] md:text-2xl md:w-[90px] font-semibold m-4">
@@ -155,20 +211,20 @@ const Setting = ({tutor,setTutor}) => {
                 </label>
                 <fieldset className="w-[70%] flex gap-2 h-max" name="board" onChange={handleBoard} >
                   <input type="checkbox" id="cbse" name="board" value="cbse"
-                  checked={tutor?.user?.board?.cbse}
+                    checked={tutor?.user?.board?.cbse}
                     onChange={handleBoard}
                   />
-<label htmlFor="cbse">CBSE</label>
+                  <label htmlFor="cbse">CBSE</label>
                   <input type="checkbox" id="icse" name="board" value="icse"
-checked={tutor?.user?.board?.icse}
-                  onChange={handleBoard}
-/>
-<label htmlFor="icse">ICSE</label>
-<input type="checkbox" id="state" name="board" value="state"
-checked={tutor?.user?.board?.state}
-                  onChange={handleBoard}
-/>
-<label htmlFor="state">State Board</label>
+                    checked={tutor?.user?.board?.icse}
+                    onChange={handleBoard}
+                  />
+                  <label htmlFor="icse">ICSE</label>
+                  <input type="checkbox" id="state" name="board" value="state"
+                    checked={tutor?.user?.board?.state}
+                    onChange={handleBoard}
+                  />
+                  <label htmlFor="state">State Board</label>
 
                 </fieldset>
                 {/* <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-4">
@@ -184,25 +240,25 @@ checked={tutor?.user?.board?.state}
                 <fieldset className="w-[70%] flex gap-2 h-max" name="target" onChange={handleTarget} >
                   <input type="checkbox" id="jeemains" name="jeemains" value="jeemains"
                     checked={tutor?.user?.target?.jeemains}
-                  onChange={handleTarget}
+                    onChange={handleTarget}
                   />
-<label htmlFor="jeemains">JEE MAINS</label>
+                  <label htmlFor="jeemains">JEE MAINS</label>
                   <input type="checkbox" id="jeeadv" name="jeeadv" value="jeeadv"
-                  checked={tutor?.user?.target?.jeeadv}
-                  onChange={handleTarget}
+                    checked={tutor?.user?.target?.jeeadv}
+                    onChange={handleTarget}
                   />
-<label htmlFor="jeeadv">JEE ADVANCED</label>
+                  <label htmlFor="jeeadv">JEE ADVANCED</label>
                   <input type="checkbox" id="nda" name="nda" value="nda"
-                  checked={tutor?.user?.target?.nda}
-                  onChange={handleTarget}
+                    checked={tutor?.user?.target?.nda}
+                    onChange={handleTarget}
                   />
-<label htmlFor="nda">NDA</label>
+                  <label htmlFor="nda">NDA</label>
                   <input type="checkbox" id="board" name="board" value="board"
-                  checked={tutor?.user?.target?.board}
-                  onChange={handleTarget}
+                    checked={tutor?.user?.target?.board}
+                    onChange={handleTarget}
                   />
-<label htmlFor="board">Board</label>
-{/* 
+                  <label htmlFor="board">Board</label>
+                  {/* 
                   <option
                   >JEE MAINS</option>
                   <option>JEE ADVANCED</option>
@@ -210,7 +266,7 @@ checked={tutor?.user?.board?.state}
                   <option>Board</option> */}
                 </fieldset>
               </div>
-           
+
               <div className="w-full flex gap-3">
                 <label className="text-xl md:text-2xl w-[30%] md:w-[90px] font-semibold m-4">
                   City
@@ -254,7 +310,7 @@ checked={tutor?.user?.board?.state}
           </div>
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
-            onClick={handleSubmit}
+              onClick={handleSubmit}
             >
               Save Changes
             </button>

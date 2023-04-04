@@ -29,11 +29,11 @@ const Login = () => {
             });
             const data1 = await datal.json();
             if (typeof window !== "undefined") {
-                localStorage.setItem("token", data1.token);
+
                 if (data1.success) {
                     localStorage.setItem(
                         "mysme",
-                        JSON.stringify({ email: data1.email, token: data1.token ,tutorId:data1.tutorId})
+                        JSON.stringify({ token: data1.token })
                     );
                     toast.success("Login Success", {
                         position: "top-left",
@@ -73,9 +73,27 @@ const Login = () => {
             // const token = localStorage.getItem("token");
             const user = localStorage.getItem("mysme");
             const user1 = JSON.parse(user);
-            console
-            if (user1?.email && user1?.token && user1?.token != "undefined") {
-                Router.push("/sme");
+            // console.log(student)
+            if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+                console.log(user1?.token)
+                fetch("/api/tutor/checkTut", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        token: user1?.token
+                    })
+                }).then((res) => res.json())
+                    .then((res) => {
+                        if (res.success) {
+                            Router.push("/sme");
+                        }
+                    }
+                    ).catch((err) => {
+                        console.log(err);
+                    }
+                    )
             }
 
 
@@ -113,7 +131,7 @@ const Login = () => {
                         </div>
                         <div className="flex justify-center">
                             <p className="text-xl">
-                                Welcome back champ lets make you topper{" "}
+                                Welcome back sir lets produce topper{" "}
                             </p>
                         </div>
                         <div className="flex justify-center mt-3">
@@ -124,7 +142,8 @@ const Login = () => {
                             <input
                                 type="email"
                                 placeholder="Email"
-                                className="w-full h-[50px] rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                                required
+                                className="w-full h-[50px] mx-2 rounded-[5px] mt-6 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                                 onChange={(e) => {
                                     setData({ ...data, email: e.target.value });
                                 }}
@@ -135,7 +154,8 @@ const Login = () => {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="w-full h-[50px]  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
+                                required
+                                className="w-full h-[50px] mx-2  rounded-[5px] mt-5 px-4 text-xl bg-gray-100 focus:bg-gray-200 border-2"
                                 onChange={(e) => {
                                     setData({ ...data, password: e.target.value });
                                 }}

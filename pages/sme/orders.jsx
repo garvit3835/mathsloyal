@@ -1,13 +1,71 @@
 import { Leftbar } from "../../components/sme/Leftbar";
+import Loading from "../../components/Loading";
+import { useEffect, useState } from "react";
+
+
 const Orders = () => {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    console.log(tutor)
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("mysme")) {
+        router.push("/sme/login");
+        setIsLoading(false);
+      } else {
+        if (typeof window !== "undefined") {
+          // const token = localStorage.getItem("token");
+          const user = localStorage.getItem("mysme");
+          const user1 = JSON.parse(user);
+          // console.log(student)
+          if (user1?.token && user1?.token != "undefined" && user1?.token != null) {
+            console.log(user1?.token)
+            fetch("/api/tutor/checkTut", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token: user1?.token
+              })
+            }).then((res) => res.json())
+              .then((res) => {
+                if (res.success) {
+                  // router.push("/sme");
+                  setIsLoading(false)
+                  console.log("success")
+                } else {
+                  router.push("/sme/login");
+                  setIsLoading(false)
+                }
+              }
+              ).catch((err) => {
+                console.log(err);
+              }
+              )
+          }
 
 
+          // if(user?.email && user?.token && user?.token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+          // if(token && token!="undefined"){
+          //   Router.push("/user");
+          // }
+
+        }
+      }
+    }
+
+  }, [])
   return (
     <div className="bg-white flex ">
       <Leftbar />
-      <div className="w-full pt-10"> 
+      {isLoading && <Loading />}
+      <div className="w-full pt-10">
         <div className="text-3xl font-semibold m-6 mx-20 text-blue-500">
-          Order History
+          Earning History
         </div>
         <div className="w-4/5 p-5 border mx-auto my-5 bg-white shadow rounded-2xl ">
           <table className="w-full ">

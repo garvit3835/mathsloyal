@@ -14,7 +14,7 @@ const Faqs = () => {
   }
 
   return (<div>
-    <Navbar/>
+    <Navbar />
     <section className="relative pt-24 pb-28 bg-white overflow-hidden">
       <img
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
@@ -206,7 +206,7 @@ const Faqs = () => {
         </div>
       </div>
     </section>
-    <Footer2/>
+    <Footer2 />
   </div>
   )
 }

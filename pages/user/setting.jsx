@@ -1,8 +1,9 @@
 import { Leftbar } from "../../components/user/Leftbar";
 import Askdoubt from "../../components/user/Askdoubt";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
-const Setting = ({student,setStudent}) => {
+const Setting = ({ student, setStudent }) => {
+  const [isLoading, setIsLoading] = useState(true)
 
   console.log(student)
   const [ask, setAsk] = useState("hidden");
@@ -19,9 +20,9 @@ const Setting = ({student,setStudent}) => {
   const handleChange = (e) => {
     setStudent({
       ...student,
-      user:{
+      user: {
         ...student.user,
-        [e.target.name]:e.target.value
+        [e.target.name]: e.target.value
       }
     })
     setInfo({
@@ -33,35 +34,90 @@ const Setting = ({student,setStudent}) => {
   const handleSubmit = (e) => {
 
     e.preventDefault()
-fetch("/api/student/updateStudent",{
-  method:"POST",
-  headers:{
-    "Content-Type":"application/json"
-  },
-  body:JSON.stringify({
-    name:info?.name,
-    class:info?.class,
-    board:info?.board,
-    target:info?.target,
-    school:info?.school,
-    city:info?.city,
-    phone:info?.phone,
-    studentId:student?.user?._id
-  })
-}).then(res=>res.json())
-.then(data=>{
-  console.log(data)
-  setStudent({
-    ...student,
-    user:data
-  })
-})
-  
+    fetch("/api/student/updateStudent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: info?.name,
+        class: info?.class,
+        board: info?.board,
+        target: info?.target,
+        school: info?.school,
+        city: info?.city,
+        phone: info?.phone,
+        studentId: student?.user?._id
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setStudent({
+          ...student,
+          user: data
+        })
+      })
+
 
   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // window.location.reload()
+      // if(student!==null && student!==undefined){
+      //   setIsLoading(false)
+      // }
+      if (!localStorage.getItem("myuser")) {
+        router.push("/login")
+      } else {
+        if (typeof window !== "undefined") {
+          const token = JSON.parse(localStorage.getItem("myuser")).token
+          try {
+            if (token && token != "undefined" && token != null) {
+              fetch("/api/student/checkStudent", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token: token }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.success) {
+                    setStudent(data);
+                    setIsLoading(false)
+                  } else {
+                    setIsLoading(false)
+                    router.push("/login")
+                  }
+                }).catch((err) => {
+                  console.log(err);
+                })
+
+            } else {
+              router.push("/login")
+            }
+          } catch (err) {
+            router.push("/login")
+            console.log(err)
+          }
+
+          // setTimeout(() => {
+          //   // window.location.reload()
+          //   setIsLoading(false)
+          // }, 2000);
+        }
+      }
+
+      // }else{
+      //   setIsLoading(false)
+      // }
+    }
+
+  }, [])
   return (
     <div className="bg-white pt-10 md:pt-0 flex w-full ">
-     {!student.user && <Loading/>}
+      {isLoading && <Loading />}
       <Askdoubt ask={ask} setAsk={setAsk} student={student} text={text} setText={setText} />
       <Leftbar ask={ask} setAsk={setAsk} setStudent={setStudent} />
       <div className="w-full h-screen overflow-scroll">
@@ -93,9 +149,9 @@ fetch("/api/student/updateStudent",{
                   Class
                 </label>
                 <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
-                name="class"
-                value={student?.user?.class?student?.user?.class:info.class}
-                onChange={handleChange}
+                  name="class"
+                  value={student?.user?.class ? student?.user?.class : info.class}
+                  onChange={handleChange}
                 >
                   <option value="select your class" >Select your class</option>
                   <option value="9">9</option>
@@ -110,9 +166,9 @@ fetch("/api/student/updateStudent",{
                   Board
                 </label>
                 <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
-                name="board"
-                  value={student?.user?.board ? student?.user?.board:info.board}
-                onChange={handleChange}
+                  name="board"
+                  value={student?.user?.board ? student?.user?.board : info.board}
+                  onChange={handleChange}
                 >
                   <option value="select your board">Select your Board</option>
 
@@ -126,10 +182,10 @@ fetch("/api/student/updateStudent",{
                   Target
                 </label>
                 <select className="border-2 w-[70%]  md:w-[330px]   border-gray-300 p-2 rounded-lg m-2  md:m-4"
-                name="target"
+                  name="target"
                   value={student?.user?.target ? student?.user?.target : info.target}
-                
-                onChange={handleChange}
+
+                  onChange={handleChange}
                 >
                   <option value="select your target">Select your Target</option>
 
@@ -194,7 +250,7 @@ fetch("/api/student/updateStudent",{
           </div>
           <div className="flex w-full justify-center md:justify-start gap-2 my-5 md:my-10">
             <button className="bg-blue-500 hover:bg-blue-600 duration-300 ease-in-out text-white w[60%] md:w-[240px] md:my-5 px-2 md:px-4 md:mx-5 py-2 rounded-lg"
-            onClick={handleSubmit}
+              onClick={handleSubmit}
             >
               Save Changes
             </button>

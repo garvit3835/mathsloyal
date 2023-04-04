@@ -4,6 +4,7 @@ import connectDB from "../../../middleware/mongoose";
 import updateTutorSolved from "../tutor/updateTutorSolved";
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.ObjectId;
+import Issue from "../../../model/Issue";
 
 const createSolution = async (req, res) => {
 	if (req.method === 'POST') {
@@ -19,6 +20,10 @@ const createSolution = async (req, res) => {
 			"tutor": mongoose.Types.ObjectId(req.body.tutorId),
 		});
 		await updateTutorSolved(req.body.tutorId, data._id)
+		await Issue.updateOne(
+			{ _id: mongoose.Types.ObjectId(req.body.issueId) },
+			{$set : {solved: true}}
+		)
 		console.log("solution created")
 		res.status(200).json(data)
 	} else {
